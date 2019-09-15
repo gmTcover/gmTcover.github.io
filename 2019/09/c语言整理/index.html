@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="怠惰なユニコーン🦄">
+<meta name="keywords" content="tech, C, C&#43;&#43;, PAT">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言整理">
+<meta name="twitter:title" content="C语言整理">
+<meta property="og:url" content="https://gmtcover.github.io/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
+<meta property="og:site_name" content="怠惰なユニコーン🦄">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-15T17:18:04">
+  
+  
+    <meta property="article:modified_time" content="2019-09-15T17:18:04">
+  
+  
+  
+    
+      <meta property="article:section" content="category">
+    
+      <meta property="article:section" content="subcategory">
+    
+  
+  
+    
+      <meta property="article:tag" content="tag1">
+    
+      <meta property="article:tag" content="tag2">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gmtcover.github.io/images/touxiang.png">
+  <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
+
+
+    <title>C语言整理</title>
+
+    <link rel="icon" href="https://gmtcover.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://gmtcover.github.io/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://gmtcover.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gmtcover.github.io/">怠惰なユニコーン🦄</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gmtcover.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gmtcover.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">怠惰なユニコーン🦄</h4>
+        
+          <h5 class="sidebar-profile-bio">Now or never!</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gmTcover" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      C语言整理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-15T17:18:04&#43;09:00">
+        
+  九月 15, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/category">category</a>, 
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/subcategory">subcategory</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="c指针">c指针</h1>
+
+<ul>
+<li>指针的类型是deriv from 其他类型，也就是说指针的类型是由他指向的类型决定的</li>
+<li>指针是一种reference类型，即引用类型</li>
+
+<li><p>指针就是地址</p>
+
+<pre><code>int main()
+{
+	int foo;
+	int *foo_p;
+
+	foo = 5;
+	foo_p = &amp;foo;
+
+	printf(&quot;   foo...%d\n&quot;,foo);
+	printf(&quot; foo_p...%d\n&quot;,*foo_p);
+	printf(&quot;  &amp;foo...%p\n&quot;,&amp;foo);
+	printf(&quot; foo_p...%p\n&quot;,foo_p);
+	printf(&quot;&amp;foo_p...%p\n&quot;,&amp;foo_p);
+	return 0;
+}
+</code></pre></li>
+</ul>
+
+<h2 id="几点说明">几点说明</h2>
+
+<ul>
+<li>%p 是专门用于指针变量中的内容，虽然与%x结果完全一样但是含义完全不同。%p用合适的方式（一般16进制）输出指针变量中存放的另一个变量的的地址，%x用16进制的方式打印出变量的值，又是会省去地址前面的0.
+&gt; 插入图片 指针变量的示意图</li>
+<li>指针是一种特殊的语言机制，类似本地变量，有自己的地址，该地址上内容为其他变量的地址，通过运算符获取改地址内容。</li>
+</ul>
+
+<h2 id="高阶指针">高阶指针</h2>
+
+<ul>
+<li><p>指向指针的指针</p>
+
+<pre><code>int main()
+{
+	int foo =5;
+	int *foo_p = &amp;foo;//定义一个指针，类型为int foo_p=&amp;foo
+	int **foo_pp = &amp;foo_p;//定义一个指向指针的指针，指针间建立关系
+	//foo_pp = &amp;foo_p,指针上的内容为地址
+
+	printf(&quot;    foo...%d\n&quot;,foo);
+
+	printf(&quot;   &amp;foo...%p\n&quot;,&amp;foo);
+	printf(&quot;  foo_p...%p\n&quot;,foo_p);
+
+	printf(&quot; &amp;foo_p...%p\n&quot;,&amp;foo_p);
+	printf(&quot; *foo_p...%d\n&quot;,*foo_p);
+
+	printf(&quot; foo_pp...%p\n&quot;,foo_pp);//%p打印指针上面的值
+
+
+	printf(&quot;&amp;foo_pp...%p\n&quot;,&amp;foo_pp);
+	prntf(&quot;*foo_pp...%p\n&quot;,*foo_pp);//得到的是指向指针的地址上的值（是一个地址）
+	printf(&quot;**foo_pp..%d\n&quot;,**foo_pp);
+	return 0;
+}
+</code></pre></li>
+
+<li><p>定义指向指针的指针模型，两个指针建立关系，高阶指针上面的内容为前一个指针的地址</p></li>
+
+<li><h2 id="指针是派生类型-它的类型依靠它所指向的对象">指针是派生类型，它的类型依靠它所指向的对象</h2>
+
+<h2 id="环境中各个类型分配的内存大小">环境中各个类型分配的内存大小</h2>
+
+<pre><code>int main()
+{
+	printf(&quot;sizeof(char)...%lu\n&quot;,sizeof(char));
+	printf(&quot;sizeof(int)...%lu\n&quot;,sizeof(int));
+	printf(&quot;sizeof(lloat)...%lu\n&quot;,sizeof(float));
+	printf(&quot;sizeof(double)...%lu\n&quot;,sizeof(double));
+	printf(&quot;sizeof(int*)...%lu\n&quot;,sizeof(int*));
+
+	return 0;
+}
+
+/* 两个概念
+int *p
+1）p是指针，它的类型为 int*
+2）p是指针，它所指向的类型是 int
+
+int **p
+1） p是指针，它的类型为 int **（二级指针
+2） p是指针，它说指向的类型是 int*（指针和指针建立关系，模型，
+
+空类型的指针 void* 
+- 只知道变量的地址，不知道变量类型，编译器无法直接对该地址运算，解析内容
+*/
+</code></pre></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>关于sizeof是操作符，不是函数</li>
+</ul>
+
+<h2 id="两个概念">两个概念</h2>
+
+<ul>
+<li>指针的类型，指针所指向的类型</li>
+</ul>
+
+<h2 id="内存分配">内存分配</h2>
+
+<ul>
+<li>作用域*：指变量的作用范围
+
+<ul>
+<li>全局变量 extern</li>
+<li>静态变量 static</li>
+<li>局部变量</li>
+</ul></li>
+<li>生存期：指变量从创建到销毁的时间段
+
+<ul>
+<li>本地变量（内存指定释放）</li>
+<li>堆变量malloc（） free（）</li>
+</ul></li>
+</ul>
+
+<h2 id="指针和数组">指针和数组</h2>
+
+<ul>
+<li>两者不相同，在函数声明是可以替换</li>
+<li>本质：数组名是一个指向数组起始元素的常量指针，这也是指针和数组的唯一联系</li>
+
+<li><p>语法糖，syntastic suger</p>
+
+<pre><code>void fun (int array[5], int n)
+{
+	printf(&quot;  sizeof(array)...%lu\n&quot;,sizeof(array));
+}
+
+int main()
+{
+	int array[] = {1,2,3,4,5};
+	printf(&quot; sizeof(array)...%lu\n&quot;,sizeof(array));
+
+	fun (array,5);
+	return 0;
+}
+
+//语法糖
+//p[i] = *(p+i)
+//p+i = i+p
+//p[i] = [p]i
+//
+</code></pre></li>
+
+<li><p>一维数组&amp;array 的含义</p>
+
+<pre><code>int main()
+{
+	int array[] = {1,2};
+
+	printf(&quot;   array...%p\n&quot;,array);
+	printf(&quot;  &amp;array...%p\n&quot;,&amp;array);
+
+	printf(&quot;&amp;array+1...%p\n&quot;,&amp;array+1);
+
+	return 0;
+}
+
+//相差8字节，sizeof(array)就是8字节
+//array 和 &amp;array都是指针，但是类型不同。array的指向类型是int *:q,而&amp;array的指向类型是int(*)[2]
+//一个是普通类型int类型的指针；&amp;array是数组指针（得到的是另外一个地址），元素类型是int类型的，数组大小是2
+</code></pre></li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p>c语言中数组是嵌套定义的：二维数组的元素是一维数组，三维数组的元素是二维数组</p>
+
+<pre><code>int main()
+{
+	int a[2][3][4]={{
+		{
+			1,2,3,4
+		},{
+			5,6,7,8
+		},{
+			9,10,11,12
+		}
+	},{
+		{
+			12,11,10,9
+		},{
+			8,7,6,5
+		},{
+			4,3,2,1
+		}
+	}
+	};
+
+	printf(&quot;a上面的内容值（地址）%p\n&quot;,a+1); 
+	
+	printf(&quot;&amp;a[0]的内容%p\n&quot;,&amp;a[0]+1);
+	int(*p)[3][4];
+	
+	p=&amp;a[0];
+	printf(&quot;&amp;a[0]上面的内容值（地址）%p\n&quot;,p+1);
+//读取数值方法
+	printf(&quot;%d\n&quot;,a[1][1][1]);
+	printf(&quot;%d\n&quot;,*(a[1][1]+1));//语法糖，syntac suger
+	return 0;
+}
+</code></pre></li>
+</ul>
+
+<hr />
+
+<h2 id="c语言中的语法声明">c语言中的语法声明</h2>
+
+<ul>
+<li>原则1:先看表示符</li>
+<li>原则2:运算符优先级</li>
+<li>指针数组：首先他是一个数组，数组元素都是指针，数组占多少个字节由数组本身决定，它是“储存指针的数组”的简称</li>
+<li>数组指针：首先他是一个指针，它指向一个数组。至于它指向的数组占多少字节，不知道。它是“指向数组的指针”的简称</li>
+</ul>
+
+<h2 id="const的使用">const的使用</h2>
+
+<ul>
+<li>read-only(只读)的意思</li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/tag2/">tag2</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">怠惰なユニコーン🦄</h4>
+    
+      <div id="about-card-bio">Now or never!</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gmtcover.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://gmtcover.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://gmtcover.github.io/js/clicklove.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86\/';
+          
+            this.page.identifier = '\/2019\/09\/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
