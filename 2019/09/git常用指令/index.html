@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言整理">
-<meta name="twitter:title" content="C语言整理">
-<meta property="og:url" content="/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
-<meta property="twitter:url" content="/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
+<meta property="og:title" content="Git常用指令">
+<meta name="twitter:title" content="Git常用指令">
+<meta property="og:url" content="/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+<meta property="twitter:url" content="/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-15T17:18:04">
+    <meta property="article:published_time" content="2019-09-15T19:12:33">
   
   
-    <meta property="article:modified_time" content="2019-09-15T17:18:04">
+    <meta property="article:modified_time" content="2019-09-15T19:12:33">
   
   
   
@@ -38,9 +38,9 @@
   
   
     
-      <meta property="article:tag" content="c">
+      <meta property="article:tag" content="tag1">
     
-      <meta property="article:tag" content="pointer">
+      <meta property="article:tag" content="tag2">
     
   
 
@@ -53,6 +53,9 @@
 
 
 
+  <meta property="og:image" content="/images/cover-v1.2.0.png">
+  <meta property="twitter:image" content="/images/cover-v1.2.0.png">
+
 
 
 
@@ -61,14 +64,14 @@
   <meta property="twitter:image" content="/images/touxiang.png">
 
 
-    <title>C语言整理</title>
+    <title>Git常用指令</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/">
+    <link rel="canonical" href="/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,13 +221,13 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      C语言整理
+      Git常用指令
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-15T17:18:04&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-09-15T19:12:33&#43;09:00">
         
   九月 15, 2019
 
@@ -247,237 +250,44 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="c指针">c指针</h1>
+              <h3 id="git基本常用命令如下">Git基本常用命令如下：</h3>
 
 <ul>
-<li>指针的类型是deriv from 其他类型，也就是说指针的类型是由他指向的类型决定的</li>
-<li>指针是一种reference类型，即引用类型</li>
-
-<li><p>指针就是地址</p>
-
-<pre><code>int main()
-{
-	int foo;
-	int *foo_p;
-
-	foo = 5;
-	foo_p = &amp;foo;
-
-	printf(&quot;   foo...%d\n&quot;,foo);
-	printf(&quot; foo_p...%d\n&quot;,*foo_p);
-	printf(&quot;  &amp;foo...%p\n&quot;,&amp;foo);
-	printf(&quot; foo_p...%p\n&quot;,foo_p);
-	printf(&quot;&amp;foo_p...%p\n&quot;,&amp;foo_p);
-	return 0;
-}
-</code></pre></li>
-</ul>
-
-<h2 id="几点说明">几点说明</h2>
-
-<ul>
-<li>%p 是专门用于指针变量中的内容，虽然与%x结果完全一样但是含义完全不同。%p用合适的方式（一般16进制）输出指针变量中存放的另一个变量的的地址，%x用16进制的方式打印出变量的值，又是会省去地址前面的0.
-&gt; 插入图片 指针变量的示意图</li>
-<li>指针是一种特殊的语言机制，类似本地变量，有自己的地址，该地址上内容为其他变量的地址，通过运算符获取改地址内容。</li>
-</ul>
-
-<h2 id="高阶指针">高阶指针</h2>
-
-<ul>
-<li><p>指向指针的指针</p>
-
-<pre><code>int main()
-{
-	int foo =5;
-	int *foo_p = &amp;foo;//定义一个指针，类型为int foo_p=&amp;foo
-	int **foo_pp = &amp;foo_p;//定义一个指向指针的指针，指针间建立关系
-	//foo_pp = &amp;foo_p,指针上的内容为地址
-
-	printf(&quot;    foo...%d\n&quot;,foo);
-
-	printf(&quot;   &amp;foo...%p\n&quot;,&amp;foo);
-	printf(&quot;  foo_p...%p\n&quot;,foo_p);
-
-	printf(&quot; &amp;foo_p...%p\n&quot;,&amp;foo_p);
-	printf(&quot; *foo_p...%d\n&quot;,*foo_p);
-
-	printf(&quot; foo_pp...%p\n&quot;,foo_pp);//%p打印指针上面的值
-
-
-	printf(&quot;&amp;foo_pp...%p\n&quot;,&amp;foo_pp);
-	prntf(&quot;*foo_pp...%p\n&quot;,*foo_pp);//得到的是指向指针的地址上的值（是一个地址）
-	printf(&quot;**foo_pp..%d\n&quot;,**foo_pp);
-	return 0;
-}
-</code></pre></li>
-
-<li><p>定义指向指针的指针模型，两个指针建立关系，高阶指针上面的内容为前一个指针的地址</p></li>
-
-<li><h2 id="指针是派生类型-它的类型依靠它所指向的对象">指针是派生类型，它的类型依靠它所指向的对象</h2>
-
-<h2 id="环境中各个类型分配的内存大小">环境中各个类型分配的内存大小</h2>
-
-<pre><code>int main()
-{
-	printf(&quot;sizeof(char)...%lu\n&quot;,sizeof(char));
-	printf(&quot;sizeof(int)...%lu\n&quot;,sizeof(int));
-	printf(&quot;sizeof(lloat)...%lu\n&quot;,sizeof(float));
-	printf(&quot;sizeof(double)...%lu\n&quot;,sizeof(double));
-	printf(&quot;sizeof(int*)...%lu\n&quot;,sizeof(int*));
-
-	return 0;
-}
-
-/* 两个概念
-int *p
-1）p是指针，它的类型为 int*
-2）p是指针，它所指向的类型是 int
-
-int **p
-1） p是指针，它的类型为 int **（二级指针
-2） p是指针，它说指向的类型是 int*（指针和指针建立关系，模型，
-
-空类型的指针 void* 
-- 只知道变量的地址，不知道变量类型，编译器无法直接对该地址运算，解析内容
-*/
-</code></pre></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>关于sizeof是操作符，不是函数</li>
-</ul>
-
-<h2 id="两个概念">两个概念</h2>
-
-<ul>
-<li>指针的类型，指针所指向的类型</li>
-</ul>
-
-<h2 id="内存分配">内存分配</h2>
-
-<ul>
-<li>作用域*：指变量的作用范围
-
-<ul>
-<li>全局变量 extern</li>
-<li>静态变量 static</li>
-<li>局部变量</li>
-</ul></li>
-<li>生存期：指变量从创建到销毁的时间段
-
-<ul>
-<li>本地变量（内存指定释放）</li>
-<li>堆变量malloc（） free（）</li>
-</ul></li>
-</ul>
-
-<h2 id="指针和数组">指针和数组</h2>
-
-<ul>
-<li>两者不相同，在函数声明是可以替换</li>
-<li>本质：数组名是一个指向数组起始元素的常量指针，这也是指针和数组的唯一联系</li>
-
-<li><p>语法糖，syntastic suger</p>
-
-<pre><code>void fun (int array[5], int n)
-{
-	printf(&quot;  sizeof(array)...%lu\n&quot;,sizeof(array));
-}
-
-int main()
-{
-	int array[] = {1,2,3,4,5};
-	printf(&quot; sizeof(array)...%lu\n&quot;,sizeof(array));
-
-	fun (array,5);
-	return 0;
-}
-
-//语法糖
-//p[i] = *(p+i)
-//p+i = i+p
-//p[i] = [p]i
-//
-</code></pre></li>
-
-<li><p>一维数组&amp;array 的含义</p>
-
-<pre><code>int main()
-{
-	int array[] = {1,2};
-
-	printf(&quot;   array...%p\n&quot;,array);
-	printf(&quot;  &amp;array...%p\n&quot;,&amp;array);
-
-	printf(&quot;&amp;array+1...%p\n&quot;,&amp;array+1);
-
-	return 0;
-}
-
-//相差8字节，sizeof(array)就是8字节
-//array 和 &amp;array都是指针，但是类型不同。array的指向类型是int *:q,而&amp;array的指向类型是int(*)[2]
-//一个是普通类型int类型的指针；&amp;array是数组指针（得到的是另外一个地址），元素类型是int类型的，数组大小是2
-</code></pre></li>
-</ul>
-
-<hr />
-
-<ul>
-<li><p>c语言中数组是嵌套定义的：二维数组的元素是一维数组，三维数组的元素是二维数组</p>
-
-<pre><code>int main()
-{
-	int a[2][3][4]={{
-		{
-			1,2,3,4
-		},{
-			5,6,7,8
-		},{
-			9,10,11,12
-		}
-	},{
-		{
-			12,11,10,9
-		},{
-			8,7,6,5
-		},{
-			4,3,2,1
-		}
-	}
-	};
-
-	printf(&quot;a上面的内容值（地址）%p\n&quot;,a+1); 
-	
-	printf(&quot;&amp;a[0]的内容%p\n&quot;,&amp;a[0]+1);
-	int(*p)[3][4];
-	
-	p=&amp;a[0];
-	printf(&quot;&amp;a[0]上面的内容值（地址）%p\n&quot;,p+1);
-//读取数值方法
-	printf(&quot;%d\n&quot;,a[1][1][1]);
-	printf(&quot;%d\n&quot;,*(a[1][1]+1));//语法糖，syntac suger
-	return 0;
-}
-</code></pre></li>
-</ul>
-
-<hr />
-
-<h2 id="c语言中的语法声明">c语言中的语法声明</h2>
-
-<ul>
-<li>原则1:先看表示符</li>
-<li>原则2:运算符优先级</li>
-<li>指针数组：首先他是一个数组，数组元素都是指针，数组占多少个字节由数组本身决定，它是“储存指针的数组”的简称</li>
-<li>数组指针：首先他是一个指针，它指向一个数组。至于它指向的数组占多少字节，不知道。它是“指向数组的指针”的简称</li>
-</ul>
-
-<h2 id="const的使用">const的使用</h2>
-
-<ul>
-<li>read-only(只读)的意思</li>
+<li>mkdir XX       (创建一个空目录 XX指目录名)</li>
+<li>cat XX         查看XX文件内容</li>
+<li>pwd            显示当前目录的路径</li>
+<li>ls -l          显示文件详细</li>
+<li>ls -a          显示所以文件</li>
+<li>touch xx       mac创建文件</li>
+<li>rm xx          删除文件</li>
+<li>git init       把当前的目录变成可以管理的git仓库，生成隐藏.git文件。</li>
+<li>git add xx     添加文件到暂存区</li>
+<li>git commit –m “XX”  提交文件 –m 后面的是注释。</li>
+<li>git status        查看仓库状态</li>
+<li>git diff  XX      查看XX文件修改了那些内容</li>
+<li>git log          查看历史记录</li>
+<li>git reset  &ndash;hard HEAD^ 或者 git reset  &ndash;hard HEAD~ 回退到上一个版本(如果想回退到100个版本，使用git reset –hard HEAD~100 )</li>
+<li>cat XX         查看XX文件内容</li>
+<li>git reflog       查看历史记录的版本号id</li>
+<li>git checkout &ndash; XX  把XX文件在工作区的修改全部撤销。</li>
+<li>git rm XX          删除XX文件</li>
+<li>git remote add origin https:// repository地址 关联一个远程库</li>
+<li>git push –u(第一次要用-u 以后不需要) o rigin master 把当前master分支推送到远程库</li>
+<li>git clone 从远程库中克隆</li>
+<li>git checkout –b dev  创建dev分支 并切换到dev分支上</li>
+<li>git branch  查看当前所有的分支</li>
+<li>git checkout master 切换回master分支</li>
+<li>git merge dev    在当前的分支上合并dev分支 fast forward模式</li>
+<li>git branch –d dev 删除dev分支</li>
+<li>git branch name  创建分支</li>
+<li>git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作</li>
+<li>git stash list 查看所有被隐藏的文件列表</li>
+<li>git stash apply 恢复被隐藏的文件，但是内容不删除</li>
+<li>git stash drop 删除文件</li>
+<li>git stash pop 恢复文件的同时 也删除文件</li>
+<li>git remote 查看远程库的信息</li>
+<li>git remote –v 查看远程库的详细信息</li>
+<li>git push origin master  Git会把master分支推送到远程库对应的远程分支上</li>
 </ul>
               
             </div>
@@ -490,15 +300,15 @@ int main()
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="/tags/c/">c</a>
+  <a class="tag tag--primary tag--small" href="/tags/tag1/">tag1</a>
 
-  <a class="tag tag--primary tag--small" href="/tags/pointer/">pointer</a>
+  <a class="tag tag--primary tag--small" href="/tags/tag2/">tag2</a>
 
                   </div>
                 
               
             
-              <span id="/2019/09/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86/" class="leancloud_visitors" data-flag-title="C语言整理">
+              <span id="/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Git常用指令">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -525,7 +335,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -533,7 +343,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -593,7 +403,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -601,7 +411,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -733,9 +543,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2019\/09\/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86\/';
+          this.page.url = '\/2019\/09\/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4\/';
           
-            this.page.identifier = '\/2019\/09\/c%E8%AF%AD%E8%A8%80%E6%95%B4%E7%90%86\/'
+            this.page.identifier = '\/2019\/09\/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4\/'
           
         };
         (function() {
