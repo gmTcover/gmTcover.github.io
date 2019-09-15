@@ -6,10 +6,19 @@
     <description>Recent content in tag2 on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Sep 2019 17:18:04 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2019 17:50:48 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git学习</title>
+      <link>https://gmtcover.github.io/2019/09/git%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sun, 15 Sep 2019 17:50:48 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/09/git%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C语言整理</title>
