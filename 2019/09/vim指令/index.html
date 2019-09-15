@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git常用指令">
-<meta name="twitter:title" content="Git常用指令">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+<meta property="og:title" content="Vim指令">
+<meta name="twitter:title" content="Vim指令">
+<meta property="og:url" content="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-15T19:12:33">
+    <meta property="article:published_time" content="2019-09-15T20:31:15">
   
   
-    <meta property="article:modified_time" content="2019-09-15T19:12:33">
+    <meta property="article:modified_time" content="2019-09-15T20:31:15">
   
   
   
@@ -61,14 +61,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>Git常用指令</title>
+    <title>Vim指令</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,13 +218,13 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Git常用指令
+      Vim指令
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-15T19:12:33&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-09-15T20:31:15&#43;09:00">
         
   九月 15, 2019
 
@@ -247,44 +247,323 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h3 id="git基本常用命令如下">Git基本常用命令如下：</h3>
+              <h1 id="vim常用指令">vim常用指令</h1>
+
+<h2 id="normal-模式">normal 模式</h2>
 
 <ul>
-<li>mkdir XX       (创建一个空目录 XX指目录名)</li>
-<li>cat XX         查看XX文件内容</li>
-<li>pwd            显示当前目录的路径</li>
-<li>ls -l          显示文件详细</li>
-<li>ls -a          显示所以文件</li>
-<li>touch xx       mac创建文件</li>
-<li>rm xx          删除文件</li>
-<li>git init       把当前的目录变成可以管理的git仓库，生成隐藏.git文件。</li>
-<li>git add xx     添加文件到暂存区</li>
-<li>git commit –m “XX”  提交文件 –m 后面的是注释。</li>
-<li>git status        查看仓库状态</li>
-<li>git diff  XX      查看XX文件修改了那些内容</li>
-<li>git log          查看历史记录</li>
-<li>git reset  &ndash;hard HEAD^ 或者 git reset  &ndash;hard HEAD~ 回退到上一个版本(如果想回退到100个版本，使用git reset –hard HEAD~100 )</li>
-<li>cat XX         查看XX文件内容</li>
-<li>git reflog       查看历史记录的版本号id</li>
-<li>git checkout &ndash; XX  把XX文件在工作区的修改全部撤销。</li>
-<li>git rm XX          删除XX文件</li>
-<li>git remote add origin https:// repository地址 关联一个远程库</li>
-<li>git push –u(第一次要用-u 以后不需要) o rigin master 把当前master分支推送到远程库</li>
-<li>git clone 从远程库中克隆</li>
-<li>git checkout –b dev  创建dev分支 并切换到dev分支上</li>
-<li>git branch  查看当前所有的分支</li>
-<li>git checkout master 切换回master分支</li>
-<li>git merge dev    在当前的分支上合并dev分支 fast forward模式</li>
-<li>git branch –d dev 删除dev分支</li>
-<li>git branch name  创建分支</li>
-<li>git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作</li>
-<li>git stash list 查看所有被隐藏的文件列表</li>
-<li>git stash apply 恢复被隐藏的文件，但是内容不删除</li>
-<li>git stash drop 删除文件</li>
-<li>git stash pop 恢复文件的同时 也删除文件</li>
-<li>git remote 查看远程库的信息</li>
-<li>git remote –v 查看远程库的详细信息</li>
-<li>git push origin master  Git会把master分支推送到远程库对应的远程分支上</li>
+<li>gi #快速回到最后编辑位置</li>
+<li>h j k l</li>
+
+<li><p>w/W b/B #单词间移动</p>
+
+<h3 id="行间搜索选中想要发字符">行间搜索选中想要发字符</h3></li>
+
+<li><p>u{}   # , ;</p></li>
+
+<li><p>f{输入单词首字母} &ldquo;,&rdquo;;&rdquo; # 前后单词移动 光标之后后内容</p></li>
+
+<li><p>F{}</p>
+
+<h3 id="水平移动">水平移动</h3></li>
+
+<li><p>0/^  $/g #移动到行首/行首字母；行尾/行尾前一个单词</p></li>
+
+<li><p>（） #括号句子间移动</p></li>
+
+<li><p>{}  #段落间移动</p>
+
+<h3 id="vim页面移动">vim页面移动</h3></li>
+
+<li><p>gg/G #移动到文件开头结尾，ctrl+o 返回初始位置</p></li>
+
+<li><p>H/L/M #head,meiddle,lower</p></li>
+
+<li><p>zz #屏幕居中</p></li>
+
+<li><p>ctrl+u/trl+f #upward/forward翻页</p>
+
+<h3 id="进入insert模式">进入insert模式</h3></li>
+
+<li><p>a button #append</p></li>
+
+<li><p>o button #open a line blew</p></li>
+
+<li><p>i button #insert</p></li>
+
+<li><p>A</p></li>
+
+<li><p>I</p></li>
+
+<li><p>O</p>
+
+<h3 id="替换搜索">替换搜索</h3></li>
+
+<li><p>:[range]s[ubstitute]/{pattern}/{string}/[flags] # 替换的 range表示范围比如2-10，%表示全部 flag g（global）表示全局范围内替换。 c（confirm）表示确认，可以选择。 n（number）查询匹配次数，：1-6pattern//n</p>
+
+<h3 id="撤销">撤销</h3></li>
+
+<li><p>u/U ctrl+r   #</p>
+
+<h3 id="精确替换">精确替换</h3></li>
+
+<li><p>：% s/ &lt;&gt;/&lt;&gt;</p>
+
+<h3 id="多文件操作buffer">多文件操作buffer</h3></li>
+
+<li><p>Buffer window Tab ##内存缓存区，窗口，整个工作区域</p>
+
+<h4 id="多个buffer">多个buffer</h4></li>
+
+<li><p>：ls #列举当前缓存区</p></li>
+
+<li><p>：e 文件名，#打开多个文件，就会有多个缓存区</p></li>
+
+<li><p>：b name或p，n，l #文件，缓存区跳转，previous，next，last，Tab补全名字</p>
+
+<h4 id="多个window">多个window</h4></li>
+
+<li><p>：sp 水平</p></li>
+
+<li><p>：vp 垂直</p></li>
+
+<li><p>：不同窗口打开多个buffer，一个buffer打开多个窗口或多个buffer多个窗口一个界面</p></li>
+
+<li><p>：ctrl+W+H J K L  #大写调换窗口位置</p></li>
+
+<li><p>：ctrl+h j k l。#小写光标位置在窗口切换</p>
+
+<h4 id="tab-标签页-操作">Tab（标签页）操作</h4></li>
+
+<li><p>：可以整理文件类型编辑 txt，mid,etc 分类编辑</p></li>
+
+<li><p>:tabnew #新的标签页</p></li>
+
+<li><p>gt #标签页切换 类似：b buffer-name</p>
+
+<h2 id="vim-的text-object-文本对象">vim 的text object（文本对象）</h2></li>
+
+<li><p>[number]command[text object]    #格式command 是命令，d（delect），c（change），y（yank）number表示次数，object表示对象，比如单词w，句子s，段落p</p>
+
+<h3 id="text-object-的内容修改">[text object]的内容修改</h3></li>
+
+<li><p>i（）；a（）；i&lt;&gt;;a&lt;&gt; ;#还是类似的[];{};&ldquo;;&rsquo; vi+加符号</p></li>
+
+<li><p>iw # inner word,比如viw 进入visual模式iw选中当前单词</p></li>
+
+<li><p>aw # a word,选中单词切包含单词后空格</p></li>
+
+<li><p>is #选中句子</p></li>
+
+<li><p>as</p></li>
+
+<li><p>ip #选中段落</p></li>
+
+<li><p>ap</p>
+
+<h3 id="选中内容增删改查进入visual模式v选中内容">选中内容增删改查进入visual模式v选中内容</h3></li>
+
+<li><p>c*[ ;c{;c&rdquo;;c&rsquo; #change内容进入insert</p></li>
+
+<li><p>x #删除字符</p></li>
+
+<li><p>d #删除文本对象,并留在寄存器里</p></li>
+
+<li><p>r</p></li>
+
+<li><p>s</p>
+
+<h2 id="normal-模式复制粘贴">Normal 模式复制粘贴</h2></li>
+
+<li><p>y(yank);（put）</p></li>
+
+<li><p>配合文本对象：yiw 复制一个单词，yy复制一行,到无名寄存器</p></li>
+
+<li><p>v命令选中所需位置</p>
+
+<h2 id="inser-模式复制粘贴">inser 模式复制粘贴</h2></li>
+
+<li><p>ctrl+c ctrl+v</p>
+
+<h2 id="寄存器中复制粘贴">寄存器中复制粘贴</h2></li>
+
+<li><p>复制，剪切到不同 寄存器中，可以批量选择地复制，剪切</p></li>
+
+<li><p>“a yy  ；”b yy #复制到不同寄存器a，b</p></li>
+
+<li><p>：reg  #查看寄存器内容</p></li>
+
+<li><p>”a p；“b p 粘贴不同寄存器内容</p></li>
+
+<li><p>” yy，#默认寄存器 相当于yy</p></li>
+
+<li><p>###专用寄存器</p></li>
+
+<li><p>复制专用寄存器“0 使用y复制文本到默认寄存器同时会被拷贝到寄存专用寄存器”0</p></li>
+
+<li><p>系统剪切板“+  # 复制出vim中内容到别处</p></li>
+
+<li><p>ctrl+r{register}多次粘贴一个寄存器的内容</p></li>
+
+<li><p>寄存字母有a-z，还有特殊的</p>
+
+<h2 id="vim宏操作-macro">vim宏操作(macro)</h2></li>
+
+<li><p>重复相同操作，一系列命令的操作，录制回放</p></li>
+
+<li><p>normal模式中使用q来录制，同时也是q录制结束</p></li>
+
+<li><p>使用q{register}选择要保存的寄存器，保存录制的命令</p></li>
+
+<li><p>使用@{register}回放寄存器中保存的命令</p></li>
+
+<li><p>针对实际问题设计</p></li>
+
+<li><p>qa（开始）I“ A” Esc q（结束） @a 回放寄存器内容</p></li>
+
+<li><p>shift+v=V #行选配合 gg/G 文章开头结尾;h j k l移动, 批量选择然后按：进入命令模式进行操作</p>
+
+<h1 id="批量操作-类似宏">批量操作（类似宏）</h1></li>
+
+<li><p>v （选择范围） ：（进入命令行模式） normal（执行normal命令）I“</p></li>
+
+<li><p>v （选择范围） ：（进入命令行模式） normal（执行normal命令）A&rdquo;</p>
+
+<h2 id="插入文件名-文件路径">插入文件名，文件路径</h2></li>
+
+<li><p>:r! echo %  # ctrl+xf 打开文件名</p></li>
+
+<li><p>:r! ecgo %:p self. #搜索文件中关键字补全 ctrl+n ctrl+f ，n，p（next，previous）</p></li>
+
+<li><p>未装插件都是基于文本的匹配补全</p>
+
+<h2 id="文件目录树">文件目录树</h2></li>
+
+<li><p>插件 <a href="https://github.com/scrooloose/nerdtree">nerdtree</a></p></li>
+
+<li><p>ctrl+v/g ; q #打开目录，关闭目录</p></li>
+
+<li><p>ctrl+v,ctrl+wp #副窗口和目录间切换</p>
+
+<h2 id="窗口最大化与窗口等宽">窗口最大化与窗口等宽</h2></li>
+
+<li><p>ctrl+W+| ;ctrl+w+=</p>
+
+<h2 id="快速定位插件">快速定位插件</h2></li>
+
+<li><p>插件 <a href="https://github.com/ctrlpvim/ctrlp.vim">ctrlp</a></p></li>
+
+<li><p>ctrl+p</p>
+
+<h2 id="快速移动">快速移动</h2></li>
+
+<li><p>插件 <a href="https://github.com/easymotion/vim-easymotion">easymotion</a></p></li>
+
+<li><p>ss 命令</p>
+
+<h2 id="替换符号">替换符号</h2></li>
+
+<li><p>normal模式选中 r替换+内容</p>
+
+<h2 id="快速修改符号">快速修改符号</h2></li>
+
+<li><p>插件 <a href="https://github.com/tpope/vim-surround">vim-surround</a></p></li>
+
+<li><p>ds (delete a surrounding)</p></li>
+
+<li><p>cs (change a surrounding)</p></li>
+
+<li><p>ys (you add a surrounding )</p></li>
+
+<li><p>&ldquo;name&rdquo; ys + iw +符号#ys 自动进入选中模式了</p></li>
+
+<li><p>&ldquo;name&rdquo; # cs &ldquo;&rsquo; 改变双引号为单引号</p></li>
+
+<li><p>（）改[] #cs （ 】左边圆括号右边方括号不会产生空格符号</p></li>
+
+<li><p>ds +&rdquo; &lsquo; ( { [</p>
+
+<h2 id="模糊搜索批量替换">模糊搜索批量替换</h2></li>
+
+<li><p>插件fzf.vim</p>
+
+<h2 id="变成语言插件">变成语言插件</h2>
+
+<p>-vim.go插件 #基本可以满足日常开发</p></li>
+
+<li><p>需要的功能代码补全，重构，跳转，自动格式化，自动导入等功能。</p></li>
+
+<li><p><a href="https://github.com/fatih/vim-go">插件</a></p></li>
+
+<li><p>pathon-mode具备基本的补全，跳转，重构格式化功能。</p></li>
+
+<li><p>即使是在服务器上也能愉快的调试payhon代码</p>
+
+<h2 id="tagbar">tagbar</h2></li>
+
+<li><p><a href="https://github.com/majutsushi/tagbar">插件</a></p></li>
+
+<li><p>大项目浏览代码结构，并且搜索跳转到对应代码块</p>
+
+<h2 id="高亮感兴趣的单词-浏览代码">高亮感兴趣的单词，浏览代码</h2></li>
+
+<li><p>浏览代码的时候经常需要知道一个变量的使用方式。</p></li>
+
+<li><p><a href="https://github.com/lfv89/vim-interestingwords">vim-interestingword</a></p>
+
+<h2 id="异步补全插件">异步补全插件</h2></li>
+
+<li><p>支持多变丑语言，支持模糊匹配</p></li>
+
+<li><p><a href="https://github.com/Shougo/deoplete.nvim">deoplete</a></p>
+
+<h2 id="coc-vim">coc.vim</h2></li>
+
+<li><p>支持异步补全切支持LSP</p></li>
+
+<li><p>[](<a href="https://github.com/neoclide/coc.nvim)国内大神开发">https://github.com/neoclide/coc.nvim)国内大神开发</a></p>
+
+<h2 id="代码格式话与静态检查">代码格式话与静态检查</h2></li>
+
+<li><p>把精力集中代码逻辑本身，而不是整理格式这些浪费精力的事情上，静态检查时为了让编写的代码更加规范，几十发现bug，不规范</p></li>
+
+<li><p>无论你编写何种变丑语言，最好都加上自动格式化和静态检查，更加容易维护。</p></li>
+
+<li><p><a href="https://github.com/Chiel92/vim-autoformat">vim-autoformat</a></p></li>
+
+<li><p>需要安装对应语言的格式化库。python autopep8/js的prettier等</p>
+
+<h2 id="静态检查lint">静态检查Lint</h2></li>
+
+<li><p>neomake和ale是两种常用的lint插件</p></li>
+
+<li><p>[](<a href="https://github.com/w0rp/ale">https://github.com/w0rp/ale</a>)  #ale，是代码格式更加干净，有些团队上线前会检查</p></li>
+
+<li><p>支持异步检查，不会影响vim编辑。提高效率，解放生产力</p>
+
+<h2 id="代码快速注释">代码快速注释</h2></li>
+
+<li><p><a href="https://github.com/tpope/vim-commentary">vim-commentary</a></p></li>
+
+<li><p>常用命令 gc 注释和取消注释，插件会根据不同的文件类型使用不同注释</p></li>
+
+<li><p>gc gcc注释掉一行</p>
+
+<h2 id="git的包装器fugitive">git的包装器Fugitive</h2></li>
+
+<li><p>在vim的git项目 中使用git命令</p></li>
+
+<li><p>[](<a href="https://github.com/airblade/vim-gitgutter">https://github.com/airblade/vim-gitgutter</a>)</p></li>
+
+<li><p><a href="https://github.com/tpope/vim-fugitive">gitgutter</a></p></li>
+
+<li><p>[gv.vim]</p>
+
+<h2 id="thanks">Thanks</h2></li>
+
+<li><p>[更多]<a href="http://coolshell.cn/atticles/5426.html">http://coolshell.cn/atticles/5426.html</a></p></li>
+
+<li><p><a href="htt:p//www.imooc.com/video/1946">vim入门教学超级👍</a></p></li>
 </ul>
               
             </div>
@@ -305,7 +584,7 @@
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Git常用指令">
+              <span id="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Vim指令">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -332,7 +611,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" data-tooltip="Git常用指令">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -340,7 +619,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/" data-tooltip="Vim指令">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -400,7 +679,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/git%E5%AD%A6%E4%B9%A0/" data-tooltip="Git学习">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" data-tooltip="Git常用指令">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -408,7 +687,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/" data-tooltip="Vim指令">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -540,9 +819,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/vim%E6%8C%87%E4%BB%A4\/';
           
-            this.page.identifier = '\/2019\/09\/git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4\/'
+            this.page.identifier = '\/2019\/09\/vim%E6%8C%87%E4%BB%A4\/'
           
         };
         (function() {
