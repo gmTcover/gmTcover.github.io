@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C字符串函数简单实现">
-<meta name="twitter:title" content="C字符串函数简单实现">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+<meta property="og:title" content="枚举概念">
+<meta name="twitter:title" content="枚举概念">
+<meta property="og:url" content="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-23T23:14:13">
+    <meta property="article:published_time" content="2019-09-25T02:04:53">
   
   
-    <meta property="article:modified_time" content="2019-09-23T23:14:13">
+    <meta property="article:modified_time" content="2019-09-25T02:04:53">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>C字符串函数简单实现</title>
+    <title>枚举概念</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      C字符串函数简单实现
+      枚举概念
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-23T23:14:13&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-09-25T02:04:53&#43;09:00">
         
-  九月 23, 2019
+  九月 25, 2019
 
       </time>
     
@@ -245,177 +245,73 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="putchar">putchar</h1>
+              <h1 id="枚举">枚举</h1>
 
 <ul>
-<li><p>输入&ndash;shell&ndash;程序</p>
+<li>是一种用户定义的数据类型，它用关键字 enum 语法来声明
 
 <ul>
-<li>ctrl+c</li>
-
-<li><p>ctrl+d</p>
-
-<pre><code>int main(int argc, char const *argv[])
-{
-	int ch;
-	while ( (ch = getchar()) != EOF ){
-	putchar( ch );
-	}
-	
-	printf(&quot;ctrl+D操作读到，EOF\n&quot;);
-	return 0;
-}
-</code></pre></li>
+<li>更好的定义名称（可配合switch类型）
+&gt;&gt;&gt; enum 枚举类型名字 {name1,name2,&hellip;nameN};</li>
 </ul></li>
-</ul>
 
-<h1 id="string-h">string.h</h1>
+<li><p>c语言中枚举类型名字通常并不真多使用，要用的是大括号里的名字，因为它们就是常量符号，它们的类型是int，值是依次从0到n。</p>
 
-<ul>
-<li><p>常用函数strlen</p>
-
-<pre><code>int main( int argc, char const *argc[] )
-{
-char line[] = &quot;Hello&quot;;
-
-printf(&quot;strlen=%lu\n&quot;,strlen(line));//5
-printf(&quot;sizeof=%lu\n&quot;,sizeof(line));//6
-
-return 0;
-}
+<pre><code>	enum colors { red, yellow, green};
+	printf(&quot;%d %d %d&quot;,red,yellow, green);
 </code></pre></li>
-</ul>
 
-<h1 id="strlen">strlen</h1>
+<li><p>当需要一些可以排列起来的常量值时候，定义枚举就是给这些常量值名字</p></li>
 
-<pre><code>int Mylen( char const *str )
-{
-	int idx = 0;
-	while ( *str++ ) idx++;
-	return idx;
-}
-</code></pre>
-
-<h1 id="strcmp">strcmp</h1>
+<li><p>枚举量可以作为值(默认0开始依次递增)，定义了一个新的数据类型 int</p>
 
 <ul>
-<li><p>比较2个字符串，返回</p>
+<li><p>本质是以整数来做内部计算和外部输入输出的</p>
 
-<ul>
-<li>0:str1 = str2</li>
-<li>1:str1 》 str2</li>
+<pre><code>enum color {red, yellow ,green=5，Numcolor };
 
-<li><p>-1:s1 《 str2</p>
-
-<pre><code>int mycmp( const char *s1, const char *s2 );
-int main( int argc, char const *argv[] )
-{
-	char s1[] = &quot;abc&quot;;
-	char s2[] = &quot;abc&quot;;
-
-	printf(&quot;%d\n&quot;,mycmp(s1,s2));
-
-	printf(&quot;%d\n&quot;,'a'-'A');
-	return 0;
-}
-int mystrcmp( const char *s1, const char *s2 )
-{
-	while ( *s1 == *s2 &amp;&amp; *s1 != '\0'){
-		s1++;
-		s2++;
-	}
-	return *s1 -*s2;
-}
-</code></pre></li>
-</ul></li>
-</ul>
-
-<h1 id="strcpy">strcpy</h1>
-
-<pre><code>char *dst = (char*)malloc(strlen(src)+1);
-strcpy( dst, src )
-// 复制一个字符串，动态的申请一块内存，得到内容长度+ 1
-char* mycpy( char* dst, char* src);
-int main(int argc, const char *argv[])
-{
-	char s1[] = &quot;abc&quot;;
-	char s2[] = &quot;AbC&quot;;
-
-	mycpy(s1,s2);
-
-	printf(&quot;%s\n&quot;,s2);
-	return 0;
-}
-char* mycpy( char* dst, char* src){
-	int idx = 0;
-	while ( src[idx]){
-		dst[idx] = src[idx];
-		idx++;
-	}
-	dst[idx] = '\0';
-	return dst;
-	}
-</code></pre>
-
-<ul>
-<li>指针可以简化，当现代编译器，数组写，指针写，最终几乎没有差别</li>
-</ul>
-
-<h1 id="strcat">strcat</h1>
-
-<pre><code>#include &lt;stdio.h&gt;
-int mylen(const char* s1){
-	int cnt = 0;
-	while (*s1++) cnt++;
-	return cnt;
-}
-char* mystrcat( char* s1, const char *s2 ){
-	/*int i = mylen(s1);
-	int idx = 0;
-	while ( s2[idx] ){
-		s1[i] = s2[idx];
-		idx++;
-		i++;
-	}
-	s1[i]= '\0';
-	return s1;*/
-
-	int i = mylen(s1);//考虑临界点数组0计数，大小从1计数
-	while ( *s2 ){
-		s1[i++] = *s2++;
-	}
-	s1[i] = '\0';//临界点
-
-	return s1;
-
-}
+void f(enum color c);
 
 int main()
 {
-	char s1[]=&quot;测试&quot;;
-	char s2[]=&quot;完了。&quot;;
-	
-	char *p = NULL;
-	p = mystrcat(s1, s2);
-	
-	printf(&quot;%s\n&quot;,p);
-	printf(&quot;%s\n&quot;,s1);
-	printf(&quot;%s\n&quot;,mystrcat(s1,s2));//无法直接通过赋值？
+	enum color t = red;//t=0
+
+	scanf(&quot;%d&quot;,&amp;t);
+	f(t);
+
+	printf(&quot;%d\n&quot;,red);
 	return 0;
 }
+void f(enum color c)
+{
+	printf(&quot;%d\n&quot;,c);
+}
+// enum color 相当于自己定义了一个 int 类型
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h1 id="自动计数功能">自动计数功能</h1>
+
+<pre><code>enum color {red, green, yellow, Numbercolors};
 </code></pre>
 
-<h1 id="上述都有安全问题">上述都有安全问题</h1>
+<ul>
+<li>实际上很少用，不好用，要多写代码</li>
+
+<li><p>比如要求字符串数组或者多维数组的元素个数</p>
 
 <ul>
-<li>利用函数库string.h，更加底层，硬件优化好的代码，4核心处理，</li>
+<li>string.h</li>
 
-<li><p>安全版本</p>
+<li><p>cnt++ 计数，输入的元素个数</p>
 
-<pre><code>char* strncpy( char *restrict dst, const char *restrict src, size_t n );
-char* strncat( char *restrict s1, const char *restrict s2, size_t n );
-int strncpy( const char *s1, const char *s2, size_t n );
-</code></pre></li>
+<h1 id="作用">作用</h1></li>
+</ul></li>
+
+<li><p>有意义上排比的名字，用枚举比 const int 方便</p></li>
+
+<li><p>枚举比宏（macro）好，枚举有数据类型int类型</p></li>
 </ul>
               
             </div>
@@ -434,7 +330,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="C字符串函数简单实现">
+              <span id="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/" class="leancloud_visitors" data-flag-title="枚举概念">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -461,7 +357,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-tooltip="字符与字符串">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -469,7 +365,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -529,7 +425,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-tooltip="字符与字符串">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -537,7 +433,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -669,9 +565,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5\/';
           
-            this.page.identifier = '\/2019\/09\/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0\/'
+            this.page.identifier = '\/2019\/09\/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5\/'
           
         };
         (function() {

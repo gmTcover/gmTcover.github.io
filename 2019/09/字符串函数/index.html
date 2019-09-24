@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C字符串函数简单实现">
-<meta name="twitter:title" content="C字符串函数简单实现">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+<meta property="og:title" content="字符串函数">
+<meta name="twitter:title" content="字符串函数">
+<meta property="og:url" content="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-23T23:14:13">
+    <meta property="article:published_time" content="2019-09-25T00:16:18">
   
   
-    <meta property="article:modified_time" content="2019-09-23T23:14:13">
+    <meta property="article:modified_time" content="2019-09-25T00:16:18">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>C字符串函数简单实现</title>
+    <title>字符串函数</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      C字符串函数简单实现
+      字符串函数
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-23T23:14:13&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-09-25T00:16:18&#43;09:00">
         
-  九月 23, 2019
+  九月 25, 2019
 
       </time>
     
@@ -245,178 +245,44 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="putchar">putchar</h1>
+              <h1 id="字符串中找字符">字符串中找字符</h1>
 
-<ul>
-<li><p>输入&ndash;shell&ndash;程序</p>
-
-<ul>
-<li>ctrl+c</li>
-
-<li><p>ctrl+d</p>
-
-<pre><code>int main(int argc, char const *argv[])
-{
-	int ch;
-	while ( (ch = getchar()) != EOF ){
-	putchar( ch );
-	}
-	
-	printf(&quot;ctrl+D操作读到，EOF\n&quot;);
-	return 0;
-}
-</code></pre></li>
-</ul></li>
-</ul>
-
-<h1 id="string-h">string.h</h1>
-
-<ul>
-<li><p>常用函数strlen</p>
-
-<pre><code>int main( int argc, char const *argc[] )
-{
-char line[] = &quot;Hello&quot;;
-
-printf(&quot;strlen=%lu\n&quot;,strlen(line));//5
-printf(&quot;sizeof=%lu\n&quot;,sizeof(line));//6
-
-return 0;
-}
-</code></pre></li>
-</ul>
-
-<h1 id="strlen">strlen</h1>
-
-<pre><code>int Mylen( char const *str )
-{
-	int idx = 0;
-	while ( *str++ ) idx++;
-	return idx;
-}
-</code></pre>
-
-<h1 id="strcmp">strcmp</h1>
-
-<ul>
-<li><p>比较2个字符串，返回</p>
-
-<ul>
-<li>0:str1 = str2</li>
-<li>1:str1 》 str2</li>
-
-<li><p>-1:s1 《 str2</p>
-
-<pre><code>int mycmp( const char *s1, const char *s2 );
-int main( int argc, char const *argv[] )
-{
-	char s1[] = &quot;abc&quot;;
-	char s2[] = &quot;abc&quot;;
-
-	printf(&quot;%d\n&quot;,mycmp(s1,s2));
-
-	printf(&quot;%d\n&quot;,'a'-'A');
-	return 0;
-}
-int mystrcmp( const char *s1, const char *s2 )
-{
-	while ( *s1 == *s2 &amp;&amp; *s1 != '\0'){
-		s1++;
-		s2++;
-	}
-	return *s1 -*s2;
-}
-</code></pre></li>
-</ul></li>
-</ul>
-
-<h1 id="strcpy">strcpy</h1>
-
-<pre><code>char *dst = (char*)malloc(strlen(src)+1);
-strcpy( dst, src )
-// 复制一个字符串，动态的申请一块内存，得到内容长度+ 1
-char* mycpy( char* dst, char* src);
-int main(int argc, const char *argv[])
-{
-	char s1[] = &quot;abc&quot;;
-	char s2[] = &quot;AbC&quot;;
-
-	mycpy(s1,s2);
-
-	printf(&quot;%s\n&quot;,s2);
-	return 0;
-}
-char* mycpy( char* dst, char* src){
-	int idx = 0;
-	while ( src[idx]){
-		dst[idx] = src[idx];
-		idx++;
-	}
-	dst[idx] = '\0';
-	return dst;
-	}
-</code></pre>
-
-<ul>
-<li>指针可以简化，当现代编译器，数组写，指针写，最终几乎没有差别</li>
-</ul>
-
-<h1 id="strcat">strcat</h1>
-
-<pre><code>#include &lt;stdio.h&gt;
-int mylen(const char* s1){
-	int cnt = 0;
-	while (*s1++) cnt++;
-	return cnt;
-}
-char* mystrcat( char* s1, const char *s2 ){
-	/*int i = mylen(s1);
-	int idx = 0;
-	while ( s2[idx] ){
-		s1[i] = s2[idx];
-		idx++;
-		i++;
-	}
-	s1[i]= '\0';
-	return s1;*/
-
-	int i = mylen(s1);//考虑临界点数组0计数，大小从1计数
-	while ( *s2 ){
-		s1[i++] = *s2++;
-	}
-	s1[i] = '\0';//临界点
-
-	return s1;
-
-}
-
+<pre><code>char *strchr(const char *s, int c);//从左开始，输入的字符，第一次出现的位置
+char *strrchr(const char *s, int c);
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#intclude &lt;stdlib.h&gt;
 int main()
 {
-	char s1[]=&quot;测试&quot;;
-	char s2[]=&quot;完了。&quot;;
-	
-	char *p = NULL;
-	p = mystrcat(s1, s2);
-	
-	printf(&quot;%s\n&quot;,p);
-	printf(&quot;%s\n&quot;,s1);
-	printf(&quot;%s\n&quot;,mystrcat(s1,s2));//无法直接通过赋值？
-	return 0;
+	char s[] = &quot;Hello&quot;;
+	char *p = strchr(s, 'l');//第一个l
+
+	char c = *p;//向左输出小技巧
+
+	*p = '\0';
+	char *t = (char*)malloc(strlen(s)+1);
+	strcpy(t,s);
+
+	printf(&quot;%s\n&quot;,t);
+
+	*p = c；
+	//逐层向右查找
+	p = strchr(p+1,'l');//第二个l
+
+	printf(&quot;%s\n&quot;,p;)
+
+	free(t);
+return 0;
 }
 </code></pre>
 
-<h1 id="上述都有安全问题">上述都有安全问题</h1>
+<h1 id="字符串中找字符串">字符串中找字符串</h1>
 
-<ul>
-<li>利用函数库string.h，更加底层，硬件优化好的代码，4核心处理，</li>
+<pre><code>char *strstr(const char *s1, const char *s2);
+char *strcasestr(const char *s1, const char *s2);//忽略大小写
 
-<li><p>安全版本</p>
-
-<pre><code>char* strncpy( char *restrict dst, const char *restrict src, size_t n );
-char* strncat( char *restrict s1, const char *restrict s2, size_t n );
-int strncpy( const char *s1, const char *s2, size_t n );
-</code></pre></li>
-</ul>
+//实现简单思路：首地址+类型，char *[],指向元素，每一个字符串
+</code></pre>
               
             </div>
           </div>
@@ -434,7 +300,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="C字符串函数简单实现">
+              <span id="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="字符串函数">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -461,7 +327,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-tooltip="字符与字符串">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" data-tooltip="C字符串函数简单实现">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -469,7 +335,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/" data-tooltip="枚举概念">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -529,7 +395,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-tooltip="字符与字符串">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" data-tooltip="C字符串函数简单实现">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -537,7 +403,7 @@ int strncpy( const char *s1, const char *s2, size_t n );
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-tooltip="字符串函数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/" data-tooltip="枚举概念">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -669,9 +535,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0\/';
           
-            this.page.identifier = '\/2019\/09\/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0\/'
+            this.page.identifier = '\/2019\/09\/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0\/'
           
         };
         (function() {
