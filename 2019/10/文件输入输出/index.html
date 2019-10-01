@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程序结构">
-<meta name="twitter:title" content="程序结构">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
+<meta property="og:title" content="文件输入输出">
+<meta name="twitter:title" content="文件输入输出">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-30T22:38:55">
+    <meta property="article:published_time" content="2019-10-01T22:48:38">
   
   
-    <meta property="article:modified_time" content="2019-09-30T22:38:55">
+    <meta property="article:modified_time" content="2019-10-01T22:48:38">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>程序结构</title>
+    <title>文件输入输出</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      程序结构
+      文件输入输出
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-30T22:38:55&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-01T22:48:38&#43;09:00">
         
-  九月 30, 2019
+  十月 1, 2019
 
       </time>
     
@@ -245,75 +245,62 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="全局变量">全局变量</h1>
+              <ul>
+<li><p>命令行指令</p>
 
 <ul>
-<li>定义在函数外部
+<li>输出输入都为文件</li>
 
-<ul>
-<li>作用域，生存期</li>
-</ul></li>
+<li><p>“&gt;”&rdquo;&lt;&ldquo;做重定向</p>
 
-<li><p>全局变量初始化</p>
+<pre><code>gcc test.c -o test
 
-<ul>
-<li>编译值自动得到0值，指针NULL，一个默认的地址</li>
-<li>必须是编译时刻常量或者const常量</li>
+./test &gt; xxx.out
 
-<li><p>本地变量与全局变量同名，隐藏全局变量</p>
+cat &gt; xxx.in
 
-<h1 id="静态本地变量">静态本地变量</h1></li>
-</ul></li>
+./test &lt; xxx.in &gt; xxx.out
 
-<li><p>static修饰符</p>
 
-<ul>
-<li>只被初始化一次，离开函数值保留，在进入不会在初始化</li>
-<li>实际上是特殊的全局变量，它们位于相同的内存区域，地址相同区域</li>
-
-<li><p>区别：全局生存期，本地作用域</p>
-
-<h1 id="返回指针的函数">返回指针的函数</h1></li>
-</ul></li>
-
-<li><p>return本地变量的指针，有风险</p>
-
-<pre><code>int* f(void);
-void g(void);
-
-int main()
-{
-	int *p = f();
-	printf(&quot;*p=%d\n&quot;,*p);
-	g();//相同位置上的值被重新定义值，返回本地变量地址，*p的值是不可控的，本地变量地址会被重新使用，有风险
-	printf(&quot;*p=%d\n&quot;.*p);
-	return 0;
-}
-
-int* f(void)
-{
-	int i=12;//返回static int 地址安全，全局生存期 
-	return &amp;i;
-
-}
-
-void g(void)
-{
-	int k= 24;//地址上内容被修改
-	printf(&quot;k=%d\n&quot;,k);
-}
 </code></pre></li>
-
-<li><p>做好的做法是传入指针参数，返回指针</p>
-
-<h1 id="总结">总结</h1></li>
-
-<li><p>不要使用全局变量在函数之间传递参数和结果，尽量避免使用全局变量</p>
-
-<ul>
-<li>全局变量和静态变量的函数是线程不安全的，代码修改，维护困难，每个函数都有可能影响它，不稳定</li>
 </ul></li>
 </ul>
+
+<h1 id="文件读写函数-stdio-h中">文件读写函数（stdio.h中）</h1>
+
+<pre><code>FILE *fopen( const char* restict path, const char* restrict mode );
+int fclose( FILE *stream );
+fscanf(FILE*,...)
+fprintf(FILE*,...)
+// c语言中有 FILE指针
+
+ FILE* fp = fopen(&quot;file&quot;,&quot;r&quot;);一个文件名，“r”为读写
+	if(fp){
+	fscanf(fp,...);
+	fclose(fp);
+	} else {};
+
+
+int main (int argc, char *argv[])
+{
+	FILE *fp = fopen(&quot;12.in&quot;,&quot;r&quot;);
+	if( fp ){
+		int num;
+		fscanf(fp,&quot;%d&quot;,&amp;num);
+		printf(&quot;%d\n&quot;,num);
+		fclose(fp);
+	} else {
+		printf(&quot;文件名无法打开\n&quot;);
+	}
+	return 0;
+}
+// r :打开只读
+// r+：打开读写，从文件头开始
+// w：打开只写。如果不存在则新建，如果存在则清空
+// w+：打开x先读(之前已经写入的内容)写。如果不存在则新建，如果存在则清空
+// a：打开追加。如果不存在在则新建，如果存在则从文件尾开始
+// ..x ：只新建，如果文件已存在则不能打开，w和a之后，如果文件已存在和不能打开，保证文件不被破坏wx；ax
+</code></pre>
               
             </div>
           </div>
@@ -331,7 +318,7 @@ void g(void)
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="leancloud_visitors" data-flag-title="程序结构">
+              <span id="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="leancloud_visitors" data-flag-title="文件输入输出">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -358,7 +345,7 @@ void g(void)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%A4%A7%E7%A8%8B%E5%BA%8F/" data-tooltip="大程序">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -366,7 +353,7 @@ void g(void)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -426,7 +413,7 @@ void g(void)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%A4%A7%E7%A8%8B%E5%BA%8F/" data-tooltip="大程序">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -434,7 +421,7 @@ void g(void)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -566,9 +553,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/';
           
-            this.page.identifier = '\/2019\/09\/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84\/'
+            this.page.identifier = '\/2019\/10\/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/'
           
         };
         (function() {

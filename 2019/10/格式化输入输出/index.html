@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程序结构">
-<meta name="twitter:title" content="程序结构">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
+<meta property="og:title" content="格式化输入输出">
+<meta name="twitter:title" content="格式化输入输出">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-30T22:38:55">
+    <meta property="article:published_time" content="2019-10-01T22:48:25">
   
   
-    <meta property="article:modified_time" content="2019-09-30T22:38:55">
+    <meta property="article:modified_time" content="2019-10-01T22:48:25">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>程序结构</title>
+    <title>格式化输入输出</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      程序结构
+      格式化输入输出
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-30T22:38:55&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-01T22:48:25&#43;09:00">
         
-  九月 30, 2019
+  十月 1, 2019
 
       </time>
     
@@ -245,74 +245,181 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="全局变量">全局变量</h1>
+              <h1 id="格式化的输入输出">格式化的输入输出</h1>
+
+<pre><code>printf
+ %d[flags][width][prec][hIL]type
+ 
+ flag：
+ -：左对齐
+ +:输出+这个符号
+ 0:填充0，
+
+ width：
+ number：最小字符数
+ *：下一个参数是字符数//增加格式的灵活性
+ .number：小数点后的位数
+ .*:下个参数是小数点后的位数
+
+ prec//修饰符，修饰类型
+ hh:输出单个字节，一个char，2位16进制
+ h：short
+ l：long
+ ll：long long
+ L：long double
+
+ printf(&quot;%9d\n&quot;,123);//输出占据9个字符空间
+ printf(&quot;%-9d\n&quot;,123);
+ printf(&quot;%+-9d\n&quot;,-123);
+ printf(&quot;%-+9d\n&quot;,-123);
+
+ printf(&quot;%9.2f\n&quot;,123.0);
+
+ printf(&quot;%*.2f\n&quot;,9,123.0);
+ printf(&quot;%*.2f\n&quot;,len,123.0);
+
+ printf(&quot;%hhd\n&quot;,12345);//16进制Ox3039，输出10进制位57
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">type</th>
+<th align="right">用于</th>
+<th align="center">type</th>
+<th align="center">用于</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">i,d</td>
+<td align="right">int</td>
+<td align="center">g</td>
+<td align="center">float</td>
+</tr>
+
+<tr>
+<td align="left">u</td>
+<td align="right">unsigned int</td>
+<td align="center">G</td>
+<td align="center">float</td>
+</tr>
+
+<tr>
+<td align="left">o</td>
+<td align="right">八进制</td>
+<td align="center">a，A</td>
+<td align="center">16进制浮点</td>
+</tr>
+
+<tr>
+<td align="left">x</td>
+<td align="right">十六进制</td>
+<td align="center">c</td>
+<td align="center">char</td>
+</tr>
+
+<tr>
+<td align="left">X</td>
+<td align="right">大写16进制</td>
+<td align="center">s</td>
+<td align="center">字符串</td>
+</tr>
+
+<tr>
+<td align="left">f,F</td>
+<td align="right">float,6</td>
+<td align="center">p</td>
+<td align="center">point</td>
+</tr>
+
+<tr>
+<td align="left">e,E</td>
+<td align="right">指数</td>
+<td align="center">n</td>
+<td align="center">读/写个数</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="scanf">scanf</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">flag</th>
+<th align="right">用于</th>
+<th align="center">flag</th>
+<th align="center">用于</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">*</td>
+<td align="right">跳过</td>
+<td align="center">l</td>
+<td align="center">long,double</td>
+</tr>
+
+<tr>
+<td align="left">数字</td>
+<td align="right">最大字符数</td>
+<td align="center">ll</td>
+<td align="center">long long</td>
+</tr>
+
+<tr>
+<td align="left">hh</td>
+<td align="right">char</td>
+<td align="center">L</td>
+<td align="center">long double</td>
+</tr>
+
+<tr>
+<td align="left">x</td>
+<td align="right">十六进制</td>
+<td align="center">c</td>
+<td align="center">char</td>
+</tr>
+
+<tr>
+<td align="left">h</td>
+<td align="right">short</td>
+<td align="center">p</td>
+<td align="center">point</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>scanf:%[flag]type
+
+int num;
+scanf(&quot;%*d%d&quot;,&amp;num);
+
+type：
+[^.]:读入gps数据
+
+。。。略
+</code></pre>
+
+<h1 id="printf和scanf的返回值">printf和scanf的返回值</h1>
 
 <ul>
-<li>定义在函数外部
+<li>输出的项目数，读入的项目数</li>
 
-<ul>
-<li>作用域，生存期</li>
-</ul></li>
+<li><p>在要求严格的程序中，应该判断每次调用scanf或printf的返回值，从而了解程序运行是否存在问题</p>
 
-<li><p>全局变量初始化</p>
-
-<ul>
-<li>编译值自动得到0值，指针NULL，一个默认的地址</li>
-<li>必须是编译时刻常量或者const常量</li>
-
-<li><p>本地变量与全局变量同名，隐藏全局变量</p>
-
-<h1 id="静态本地变量">静态本地变量</h1></li>
-</ul></li>
-
-<li><p>static修饰符</p>
-
-<ul>
-<li>只被初始化一次，离开函数值保留，在进入不会在初始化</li>
-<li>实际上是特殊的全局变量，它们位于相同的内存区域，地址相同区域</li>
-
-<li><p>区别：全局生存期，本地作用域</p>
-
-<h1 id="返回指针的函数">返回指针的函数</h1></li>
-</ul></li>
-
-<li><p>return本地变量的指针，有风险</p>
-
-<pre><code>int* f(void);
-void g(void);
-
-int main()
+<pre><code>int main(int argc, char const *argv[])
 {
-	int *p = f();
-	printf(&quot;*p=%d\n&quot;,*p);
-	g();//相同位置上的值被重新定义值，返回本地变量地址，*p的值是不可控的，本地变量地址会被重新使用，有风险
-	printf(&quot;*p=%d\n&quot;.*p);
+	int num;
+	int i1 = scanf(&quot;%i&quot;,&amp;num);
+	int i2 = printf(&quot;%d\n&quot;,num);//回车换行一个字符
+	printf(&quot;%d:%d\n&quot;,i1,i2);
 	return 0;
 }
-
-int* f(void)
-{
-	int i=12;//返回static int 地址安全，全局生存期 
-	return &amp;i;
-
-}
-
-void g(void)
-{
-	int k= 24;//地址上内容被修改
-	printf(&quot;k=%d\n&quot;,k);
-}
 </code></pre></li>
-
-<li><p>做好的做法是传入指针参数，返回指针</p>
-
-<h1 id="总结">总结</h1></li>
-
-<li><p>不要使用全局变量在函数之间传递参数和结果，尽量避免使用全局变量</p>
-
-<ul>
-<li>全局变量和静态变量的函数是线程不安全的，代码修改，维护困难，每个函数都有可能影响它，不稳定</li>
-</ul></li>
 </ul>
               
             </div>
@@ -331,7 +438,7 @@ void g(void)
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="leancloud_visitors" data-flag-title="程序结构">
+              <span id="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="leancloud_visitors" data-flag-title="格式化输入输出">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -358,7 +465,7 @@ void g(void)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%A4%A7%E7%A8%8B%E5%BA%8F/" data-tooltip="大程序">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" data-tooltip="程序结构">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -366,7 +473,7 @@ void g(void)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="文件输入输出">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -426,7 +533,7 @@ void g(void)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E5%A4%A7%E7%A8%8B%E5%BA%8F/" data-tooltip="大程序">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" data-tooltip="程序结构">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -434,7 +541,7 @@ void g(void)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="格式化输入输出">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="文件输入输出">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -566,9 +673,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/';
           
-            this.page.identifier = '\/2019\/09\/%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84\/'
+            this.page.identifier = '\/2019\/10\/%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/'
           
         };
         (function() {
