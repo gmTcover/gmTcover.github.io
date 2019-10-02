@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符与字符串">
-<meta name="twitter:title" content="字符与字符串">
-<meta property="og:url" content="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+<meta property="og:title" content="二进制格式保存">
+<meta name="twitter:title" content="二进制格式保存">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-09-23T13:08:33">
+    <meta property="article:published_time" content="2019-10-02T22:13:52">
   
   
-    <meta property="article:modified_time" content="2019-09-23T13:08:33">
+    <meta property="article:modified_time" content="2019-10-02T22:13:52">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>字符与字符串</title>
+    <title>二进制格式保存</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      字符与字符串
+      二进制格式保存
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-23T13:08:33&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-02T22:13:52&#43;09:00">
         
-  九月 23, 2019
+  十月 2, 2019
 
       </time>
     
@@ -245,241 +245,65 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="字符数组">字符数组</h1>
-
-<pre><code>char word[] = {'H','e','l','l','o','!'};
-</code></pre>
-
-<ul>
-<li><p>这个不是c语言的字符串，不能用字符串的方式做计算</p>
-
-<pre><code>char word[] = {'H','e','l','l','o','!','\0'};
-</code></pre></li>
-
-<li><p>有7个单元（‘\0’），使word成为c语言字符串，可以使用字符串运算</p></li>
-
-<li><p>结尾可以使 数字0（4byte），字符串‘\0’（一定为一个字节）</p>
-
-<ul>
-<li>0标志字符串的结束，当它不是字符串的一部分</li>
-</ul></li>
-
-<li><p>string.h头文件函数，基于有\0构造</p>
-
-<h1 id="字符串变量">字符串变量</h1>
-
-<pre><code>char *str = &quot;Hello&quot;;
-char word[] = &quot;Hello&quot;;
-char line[10] = &quot;Hello&quot;;
-</code></pre>
-
-<h1 id="字符串常量-字面量">字符串常量（字面量）</h1></li>
-
-<li><p>“。。。”双引号之内</p>
-
-<ul>
-<li><p>会被编译器变成一个字符数组存放在某处，包括结尾\0，（栈区）</p>
-
-<pre><code>printf(&quot;Ah, the user with no name. &quot;
-	&quot;Well, ok, hi, user with no \&quot;name\&quot;:&quot;);
-</code></pre></li>
-</ul></li>
-
-<li><p>c语言自动把字符串连接</p></li>
-
-<li><p>c语言字符串是以字符数组的形态存在</p>
-
-<ul>
-<li>不能用运算符对字符串做运算</li>
-<li>通过数组的方式可以遍历字符串</li>
-</ul></li>
-
-<li><p>唯一特殊的地方是字符串字面量可以用来初始化数组（自动编译成字符串数组）</p>
-
-<h1 id="字符串常量">字符串常量</h1>
-
-<pre><code>char* s = &quot;Hello, world!&quot;;
-
-//实际上类型为const char* s,read-only，无法修改
-</code></pre></li>
-
-<li><p>需要可以修改的字符串</p>
-
-<pre><code>char s[] = &quot;Hello, world!&quot;;
-</code></pre></li>
-
-<li><p>区别，数组定义字符串就在我这里(实际上通过外部read-only复制过来到本地变量区)，因为在本地，可以修改</p>
-
-<ul>
-<li><p>指针定义指向的是read-only的。</p>
-
-<h1 id="字符串的含义">字符串的含义</h1>
+              <h1 id="学生信息保存为二进制">学生信息保存为二进制</h1>
 
 <pre><code>#include &lt;stdio.h&gt;
-int main()
+const int STR_LEN = 20;
+typedef struct _student {
+	char name[STR_LEN];
+	int gender;
+	int age;
+ } Student;
+
+void getList(Student aStu[], int number);
+int save(Student aStu[], int number);
+
+int main(int argc, char const *argv[])
 {
-	char* s = &quot;Hello&quot;;
-	char a[][10]={
-		&quot;World!&quot;,
-		&quot;again!&quot;
-	};
+	int number = 0;
+	printf(&quot;输入学生的数量：&quot;);
+	scanf(&quot;%d&quot;,&amp;number);
+	Student aStu[number];
 
-	printf(&quot;%p\n&quot;,&quot;World&quot;);//外部只读
-	printf(&quot;%p\n&quot;,a[0]);//自变量,实际上从只读赋值到本地
-	printf(&quot;%p\n&quot;,a[1]);//地址相差10
-	printf(&quot;%s\n&quot;,a[0]+1);//输出为orld！
-
-	printf(&quot;%p\n&quot;,s);//输出指针上的内容，相同
-	printf(&quot;%p\n&quot;,&quot;Hello&quot;);//相同
-	
-	printf(&quot;%d\n&quot;,*s);
-	printf(&quot;%d\n&quot;,*&quot;Hello&quot;);
-
-	printf(&quot;%p\n&quot;,&amp;&quot;Hello&quot;);//相同
-	printf(&quot;%p\n&quot;,&amp;s);
-
-	printf(&quot;%s\n&quot;, s);
-	printf(&quot;%s\n&quot;, s+1);//ello
-	printf(&quot;%s\n&quot;,&quot;Hello&quot;);
+	getList(aStu,number);
+	if ( save(aStu, number) ){
+		printf(&quot;保存成功\n&quot;);
+	} else {
+		printf(&quot;保存失败\n&quot;);
+	}
 	return 0;
 }
-//指针模型
-//字符串类型就是char*，类似一个指针模型（内容和自身&amp;地址相同）,指针内容相同，%s解析出来字符串也相同
-//指针s类型为cha*，指向类型为char 
 
-</code></pre></li>
-</ul></li>
-</ul>
-
-<h1 id="如何选择-指针还是数组">如何选择？指针还是数组</h1>
-
-<ul>
-<li>数组：作为本地变量可以修改，空间自动回收&ndash;&gt;构造一个字符串</li>
-
-<li><p>指针：参数处理（仅只读），动态分配空间&ndash;&gt;处理一个字符串</p>
-
-<h1 id="字符串赋值">字符串赋值</h1>
-
-<pre><code>char* t = &quot;title&quot;;//令内容相等
-char* s ;
-s = t;//都指向相同内容
-</code></pre></li>
-
-<li><p>定义来一个新指针指向字符串而已，没有产生新的字符串。</p>
-
-<h1 id="字符串的输入输出">字符串的输入输出</h1>
-
-<pre><code>char string[8];
-char str[8];
-scanf(&quot;%7s&quot;,string);
-scanf(&quot;%7s&quot;,str);
-
-printf(&quot;%s\n&quot;,string);
-
-printf(&quot;%s%s&quot;,string,str)
-//安全输入
-//c语言ide处理：scanf_s(&quot;%s&quot;,str,8);
-// scanf(&quot;%7s&quot;,word);
-//c++处理，cout &gt;&gt; setw(nm_size) &gt;&gt; word; 头文件iomanip
-</code></pre></li>
-
-<li><p>只会读取单个单词，读到空格，回车为止（shell），之后内容不会输出</p></li>
-
-<li><p>不安全越界</p>
-
-<h1 id="常见错误">常见错误</h1></li>
-
-<li><p>用指针定义字符串</p>
-
-<pre><code>char *string;
-
-scanf(&quot;%s&quot;,string);
-
-//没有初始化，指针上原有内容行被写入修改，输出不相关内容，导致运行出错。
-
-</code></pre></li>
-
-<li><p>空字符串</p>
-
-<pre><code>char buff[100] = &quot;&quot;;//这是一个空字符串，只有buff[0] = '\0'
-
-char buff[]=&quot;&quot;;//这个字符串长度只有1
-</code></pre></li>
-</ul>
-
-<h1 id="字符串数组">字符串数组</h1>
-
-<pre><code>char **a;//a是一个指针，指向一个char* 类型的指针（指向定义好的字符，也可以是字符串，首地址）
-
-char a[][10];//二维数组但是第二个括号需要完备的类型
-
-char *a[];//模型，数组，其中每个元素为指针类型为char* + 传首地址，对应指向内容外部某处存储read-only内容（字符，字符串）,
-int main()
+void getList( Student aStu[], int number)
 {
-char a[][10] = {
-	&quot;Hello&quot;,
-	&quot;World!&quot;,
+	char format[STR_LEN];//新建一个格式数组format
+	sprintf(format,&quot;%%%ds&quot;,STR_LEN-1);//产生一个格式字符串 &quot;%19s&quot;， %%--&gt;%.
+	int i;
+	for ( i=0; i&lt;number; i++ ){
+		printf(&quot;第%d个学生：\n&quot;,i+1);
+		printf(&quot;\t姓名&quot;);
+		scanf(format,aStu[i].name);
+		printf(&quot;\t性别(0-男，1-女，2-其他):&quot;);
+		scanf(&quot;%d&quot;,&amp;aStu[i].gender);
+		printf(&quot;\t年龄：&quot;);
+		scanf(&quot;%d&quot;,&amp;aStu[i].age);
+	}
+
 }
 
-int main()
+int save(Student aStu[], int number)
 {
-char *a[] = {
-	&quot;Hello&quot;,
-	&quot;World!&quot;,
+	int ret = -1;
+	FILE *fp = fopen(&quot;student.data&quot;,&quot;w&quot;);//打开student.date文件,默认输出二进制文件,与文本格式无关
+	if (fp){
+		ret = fwrite(aStu, sizeof(Student),number,fp);//二进制文件的读写
+		fclose(fp);
+	}
+	return ret == number;//返回值是成功读写了几个结构体，1/0
 
 }
-}
-- 指针是malloc动态分配一段空间，只读,写入时需要初始化。（c字符串常量有初始作用）
-- 数组本地变量从，read-only复制过来需要定义大小，不能越界。
-```#include &lt;stdio.h&gt;
-int main()
-{
-	int num;
-	char *a[]= {&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mac&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;
-	};
-	
-	char **b = NULL;
-	b =a ;
-	printf(&quot;Please enter the month：\n&quot;);
-	
-	scanf(&quot;%d&quot;,&amp;num);
-	
-	printf(&quot;%s\n&quot;,b[num-1]);
-
-	return 0;
-}
-//**b，不能直接写入，二维数组定义一定要有明确类型char*b[]
-// **b,可以指定定义好的数组中的任意行。
 
 </code></pre>
-
-<hr />
-
-<h1 id="程序参数">程序参数</h1>
-
-<pre><code>int main(int argc, char const *argv[])
-
-//argv[0] 是指令本身
-// int argc，代表了有多少个字符串
-{
-int i;
-for ( i=0 ; i&lt; argc; i++){
-	printf(&quot;%d:%s\n&quot;,i,argv[i]);
-
-}
-return 0;
-}
-// 可以读取 ./a.out xxx xxx xx xx,控制台之后的命令，比如做程序快捷方式
-
-</code></pre>
-
-<h1 id="总结">总结</h1>
-
-<ul>
-<li>字符串写出来就在全局空间，只读，类型char*，类似一个指针。用指针或者数组创建（类型相同），赋值以后，传递的是首地址，指针上字符串代表的首地址，%s都能解析出字符串。（大概的过程，还有很多细节）</li>
-<li>多维字符串，定义的类型要一定有规模（二级指针不行，区别,w），弄清首地址，类型，指向类型</li>
-<li>定义新指针的意义，可以任意定位想表示的位置，使之有弹性。</li>
-</ul>
               
             </div>
           </div>
@@ -497,7 +321,7 @@ return 0;
                 
               
             
-              <span id="https://gmtcover.github.io/2019/09/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="leancloud_visitors" data-flag-title="字符与字符串">
+              <span id="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/" class="leancloud_visitors" data-flag-title="二进制格式保存">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -524,7 +348,7 @@ return 0;
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/" data-tooltip="Vim指令">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" data-tooltip="二进制文件">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -532,7 +356,7 @@ return 0;
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" data-tooltip="C字符串函数简单实现">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/" data-tooltip="二进制格式读写">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -592,7 +416,7 @@ return 0;
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/vim%E6%8C%87%E4%BB%A4/" data-tooltip="Vim指令">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" data-tooltip="二进制文件">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -600,7 +424,7 @@ return 0;
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/09/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" data-tooltip="C字符串函数简单实现">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/" data-tooltip="二进制格式读写">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -732,9 +556,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/09\/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98\/';
           
-            this.page.identifier = '\/2019\/09\/%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2\/'
+            this.page.identifier = '\/2019\/10\/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98\/'
           
         };
         (function() {
