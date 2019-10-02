@@ -398,7 +398,39 @@ int main(int argc, char const *argv[])
 
 <li><p>条件编译</p></li>
 
-<li><p>error</p></li>
+<li><p>error</p>
+
+<h1 id="宏的一些格式">宏的一些格式</h1>
+
+<pre><code>#define Conn(x,y) x##y
+#define ToChar(a) #@a
+#define ToString(x) #x
+
+int n = Conn(123,456); 结果就是n=123456;
+
+char* str = Conn(&quot;asdf&quot;, &quot;adf&quot;)结果就是 str = &quot;asdfadf&quot;;
+
+char a = ToChar(1);结果就是a='1';
+
+char* str = ToString(123132);就成了str=&quot;123132&quot;;
+</code></pre></li>
+
+<li><p>&ldquo;\&ldquo;,&rdquo;#&ldquo;,&rdquo;#@&ldquo;和&rdquo;##&rdquo;</p></li>
+
+<li><p>在用#define 定义时 , 斜杠(&rdquo;\&ldquo;)是用来续行的，&rdquo;#&ldquo;用来把参数转换成字符串，是给参数加上双引号。&rdquo;##&ldquo;则用来连接前后两个参数，把它们变成一个字符串,&rdquo;#@&ldquo;是给参数加上单引号。</p></li>
+
+<li><p>为什么需要”#”,” #@”和”##”这三个操作符呢？宏名在源程序中若用引号括起来，则预处理程序不对其作宏代换。</p>
+
+<pre><code>#define OK 100
+#include &lt;stdio.h&gt;
+int main()
+
+{
+printf(&quot;OK&quot;);
+printf(&quot;\n&quot;);
+return 0;
+}
+</code></pre></li>
 </ul>
               
             </div>
