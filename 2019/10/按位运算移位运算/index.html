@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二进制格式读写">
-<meta name="twitter:title" content="二进制格式读写">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/">
+<meta property="og:title" content="按位运算移位运算">
+<meta name="twitter:title" content="按位运算移位运算">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-02T22:14:06">
+    <meta property="article:published_time" content="2019-10-07T23:23:52">
   
   
-    <meta property="article:modified_time" content="2019-10-02T22:14:06">
+    <meta property="article:modified_time" content="2019-10-07T23:23:52">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>二进制格式读写</title>
+    <title>按位运算移位运算</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      二进制格式读写
+      按位运算移位运算
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-02T22:14:06&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-07T23:23:52&#43;09:00">
         
-  十月 2, 2019
+  十月 7, 2019
 
       </time>
     
@@ -245,62 +245,120 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="学生信息读取">学生信息读取</h1>
+              <h1 id="c语言按位运算的运算符">c语言按位运算的运算符</h1>
 
-<pre><code>#include &lt;stdio.h&gt;
-const int STR_LEN = 20;
- typedef struct _student {
-	char name[STR_LEN];
-	int gender;
-	int age;
- } Student;
+<pre><code>&amp; 按位的与
+| 按位的或
+~ 按位取反
+^ 按位的异或
+&lt;&lt;  左移
+&gt;&gt;  右移
 
-void read(FILE *fp,int index);
+  0101 1010 5A
+  1000 1100 8C
+&amp;--------------
+  0000 1000 08
 
-int main(int argc, char const *argv[])
-{
-	FILE *fp = fopen(&quot;student.data&quot;,&quot;r&quot;);
-	if(fp){
-		fseek(fp,0L,SEEK_END);//读写位置从尾部往前0L，现在位置在尾部
-		long size = ftell(fp);//ftell的到现在所在位置，因为是二进制，长度即大小
-		int number = size / sizeof(Student);//得到有几个二进制结构
-		int index=0;
-		printf(&quot;有%d个数据，你要看第几个：&quot;,number);
-		scanf(&quot;%d&quot;,&amp;index);
-		read(fp,index-1);
-		fclose(fp);
-	}
-	return 0;
-}
+// 按位与两种应用
+让某一位或某些位为0: x &amp; 0xFE
+   1111 1110
+   1010 0101
+&amp;------------
+   1010 0100
 
-void read(FILE *fp, int index)
-{
-	fseek(fp, index*sizeof(Student),SEEK_SET);//从文件头部开始，移到第一个二进制结构尾部
-	Student stu;
-	if( fread(&amp;stu, sizeof(Student),1,fp) == 1 ){
-		printf(&quot;第%d个学生：&quot;,index+1);
-		printf(&quot;\t姓名：%s\n&quot;,stu.name);
-		printf(&quot;\t性别：&quot;);
-		switch (stu.gender){
-			case 0: printf(&quot;男\n&quot;);break;
-			case 1: printf(&quot;女\n&quot;);break;
-			case 2: printf(&quot;其他\n&quot;);break;
+取一个数中的一段： x &amp; 0xFF
 
-		}
-	}
-}
-
-//在二进制文件中定位,标准库函数，不具备可移植性，解决方案之一，放弃用int 而是typedef具有明确类大小的类型，因为int是变化的，typeded定义一个4字节
-//现在互联网上解决不同机器之间的整数不同，大小端不同，宁愿放弃速度，用更好的方案文本解决跨平台
-
-//long ftell（FILE *stream）
-//int fseek(FILE *stream ,long offset, int whence);
-//  SEEK_SET:从文件头开始
-//  SEEK_CUR:从当前位置开始
-//  SEEK_END:从尾开始（倒过来
-//  c语言最底层的文件读写方法
-
+int 32bit
+   xx xx xx 1010 1010
+   00 00 00 F      F
+&amp;---------------------
+   00 00 00 A      A
 </code></pre>
+
+<h1 id="按位去或">按位去或</h1>
+
+<pre><code>  1010 1010  AA
+  0101 0100  54
+|----------------
+  1111 1110  FE
+  //按位或两种应用
+  使得一位或几个位为1: x | 0x01，最右边比特为1
+  把两个数拼起来：0x00FF | 0xFF00
+</code></pre>
+
+<h1 id="按位取反">按位取反</h1>
+
+<ul>
+<li><p>每一个bit取反</p>
+
+<h1 id="逻辑运算vs按位运算">逻辑运算vs按位运算</h1></li>
+
+<li><p>只有两个0，1</p>
+
+<pre><code>5 &amp; 4 ...&gt; 4 而 5 &amp;&amp; 4 ...&gt; 1 &amp; 1...&gt; 1
+5 | 4 ...&gt; 5 而 5 || 4 ...&gt; 1 | 1...&gt; 1
+~4 ...&gt; 3 而 !4 ...&gt; !1 ....&gt; 0
+</code></pre>
+
+<h1 id="按位异或">按位异或</h1></li>
+
+<li><p>对一个变量用同一个值异或两次，等于什么也没做</p>
+
+<pre><code>1011 0100
+0101 0011
+^----------
+1110 0111
+0101 0011
+^-----------
+1011 0100
+简单加密运算
+</code></pre></li>
+
+<li><p>两个值相等异或为0</p>
+
+<h1 id="左移">左移</h1></li>
+
+<li><p>i中所有的位向左移动j个单位，而右边填入0</p></li>
+
+<li><p>所有小于int的类型，移位int的方式来做，结果是int</p>
+
+<pre><code>x &lt;&lt;= 1 等价于 x *= 2
+x &lt;&lt;= n 等价于 x *= 2^n
+ 
+ A     5
+1010  0101  &lt;&lt; 2
+10 1001  0100
+2     9     4
+10进制
+165
+         2^2
+	660
+</code></pre></li>
+</ul>
+
+<h1 id="右移">右移</h1>
+
+<ul>
+<li>i中所有的位向右移j位</li>
+<li>对于unsigned的类型，左边填入0</li>
+
+<li><p>对于signed的类型，左边符号为保持不变</p>
+
+<pre><code>x &gt;&gt;= 1 等价于 x /= 2
+x &gt;&gt;= n 等价于 x /= 2^n
+
+int a = 0x80000000;//-2^31,8位2进制2位16进制
+unsigned int b = 0x80000000;
+prinf(&quot;a=%d\n&quot;,a);//-2147483548
+prinf(&quot;b=%u\n&quot;,b);//2147483648
+prinf(&quot;a=%d\n&quot;,a&gt;&gt;1);//-1073741824
+prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
+</code></pre>
+
+<ul>
+<li>移位的位数不要用负位，有关编译器定义的行为，没有定义</li>
+</ul></li>
+</ul>
               
             </div>
           </div>
@@ -318,7 +376,7 @@ void read(FILE *fp, int index)
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99/" class="leancloud_visitors" data-flag-title="二进制格式读写">
+              <span id="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/" class="leancloud_visitors" data-flag-title="按位运算移位运算">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -345,7 +403,7 @@ void read(FILE *fp, int index)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/" data-tooltip="二进制格式保存">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -353,7 +411,7 @@ void read(FILE *fp, int index)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -413,7 +471,7 @@ void read(FILE *fp, int index)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E4%BF%9D%E5%AD%98/" data-tooltip="二进制格式保存">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -421,7 +479,7 @@ void read(FILE *fp, int index)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -553,9 +611,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97\/';
           
-            this.page.identifier = '\/2019\/10\/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%AF%BB%E5%86%99\/'
+            this.page.identifier = '\/2019\/10\/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97\/'
           
         };
         (function() {
