@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="按位运算移位运算">
-<meta name="twitter:title" content="按位运算移位运算">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
+<meta property="og:title" content="硬件相关操作">
+<meta name="twitter:title" content="硬件相关操作">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-07T23:23:52">
+    <meta property="article:published_time" content="2019-10-08T22:39:42">
   
   
-    <meta property="article:modified_time" content="2019-10-07T23:23:52">
+    <meta property="article:modified_time" content="2019-10-08T22:39:42">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>按位运算移位运算</title>
+    <title>硬件相关操作</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      按位运算移位运算
+      硬件相关操作
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-07T23:23:52&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-08T22:39:42&#43;09:00">
         
-  十月 7, 2019
+  十月 8, 2019
 
       </time>
     
@@ -245,119 +245,83 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="c语言按位运算的运算符">c语言按位运算的运算符</h1>
-
-<pre><code>&amp; 按位的与
-| 按位的或
-~ 按位取反
-^ 按位的异或
-&lt;&lt;  左移
-&gt;&gt;  右移
-
-  0101 1010 5A
-  1000 1100 8C
-&amp;--------------
-  0000 1000 08
-
-// 按位与两种应用
-让某一位或某些位为0: x &amp; 0xFE
-   1111 1110
-   1010 0101
-&amp;------------
-   1010 0100
-
-取一个数中的一段： x &amp; 0xFF
-
-int 32bit
-   xx xx xx 1010 1010
-   00 00 00 F      F
-&amp;---------------------
-   00 00 00 A      A
-</code></pre>
-
-<h1 id="按位去或">按位去或</h1>
-
-<pre><code>  1010 1010  AA
-  0101 0100  54
-|----------------
-  1111 1110  FE
-  //按位或两种应用
-  使得一位或几个位为1: x | 0x01，最右边比特为1
-  把两个数拼起来：0x00FF | 0xFF00
-</code></pre>
-
-<h1 id="按位取反">按位取反</h1>
+              <h1 id="mcu的sfr">MCU的SFR</h1>
 
 <ul>
-<li><p>每一个bit取反</p>
+<li>器件手册</li>
 
-<h1 id="逻辑运算vs按位运算">逻辑运算vs按位运算</h1></li>
+<li><p>特殊功能寄存器</p>
 
-<li><p>只有两个0，1</p>
+<pre><code>const unsigned int SBS = 1u &lt;&lt; 2;//stop bit select，100
+const unsigned int PE = 1u &lt;&lt; 3;//parity enable，1000
+UOLCR |= SBS | PE;//UOLCR - 0xE000C00C，特殊寄存器 1100
+UOLCR &amp;= ~SBS;//取反... ... 011 ,共32位，使第三位置零
+UOLCR &amp;= ~PE;//... ... 01111
 
-<pre><code>5 &amp; 4 ...&gt; 4 而 5 &amp;&amp; 4 ...&gt; 1 &amp; 1...&gt; 1
-5 | 4 ...&gt; 5 而 5 || 4 ...&gt; 1 | 1...&gt; 1
-~4 ...&gt; 3 而 !4 ...&gt; !1 ....&gt; 0
-</code></pre>
-
-<h1 id="按位异或">按位异或</h1></li>
-
-<li><p>对一个变量用同一个值异或两次，等于什么也没做</p>
-
-<pre><code>1011 0100
-0101 0011
-^----------
-1110 0111
-0101 0011
-^-----------
-1011 0100
-简单加密运算
-</code></pre></li>
-
-<li><p>两个值相等异或为0</p>
-
-<h1 id="左移">左移</h1></li>
-
-<li><p>i中所有的位向左移动j个单位，而右边填入0</p></li>
-
-<li><p>所有小于int的类型，移位int的方式来做，结果是int</p>
-
-<pre><code>x &lt;&lt;= 1 等价于 x *= 2
-x &lt;&lt;= n 等价于 x *= 2^n
- 
- A     5
-1010  0101  &lt;&lt; 2
-10 1001  0100
-2     9     4
-10进制
-165
-         2^2
-	660
+UOLCR &amp;= ~(SBS | PE);//更改2个位置的bit 为0
 </code></pre></li>
 </ul>
 
-<h1 id="右移">右移</h1>
+<h1 id="位段">位段</h1>
 
 <ul>
-<li>i中所有的位向右移j位</li>
-<li>对于unsigned的类型，左边填入0</li>
+<li><p>把一个int的若干位组合成一个结构</p>
 
-<li><p>对于signed的类型，左边符号为保持不变</p>
+<pre><code>struct {
+	unsigned int leading : 3;//表示这个成员占3 bit
+	unsigned int FLAG1: 1;
+	unsigned int FLAG2: 1;
+	int trailing: 11; 放入一个总的int中，变成位段中的变量
+}
+</code></pre></li>
 
-<pre><code>x &gt;&gt;= 1 等价于 x /= 2
-x &gt;&gt;= n 等价于 x /= 2^n
+<li><p>根据器件手册列表</p>
 
-int a = 0x80000000;//-2^31,8位2进制2位16进制
-unsigned int b = 0x80000000;
-prinf(&quot;a=%d\n&quot;,a);//-2147483548
-prinf(&quot;b=%u\n&quot;,b);//2147483648
-prinf(&quot;a=%d\n&quot;,a&gt;&gt;1);//-1073741824
-prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
-</code></pre>
+<pre><code>#include &lt;stdio.h&gt;
+void prtBin(unsigned int number);
+struct U0 {
+	unsigned int leading :3;//定义过结构3bit
+	unsigned int FLAG1:1;//1bit
+	unsigned int FLAG2:1;//1bit
+	int trailing:27;//位段，构建一个结构内存大小位一个int
+};
+
+int main(int arc, char const *argv[])
+{
+	struct U0 uu;
+	uu.leading = 2;//3个bit位上代表的值，单片机里做开关的作用
+	uu.FLAG1 = 0;
+	uu.FLAG2 = 1;
+	uu.trailing = 0;//初始化
+
+	printf(&quot;sizeof(uu)=%lu\n&quot;,sizeof(uu));// 4个字节
+	prtBin(*(int*)&amp;uu);//底层比较常见做法，强制类型转换输出结构指针，指针包含二进制
+}
+
+void prtBin(unsigned int number)//用了unsigned意义就是不包括正负0～2^32-1
+{
+	unsigned mask = 1u&lt;&lt;31;
+	for(; mask; mask &gt;&gt;=1){
+		printf(&quot;%d&quot;,number &amp; mask?1:0);
+	}
+	printf(&quot;\n&quot;);
+}
+// 位段
+// 可以直接用位段的成员名称来访问，比移位，与，或还方便
+// 编译器会安排其中的位的排列，不具有可移植性
+// 当所需的位超过一个int时会采用多个int
+// 底层的操作硬件的场合
+</code></pre></li>
+
+<li><p>可以直接用位段的成员名称来访问</p>
 
 <ul>
-<li>移位的位数不要用负位，有关编译器定义的行为，没有定义</li>
+<li>比移位,与,或方便</li>
 </ul></li>
+
+<li><p>编译器会其中的位排列从右往左，不具有可移植性</p></li>
+
+<li><p>strut 结构，内存匹配，排列，大小</p></li>
 </ul>
               
             </div>
@@ -376,7 +340,7 @@ prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/" class="leancloud_visitors" data-flag-title="按位运算移位运算">
+              <span id="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" class="leancloud_visitors" data-flag-title="硬件相关操作">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -403,7 +367,7 @@ prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/" data-tooltip="位运算">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -411,7 +375,7 @@ prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/" data-tooltip="位运算">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -471,7 +435,7 @@ prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/" data-tooltip="素数表">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/" data-tooltip="位运算">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -479,7 +443,7 @@ prinf(&quot;a=%u\n&quot;,a&gt;&gt;1);//1073741824
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/" data-tooltip="位运算">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -611,9 +575,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C\/';
           
-            this.page.identifier = '\/2019\/10\/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97\/'
+            this.page.identifier = '\/2019\/10\/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C\/'
           
         };
         (function() {
