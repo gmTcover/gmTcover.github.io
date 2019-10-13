@@ -253,12 +253,12 @@ int main(int argc, char* argv[])
 	scanf(&quot;%d&quot;,&amp;size);
 	
 	int aPriems[size];//初始化数组
-	for( int i = 0; i &lt;=size; i++ )
+	for( int i = 0; i &lt;size; i++ )
 	{
 		aPriems[i] = 1;
 	}
 	int x = 2;//对应index
-	while ( x&lt; size )//循环构造素数表
+	while ( x&lt; size )//循环构造素数表,不包含边界
 	{
 		if( aPriems[x])
 		{
