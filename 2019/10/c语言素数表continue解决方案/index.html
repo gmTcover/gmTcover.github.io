@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="素数&#43;">
-<meta name="twitter:title" content="素数&#43;">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/">
+<meta property="og:title" content="C语言素数表continue解决方案">
+<meta name="twitter:title" content="C语言素数表continue解决方案">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-13T11:04:57">
+    <meta property="article:published_time" content="2019-10-14T00:29:32">
   
   
-    <meta property="article:modified_time" content="2019-10-13T11:04:57">
+    <meta property="article:modified_time" content="2019-10-14T00:29:32">
   
   
   
@@ -38,7 +38,9 @@
   
   
     
-      <meta property="article:tag" content="test">
+      <meta property="article:tag" content="tag1">
+    
+      <meta property="article:tag" content="tag2">
     
   
 
@@ -59,14 +61,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>素数&#43;</title>
+    <title>C语言素数表continue解决方案</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +218,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      素数&#43;
+      C语言素数表continue解决方案
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-13T11:04:57&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-14T00:29:32&#43;09:00">
         
-  十月 13, 2019
+  十月 14, 2019
 
       </time>
     
@@ -245,58 +247,48 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="算法复杂度">算法复杂度</h1>
+              <h1 id="解决continue-如何跳出两重循环">解决continue 如何跳出两重循环</h1>
 
 <pre><code>#include &lt;stdio.h&gt;
-#include&lt;stdbool.h&gt;
-#include &lt;math.h&gt;
-bool isprime( int number)
+int isPrime(int x,int knownPrimes[], int numberOfkownPrimes);
+int main(int argc, char const *argv[])
 {
-	bool isP = 1;
-	if( number == 1) isP = 0;
-	if( number % 2 == 0 &amp;&amp; number != 2){
-		isP = 0;
-	}
-	for ( int x = 3; x &lt;=sqrt(number); x += 2)
+
+	const int number = 100;
+	int prime[number];
+	prime[0] = 2;
+	int cnt = 1;
+	int i = 3;
+	while ( cnt &lt; number )
 	{
-		if( number % x == 0)
+		if( isPrime( i,prime,cnt))//封装 函数，isPrimeh函数的返回结果与prime[]表达式相关
 		{
-			isP = 0;
+			prime[cnt++] = i;//套路，写入primt[cnt],并且cnt++，指向下一位。
+		}
+		i++;
+	}
+
+	for( i = 0; i &lt; number; i++)
+	{
+		printf(&quot;%d&quot;,prime[i]);
+		!((i+1) % 5)? printf(&quot;\n&quot;):printf(&quot;\t&quot;);//从第一个计数开始
+	}
+	return 0;
+}
+int isPrime(int x,int knownPrimes[], int numberOfkownPrimes)
+{
+	int ret = 1;
+	for( int i=0; i &lt; numberOfkownPrimes; i++)
+	{
+		if( x % knownPrimes[i] == 0)
+		{
+			ret = 0;
 			break;
 		}
 	}
-	return isP;
-}
-int main(int argc ,char const *argv[])
-{
-	int cnt = 0;
-	int m,n;
-	int sum = 0;
-	scanf(&quot;%d %d&quot;,&amp;m,&amp;n);
-	for ( int i = 0; cnt &lt; 50; i++)
-	{
-		if(isprime(i))
-		{
-			printf(&quot;%d &quot;,i);
-			cnt++;
-				if( cnt &gt;=m &amp;&amp; cnt &lt;= n)
-				{
-					sum += i;
-				}
-		}
-	}
-	printf(&quot;%d与%d之间的素数和为%d\n&quot;,m,n,sum);
+	return ret;
 }
 </code></pre>
-
-<ul>
-<li><p>c 中 bool 定义就是1，0，相当于int</p>
-
-<pre><code>typedef int BOOL
-#define TRUE = 1
-#define FALSE = 0
-</code></pre></li>
-</ul>
               
             </div>
           </div>
@@ -308,13 +300,15 @@ int main(int argc ,char const *argv[])
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/test/">test</a>
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/tag2/">tag2</a>
 
                   </div>
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/" class="leancloud_visitors" data-flag-title="素数&#43;">
+              <span id="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="C语言素数表continue解决方案">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -341,7 +335,7 @@ int main(int argc ,char const *argv[])
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" data-tooltip="硬件相关操作">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/" data-tooltip="素数&#43;">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -349,7 +343,7 @@ int main(int argc ,char const *argv[])
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-tooltip="C语言素数表continue解决方案">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -409,7 +403,7 @@ int main(int argc ,char const *argv[])
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%A1%AC%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" data-tooltip="硬件相关操作">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/" data-tooltip="素数&#43;">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -417,7 +411,7 @@ int main(int argc ,char const *argv[])
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-tooltip="C语言素数表continue解决方案">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -549,9 +543,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/%E7%B4%A0%E6%95%B0-\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/';
           
-            this.page.identifier = '\/2019\/10\/%E7%B4%A0%E6%95%B0-\/'
+            this.page.identifier = '\/2019\/10\/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/'
           
         };
         (function() {
