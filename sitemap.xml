@@ -4,7 +4,48 @@
   
   <url>
     <loc>https://gmtcover.github.io/categories/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/post/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/category/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/java/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/subcategory/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/2019/10/%E5%A6%82%E4%BD%95%E5%81%9A%E8%BE%93%E5%87%BA/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/</loc>
+    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -14,43 +55,7 @@
   </url>
   
   <url>
-    <loc>https://gmtcover.github.io/post/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/categories/category/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/categories/subcategory/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/tag1/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/tag2/</loc>
-    <lastmod>2019-10-14T00:29:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/</loc>
+    <loc>https://gmtcover.github.io/tags/c/</loc>
     <lastmod>2019-10-14T00:29:32+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -64,12 +69,6 @@
   <url>
     <loc>https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/</loc>
     <lastmod>2019-10-13T11:04:57+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/c/</loc>
-    <lastmod>2019-10-08T22:39:42+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
