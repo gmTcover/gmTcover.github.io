@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C程序设计 on 怠惰なユニコーン🦄</title>
+    <link>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in C程序设计 on 怠惰なユニコーン🦄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Oct 2019 00:59:55 +0900</lastBuildDate>
+    
+	<atom:link href="https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ResizableArray</title>
+      <link>https://gmtcover.github.io/2019/10/resizablearray/</link>
+      <pubDate>Thu, 17 Oct 2019 00:59:55 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/resizablearray/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C语言素数表continue解决方案</title>
+      <link>https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Mon, 14 Oct 2019 00:29:32 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E7%B4%A0%E6%95%B0%E8%A1%A8continue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>素数&#43;</title>
+      <link>https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/</link>
+      <pubDate>Sun, 13 Oct 2019 11:04:57 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0-/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>素数表</title>
+      <link>https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/</link>
+      <pubDate>Mon, 07 Oct 2019 19:38:03 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E7%B4%A0%E6%95%B0%E8%A1%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

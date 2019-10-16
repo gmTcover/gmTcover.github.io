@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaTest on 怠惰なユニコーン🦄</title>
+    <link>https://gmtcover.github.io/categories/javatest/</link>
+    <description>Recent content in JavaTest on 怠惰なユニコーン🦄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Oct 2019 17:08:24 +0900</lastBuildDate>
+    
+	<atom:link href="https://gmtcover.github.io/categories/javatest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何做输出</title>
+      <link>https://gmtcover.github.io/2019/10/%E5%A6%82%E4%BD%95%E5%81%9A%E8%BE%93%E5%87%BA/</link>
+      <pubDate>Tue, 15 Oct 2019 17:08:24 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E5%A6%82%E4%BD%95%E5%81%9A%E8%BE%93%E5%87%BA/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

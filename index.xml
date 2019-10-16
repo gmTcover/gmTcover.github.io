@@ -6,10 +6,19 @@
     <description>Recent content on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 17:08:24 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 17 Oct 2019 00:59:55 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ResizableArray</title>
+      <link>https://gmtcover.github.io/2019/10/resizablearray/</link>
+      <pubDate>Thu, 17 Oct 2019 00:59:55 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/resizablearray/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>如何做输出</title>
