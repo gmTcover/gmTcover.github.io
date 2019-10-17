@@ -6,10 +6,37 @@
     <description>Recent content in c on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Oct 2019 00:59:55 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 17 Oct 2019 23:16:30 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C最原始链表实现</title>
+      <link>https://gmtcover.github.io/2019/10/c%E6%9C%80%E5%8E%9F%E5%A7%8B%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Thu, 17 Oct 2019 23:16:30 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/c%E6%9C%80%E5%8E%9F%E5%A7%8B%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C语言链表实现</title>
+      <link>https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Thu, 17 Oct 2019 23:11:23 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/c%E8%AF%AD%E8%A8%80%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>链表概念</title>
+      <link>https://gmtcover.github.io/2019/10/%E9%93%BE%E8%A1%A8%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Thu, 17 Oct 2019 23:10:40 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E9%93%BE%E8%A1%A8%E6%A6%82%E5%BF%B5/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ResizableArray</title>
