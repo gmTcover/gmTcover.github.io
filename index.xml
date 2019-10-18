@@ -6,10 +6,19 @@
     <description>Recent content on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Oct 2019 23:16:30 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 20:58:52 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>List_Head</title>
+      <link>https://gmtcover.github.io/2019/10/list_head/</link>
+      <pubDate>Fri, 18 Oct 2019 20:58:52 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/list_head/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C最原始链表实现</title>
