@@ -13,32 +13,32 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="List_Head">
-<meta name="twitter:title" content="List_Head">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/list_head/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/list_head/">
+<meta property="og:title" content="Example2">
+<meta name="twitter:title" content="Example2">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/example2/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/example2/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-18T20:58:52">
+    <meta property="article:published_time" content="2019-10-28T12:25:54">
   
   
-    <meta property="article:modified_time" content="2019-10-18T20:58:52">
+    <meta property="article:modified_time" content="2019-10-28T12:25:54">
   
-  
-  
-    
-      <meta property="article:section" content="C程序设计">
-    
-      <meta property="article:section" content="LinkedList">
-    
   
   
     
-      <meta property="article:tag" content="c">
+      <meta property="article:section" content="c&#43;&#43;基础">
+    
+      <meta property="article:section" content="Test">
+    
+  
+  
+    
+      <meta property="article:tag" content="c&#43;&#43;">
     
   
 
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>List_Head</title>
+    <title>Example2</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/list_head/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/example2/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      List_Head
+      Example2
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-18T20:58:52&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-28T12:25:54&#43;09:00">
         
-  十月 18, 2019
+  十月 28, 2019
 
       </time>
     
@@ -233,9 +233,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/c%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">C程序设计</a>, 
+      <a class="category-link" href="https://gmtcover.github.io/categories/c&#43;&#43;%e5%9f%ba%e7%a1%80">c&#43;&#43;基础</a>, 
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/linkedlist">LinkedList</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/test">Test</a>
     
   
 
@@ -245,77 +245,57 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="链表的头简单应用功能实现">链表的头简单应用功能实现</h1>
+              <h1 id="在什么位置自动调用">在什么位置自动调用</h1>
 
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-typedef struct _node
-{
-	int value;
-	struct _node *next;
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
 
-}Node;
-typedef struct _List_Head
-{
-	Node *head;
-	Node *tail;
+class Tree {
+	int height;
+public:
+	Tree( int initialHeight );//Constructor
+	~Tree();//Destructor
 
-}List;
+	void grow(int years);
+	void printsize();
 
-void creat(List *plist, int number);//增加链表
-void print(List *plist);
+};
+
+Tree::Tree(int initialHeight){
+
+	height = initialHeight;
+	cout&lt;&lt; &quot;inside Tree::Tree()&quot; &lt;&lt; endl;
+
+}
+
+Tree::~Tree(){
+	cout &lt;&lt; &quot;inside Tree destructor&quot; &lt;&lt; endl;
+	printsize();
+
+}
+
+void Tree::grow(int years){
+	height += years;
+}
+
+void Tree::printsize(){
+	cout &lt;&lt; &quot;Tree height is &quot; &lt;&lt; height &lt;&lt; endl;
+
+}
+
 int main()
 {
-	List list;
-	int number;
-	list.head = NULL;
-	list.tail = NULL;
-//输入数据
-	do{
-		scanf(&quot;%d&quot;,&amp;number);
-		if( number != -1)
-		{
-			creat(&amp;list, number);
-		}
-
-	} while(number != -1);
-//遍历输出链表
-	print(&amp;list);
-//删除链表	
-	Node *p = NULL;
-	Node *q = NULL;
-	for(p = list.head; p; p = q)
+	cout &lt;&lt; &quot;before opening brace&quot; &lt;&lt; endl;
 	{
-		q = p-&gt;next;
-		free(p);
-	}
-	printf(&quot;delete\n&quot;);
-	return 0;
-}
-void creat(List *plist, int number)//优化算法
-{
-	Node *p = (Node*)malloc(sizeof(Node));
-	p-&gt;value = number;
-	p-&gt;next = NULL;
-	if(plist-&gt;head)
-	{
-		plist-&gt;tail-&gt;next = p;
-		plist-&gt;tail = p;
-	}else{
-		plist-&gt;head = p;
-		plist-&gt;tail = p;
-	}
-}
-void print(List *plist)
-{
-	Node *p;
-	for(p = plist-&gt;head; p; p = p-&gt;next)
-	{
-		printf(&quot;%d\t&quot;,p-&gt;value);
+		Tree t(12);
+		cout &lt;&lt; &quot;after Tree creation&quot; &lt;&lt; endl;
+		t.printsize();
+		t.grow(4);
+		cout &lt;&lt; &quot;before closing brace&quot; &lt;&lt; endl;
 
 	}
+	cout &lt;&lt; &quot;after closing brace&quot; &lt;&lt; endl;
 }
-
 </code></pre>
               
             </div>
@@ -328,13 +308,13 @@ void print(List *plist)
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c/">c</a>
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c&#43;&#43;/">c&#43;&#43;</a>
 
                   </div>
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/list_head/" class="leancloud_visitors" data-flag-title="List_Head">
+              <span id="https://gmtcover.github.io/2019/10/example2/" class="leancloud_visitors" data-flag-title="Example2">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -361,7 +341,7 @@ void print(List *plist)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c%E6%9C%80%E5%8E%9F%E5%A7%8B%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/" data-tooltip="C最原始链表实现">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -369,7 +349,7 @@ void print(List *plist)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c-class/" data-tooltip="C&#43;&#43;Class">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -429,7 +409,7 @@ void print(List *plist)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c%E6%9C%80%E5%8E%9F%E5%A7%8B%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/" data-tooltip="C最原始链表实现">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -437,7 +417,7 @@ void print(List *plist)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/c-class/" data-tooltip="C&#43;&#43;Class">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -569,9 +549,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/list_head\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/example2\/';
           
-            this.page.identifier = '\/2019\/10\/list_head\/'
+            this.page.identifier = '\/2019\/10\/example2\/'
           
         };
         (function() {
