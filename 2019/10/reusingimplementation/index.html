@@ -13,27 +13,27 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Example2">
-<meta name="twitter:title" content="Example2">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/example2/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/example2/">
+<meta property="og:title" content="ReusingImplementation">
+<meta name="twitter:title" content="ReusingImplementation">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/reusingimplementation/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/reusingimplementation/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-28T12:25:54">
+    <meta property="article:published_time" content="2019-10-30T23:44:31">
   
   
-    <meta property="article:modified_time" content="2019-10-28T12:25:54">
+    <meta property="article:modified_time" content="2019-10-30T23:44:31">
   
   
   
     
       <meta property="article:section" content="c&#43;&#43;基础">
     
-      <meta property="article:section" content="Test">
+      <meta property="article:section" content="Class">
     
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>Example2</title>
+    <title>ReusingImplementation</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/example2/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/reusingimplementation/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Example2
+      ReusingImplementation
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-28T12:25:54&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-30T23:44:31&#43;09:00">
         
-  十月 28, 2019
+  十月 30, 2019
 
       </time>
     
@@ -235,7 +235,7 @@
     
       <a class="category-link" href="https://gmtcover.github.io/categories/c&#43;&#43;%e5%9f%ba%e7%a1%80">c&#43;&#43;基础</a>, 
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/test">Test</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/class">Class</a>
     
   
 
@@ -245,58 +245,120 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="在什么位置自动调用">在什么位置自动调用</h1>
+              <h1 id="oop三大特性">oop三大特性</h1>
 
-<pre><code>#include &lt;iostream&gt;
-using namespace std;
+<ul>
+<li><p>封装，继承，多态性</p>
 
-class Tree {
-	int height;
+<h1 id="继承其中一个手段">继承其中一个手段</h1></li>
+
+<li><p>软件重用有很多方式</p></li>
+
+<li><p>C++中，对象的组合</p>
+
+<ul>
+<li>用对象制造对象，制造一个类，成员变量是他类的对象</li>
+<li>Ways of inclusion</li>
+<li>Fully// 成员变量在内部，本身</li>
+<li>By reference//引用，是个指针</li>
+<li>根据类设计方式（人对象，心脏身体内部，书包身体外部），内存模型的体现</li>
+
+<li><p>java只有一种内存模型 只有by reference</p>
+
+<h1 id="for-example-an-employee-has">For example an Employee has</h1></li>
+</ul></li>
+
+<li><p>做成Fully</p></li>
+
+<li><p>Name</p></li>
+
+<li><p>Address</p></li>
+
+<li><p>Health Plan</p></li>
+
+<li><p>salary History</p>
+
+<ul>
+<li>Collection of Raise object</li>
+</ul></li>
+
+<li><p>做成 by reference</p></li>
+
+<li><p>Supervisor</p>
+
+<ul>
+<li><p>Another Employee object</p>
+
+<pre><code>class Person {...};
+class Currency {...};
+
+class SavingsAccount {
 public:
-	Tree( int initialHeight );//Constructor
-	~Tree();//Destructor
+	SavingsAccount( const char* name, const char* address, int cents );//初始化list
+	~SavingsAccount();
+	void print();
+private:
 
-	void grow(int years);
-	void printsize();
+	person m_saver;			//Fully,两个其他的对象,本身已经有自己构造函数，问题这两个对象初始化谁来做,只能破坏组合来的对象只能自己做，对象边界是清晰的
+	Currency m_balance;		//Fully
+}
 
+
+
+SavingsAccount::SavingsAccount( const char* name, const char* address, int cents )
+	: m_saver(name, address), m_balance(0, cents ) { }//SavingsAccount构造函数调用各自成员的对象的构造函数
+
+void SavingsAccount::print(){
+	m_saver.print();
+	m_balance.print();
+
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h1 id="embedded-objects">Embedded objects</h1>
+
+<ul>
+<li>All enbedded objects are initialized
+
+<ul>
+<li>The default constructor is called 如果没有提供参数，会调用默认析构函数，如果没有编写默认析构函数，就会编译错误，使用成员舒适化列表方式初始化对象,不要放入构造函数内部初始化</li>
+</ul></li>
+
+<li><p>Constructors can have initialization list</p>
+
+<pre><code>SavingsAccount::SavingsAccount( const char* name, const char* address, int cents ){
+	m_saver.set_name( name );
+	m_saver.set_address( address );
+	m_balance.set_cents( cnets );
+
+}
+----&gt; Default constructors would be called, 需要本地创建
+</code></pre></li>
+</ul>
+
+<h1 id="如果把对象做成public">如果把对象做成public</h1>
+
+<ul>
+<li><p>不是鸡蛋模型了，c++不喜欢这么做，语言是灵活的,不见得都适合去用</p>
+
+<pre><code>class SavingsAccount {
+public:
+	person m_saver;
+	void f();
+	...;
+	constructor and Destructor
+private:
+	...
+	
 };
 
-Tree::Tree(int initialHeight){
+SavingsAccount account;
 
-	height = initialHeight;
-	cout&lt;&lt; &quot;inside Tree::Tree()&quot; &lt;&lt; endl;
-
-}
-
-Tree::~Tree(){
-	cout &lt;&lt; &quot;inside Tree destructor&quot; &lt;&lt; endl;
-	printsize();
-
-}
-
-void Tree::grow(int years){
-	height += years;
-}
-
-void Tree::printsize(){
-	cout &lt;&lt; &quot;Tree height is &quot; &lt;&lt; height &lt;&lt; endl;
-
-}
-
-int main()
-{
-	cout &lt;&lt; &quot;before opening brace&quot; &lt;&lt; endl;
-	{
-		Tree t(12);
-		cout &lt;&lt; &quot;after Tree creation&quot; &lt;&lt; endl;
-		t.printsize();
-		t.grow(4);
-		cout &lt;&lt; &quot;before closing brace&quot; &lt;&lt; endl;
-
-	}
-	cout &lt;&lt; &quot;after closing brace&quot; &lt;&lt; endl;
-}
-</code></pre>
+account.m_saver.set_name(&quot;xxx&quot;);
+</code></pre></li>
+</ul>
               
             </div>
           </div>
@@ -314,7 +376,7 @@ int main()
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/example2/" class="leancloud_visitors" data-flag-title="Example2">
+              <span id="https://gmtcover.github.io/2019/10/reusingimplementation/" class="leancloud_visitors" data-flag-title="ReusingImplementation">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -341,7 +403,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/meminitiallist/" data-tooltip="MemInitialList">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -349,7 +411,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -409,7 +471,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/meminitiallist/" data-tooltip="MemInitialList">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -417,7 +479,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -549,9 +611,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/example2\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/reusingimplementation\/';
           
-            this.page.identifier = '\/2019\/10\/example2\/'
+            this.page.identifier = '\/2019\/10\/reusingimplementation\/'
           
         };
         (function() {

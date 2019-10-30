@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Example2">
-<meta name="twitter:title" content="Example2">
-<meta property="og:url" content="https://gmtcover.github.io/2019/10/example2/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/example2/">
+<meta property="og:title" content="NewDelete">
+<meta name="twitter:title" content="NewDelete">
+<meta property="og:url" content="https://gmtcover.github.io/2019/10/newdelete/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/10/newdelete/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-28T12:25:54">
+    <meta property="article:published_time" content="2019-10-30T23:38:14">
   
   
-    <meta property="article:modified_time" content="2019-10-28T12:25:54">
+    <meta property="article:modified_time" content="2019-10-30T23:38:14">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>Example2</title>
+    <title>NewDelete</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/10/example2/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/10/newdelete/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Example2
+      NewDelete
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-28T12:25:54&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-10-30T23:38:14&#43;09:00">
         
-  十月 28, 2019
+  十月 30, 2019
 
       </time>
     
@@ -245,56 +245,53 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="在什么位置自动调用">在什么位置自动调用</h1>
-
-<pre><code>#include &lt;iostream&gt;
+              <pre><code>#include &lt;iostream&gt;
 using namespace std;
 
-class Tree {
-	int height;
-public:
-	Tree( int initialHeight );//Constructor
-	~Tree();//Destructor
+class B{
+	public:
+		B(int i){}//为什么有可以有2构造，单单这一个，明明初始化了b=0，为什么编译不通过
+		B(){}
+};
 
-	void grow(int years);
-	void printsize();
+class A {
+	private:
+		int i;
+		int *p;//为空指针
+		
+		B b;
+
+	public:
+		void set(int i){ this-&gt; i = i; }// i = i,为什么不行？就近原则
+		void f() { p = new int; cout &lt;&lt; &quot;hello&quot;;}
+
+
+		void g(A* q) {cout &lt;&lt; q-&gt;i &lt;&lt; endl;}//同类对象可以互相访问私有变量
+
+
+		A(){ p = 0; i = 0; b = 0; cout &lt;&lt;&quot;A::A&quot; &lt;&lt; endl;}
+		//A():p(0),i(0){ cout &lt;&lt; &quot;A::A&quot; &lt;&lt; endl;}//初始化列表
+
+
+		~A(){ if( p ) delete p; cout &lt;&lt; &quot;A::~A()，i = &quot;&lt;&lt; i &lt;&lt; endl;}//预防内存泄漏 
 
 };
 
-Tree::Tree(int initialHeight){
-
-	height = initialHeight;
-	cout&lt;&lt; &quot;inside Tree::Tree()&quot; &lt;&lt; endl;
-
-}
-
-Tree::~Tree(){
-	cout &lt;&lt; &quot;inside Tree destructor&quot; &lt;&lt; endl;
-	printsize();
-
-}
-
-void Tree::grow(int years){
-	height += years;
-}
-
-void Tree::printsize(){
-	cout &lt;&lt; &quot;Tree height is &quot; &lt;&lt; height &lt;&lt; endl;
-
-}
-
 int main()
 {
-	cout &lt;&lt; &quot;before opening brace&quot; &lt;&lt; endl;
+	A* p = new A[10];
+	for ( int i = 0; i &lt; 10; i++ )
 	{
-		Tree t(12);
-		cout &lt;&lt; &quot;after Tree creation&quot; &lt;&lt; endl;
-		t.printsize();
-		t.grow(4);
-		cout &lt;&lt; &quot;before closing brace&quot; &lt;&lt; endl;
-
+		p[i].set(i);
 	}
-	cout &lt;&lt; &quot;after closing brace&quot; &lt;&lt; endl;
+
+	A b;
+	b.set(100);
+	p[0].g(&amp;b);
+
+
+	delete[] p;
+	return 0;
 }
 </code></pre>
               
@@ -314,7 +311,7 @@ int main()
                 
               
             
-              <span id="https://gmtcover.github.io/2019/10/example2/" class="leancloud_visitors" data-flag-title="Example2">
+              <span id="https://gmtcover.github.io/2019/10/newdelete/" class="leancloud_visitors" data-flag-title="NewDelete">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -341,7 +338,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -349,7 +346,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/meminitiallist/" data-tooltip="MemInitialList">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -409,7 +406,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/example/" data-tooltip="Example">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -417,7 +414,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/friend/" data-tooltip="Friend">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/meminitiallist/" data-tooltip="MemInitialList">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -549,9 +546,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/example2\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/10\/newdelete\/';
           
-            this.page.identifier = '\/2019\/10\/example2\/'
+            this.page.identifier = '\/2019\/10\/newdelete\/'
           
         };
         (function() {
