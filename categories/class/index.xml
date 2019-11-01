@@ -6,10 +6,19 @@
     <description>Recent content in Class on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Oct 2019 23:44:31 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 00:25:48 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/class/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DefaultConstructorWork</title>
+      <link>https://gmtcover.github.io/2019/11/defaultconstructorwork/</link>
+      <pubDate>Sat, 02 Nov 2019 00:25:48 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/11/defaultconstructorwork/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ReusingImplementation</title>
