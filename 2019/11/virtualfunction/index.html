@@ -13,27 +13,27 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DefaultConstructorWork">
-<meta name="twitter:title" content="DefaultConstructorWork">
-<meta property="og:url" content="https://gmtcover.github.io/2019/11/defaultconstructorwork/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/11/defaultconstructorwork/">
+<meta property="og:title" content="VirtualFunction">
+<meta name="twitter:title" content="VirtualFunction">
+<meta property="og:url" content="https://gmtcover.github.io/2019/11/virtualfunction/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/11/virtualfunction/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-11-02T00:25:48">
+    <meta property="article:published_time" content="2019-11-05T00:53:52">
   
   
-    <meta property="article:modified_time" content="2019-11-02T00:25:48">
+    <meta property="article:modified_time" content="2019-11-05T00:53:52">
   
   
   
     
       <meta property="article:section" content="c&#43;&#43;基础">
     
-      <meta property="article:section" content="Class">
+      <meta property="article:section" content="Test">
     
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>DefaultConstructorWork</title>
+    <title>VirtualFunction</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/11/defaultconstructorwork/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/11/virtualfunction/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      DefaultConstructorWork
+      VirtualFunction
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-11-02T00:25:48&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-11-05T00:53:52&#43;09:00">
         
-  十一月 2, 2019
+  十一月 5, 2019
 
       </time>
     
@@ -235,7 +235,7 @@
     
       <a class="category-link" href="https://gmtcover.github.io/categories/c&#43;&#43;%e5%9f%ba%e7%a1%80">c&#43;&#43;基础</a>, 
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/class">Class</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/test">Test</a>
     
   
 
@@ -245,77 +245,77 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="构造和析构调函数的调用">构造和析构调函数的调用</h1>
-
-<h1 id="call-default-constructor">call default constructor</h1>
-
-<h1 id="member-initialization-list">member initialization list</h1>
-
-<h1 id="编译器对构造函数的处理原则">编译器对构造函数的处理原则</h1>
-
-<h1 id="构造类的思想">构造类的思想</h1>
-
-<h1 id="类的成员属性">类的成员属性</h1>
-
-<h1 id="基类-嵌入对象-派生类的小区别">基类-嵌入对象-派生类的小区别</h1>
-
-<h1 id="filed访问规则">Filed访问规则</h1>
-
-<pre><code>#include &lt;iostream&gt;
+              <pre><code>#include &lt;iostream&gt;
 using namespace std;
-
-class A 
-{
+class A {
+	int i;
 	public:
-		A(int ii):i(ii) { cout &lt;&lt; &quot;A::A()&quot; &lt;&lt; endl; }//这些都是inline;
-		//A(){} 没有参数的话 子类B default constructor 编译器会自动生成，虽然A()什么都没做，
-		//因为编译器不能假定A的构造函数做了什么样的操作，因此有B,C有必要生成B的构造函数，保证A类型的数据成员的构造函数正常执行
-		//
-		~A() { cout &lt;&lt; &quot;A::~A()&quot; &lt;&lt; endl; }
+		A():i(10){}
+		virtual void f() { cout &lt;&lt; &quot;A::f()&quot; &lt;&lt; i &lt;&lt; endl; }
 
-		void print() { cout &lt;&lt; &quot;A.a =&quot; &lt;&lt; i &lt;&lt; endl; }
-//protected:
-		void set(int i) { this-&gt;i = i; }//一个修改i的借口
-	private:
-		int i;
 };
-
-class B : public A//B是 A的子类，继承，A在B的内部
-{
+class B : public A{
+	int j;
 	public:
-	B():A(15){ cout &lt;&lt; &quot;B::B()&quot; &lt;&lt; endl;}//B与A哪个先构造(Person,student模型，person在student里面)，父类A先构造然后B
-	~B(){ cout &lt;&lt; &quot;B::~B()&quot; &lt;&lt; endl; }
+		B():j(12){}
+		virtual void f(){ cout &lt;&lt; &quot;B::f()&quot; &lt;&lt; j &lt;&lt; endl;}
 };
 
-class C //对象的组合
-{
-public:
-	C() : a(20){ cout &lt;&lt; &quot;C::C()&quot; &lt;&lt; endl; } 
-	~C() { cout &lt;&lt; &quot;C::~C()&quot; &lt;&lt; endl;};
-	void print();//体现出了与类的继承区别，要构造新对象的函数
-	void set(int i){ a.set(i);}
-private:
-	A a;//无法直接访问这个私有值，没有protected是类继承里面的
-};
-
-
-void C::print(){ a.print();}
 int main()
 {
-	B b;
-	b.print();
-	//cout &lt;&lt; b.i &lt;&lt; endl;mian 函数里面无法访问
-	b.set(10);
-	b.print();
+	A a,b;
 
-	cout &lt;&lt; &quot;C what&quot; &lt;&lt; endl;
-	C cc;
-	cc.print();
-	cc.set(100);
-	cc.print();
+	a.f();
+	cout &lt;&lt; sizeof(a) &lt;&lt; endl;
 
+	int *p = (int*)&amp;a;//vpointer -》 指向vtable
+	int *q = (int*)&amp;b;
+	
+	cout &lt;&lt; *p &lt;&lt; endl;//p,q地址不同，a,b不同对象不同地址，但是*P,*q代表的是，内存结构首位置（第一项0位置）
+	cout &lt;&lt; *q &lt;&lt; endl;//即，有一个相同的vtpr，指向虚函数表的指针
+
+	p++;//有一个大小为int的 数据 为1
+	cout &lt;&lt; *p &lt;&lt; endl;
+	p++;//内存结构模型，c中内存匹配的规则，通过指针找到私有值10
+	cout &lt;&lt; *p &lt;&lt; endl;
+
+	B m,n;
+
+	//A&amp; k = m;//upcast
+	//A* k = &amp;m
+	//m.f();
+	//cout &lt;&lt; k.i &lt;&lt; endl;
+	int *i = (int*)&amp;m;//类似造型这边都是特殊数据，得到了A对象父类型指针
+	int *j = (int*)&amp;n;
+	j++;
+	j++;//父类的i = 10；
+	j++;
+	cout &lt;&lt; *i &lt;&lt; endl;// 子类有各自的vtpr和vtable,但是vtable的结构和父类相同，没有修改的沿用父类虚函数，发生动态绑定
+	cout &lt;&lt; *j &lt;&lt; endl;
+	a = m;//slcie off，vtable from m is ignored；the vtable in a is the A vtable
+	A *s = &amp;a;
+	s-&gt;f();//还是a.f()// a.f();//A::f()
+	cout &lt;&lt; &quot;--------&quot; &lt;&lt; endl;
+	a.f();
+	A* w = &amp;m;//多态通过指针调用virtual函数才是动态绑定,vtable A for w is lost, w and m point to same B object  
+	a.f();// a.f()
+	w-&gt;f();//b.f()
+	
+	w = &amp;a;
+	w-&gt;f();//a.f()dymanic binding
+
+	int *r = (int*)&amp;a;
+	int *t = (int*)&amp;m;
+
+	*r = *t;//修改了a虚函数指针，指向了b的vtable
+	w-&gt;f();//b.f()+为初始化的j值，调用了b.f(), a的内存模型中该位置不是j
+	cout &lt;&lt; &quot; ------ &quot; &lt;&lt; endl;
+
+	A&amp; aa = m;//引用和指针一样
+	aa.f();
 	return 0;
 }
+
 </code></pre>
               
             </div>
@@ -334,7 +334,7 @@ int main()
                 
               
             
-              <span id="https://gmtcover.github.io/2019/11/defaultconstructorwork/" class="leancloud_visitors" data-flag-title="DefaultConstructorWork">
+              <span id="https://gmtcover.github.io/2019/11/virtualfunction/" class="leancloud_visitors" data-flag-title="VirtualFunction">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -361,7 +361,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/reusingimplementation/" data-tooltip="ReusingImplementation">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/virtualdestructor/" data-tooltip="VirtualDestructor">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -369,7 +369,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/employeedeclare/" data-tooltip="EmployeeDeclare">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/polymorphism/" data-tooltip="Polymorphism">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -429,7 +429,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/10/reusingimplementation/" data-tooltip="ReusingImplementation">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/virtualdestructor/" data-tooltip="VirtualDestructor">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -437,7 +437,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/employeedeclare/" data-tooltip="EmployeeDeclare">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/polymorphism/" data-tooltip="Polymorphism">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -569,9 +569,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/11\/defaultconstructorwork\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/11\/virtualfunction\/';
           
-            this.page.identifier = '\/2019\/11\/defaultconstructorwork\/'
+            this.page.identifier = '\/2019\/11\/virtualfunction\/'
           
         };
         (function() {
