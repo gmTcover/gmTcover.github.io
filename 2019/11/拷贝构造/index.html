@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="怠惰なユニコーン🦄">
+<meta name="keywords" content="tech, C, C&#43;&#43;, PAT">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拷贝构造">
+<meta name="twitter:title" content="拷贝构造">
+<meta property="og:url" content="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/">
+<meta property="og:site_name" content="怠惰なユニコーン🦄">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-11-09T23:10:31">
+  
+  
+    <meta property="article:modified_time" content="2019-11-09T23:10:31">
+  
+  
+  
+    
+      <meta property="article:section" content="c&#43;&#43;基础">
+    
+      <meta property="article:section" content="Class">
+    
+  
+  
+    
+      <meta property="article:tag" content="c&#43;&#43;">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gmtcover.github.io/images/touxiang.png">
+  <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
+
+
+    <title>拷贝构造</title>
+
+    <link rel="icon" href="https://gmtcover.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://gmtcover.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gmtcover.github.io/">怠惰なユニコーン🦄</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gmtcover.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gmtcover.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">怠惰なユニコーン🦄</h4>
+        
+          <h5 class="sidebar-profile-bio">Now or never! Focus，fun！</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gmTcover" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      拷贝构造
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-11-09T23:10:31&#43;09:00">
+        
+  十一月 9, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/c&#43;&#43;%e5%9f%ba%e7%a1%80">c&#43;&#43;基础</a>, 
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/class">Class</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="copying">copying</h1>
+
+<ul>
+<li><p>creat a new object from an existing one</p>
+
+<ul>
+<li><p>For example, when calling a function</p>
+
+<pre><code>//Currency as pass-by-value argument
+
+void func( Currency p) {//参数为对象Currency
+	cout &lt;&lt; &quot;X = &quot; &lt;&lt; p.dollars();
+
+}
+
+...
+
+Currency bucks( 100, 0 );
+
+Currency p = bucks;// 初始化，前面有变量名，定义变量名的时候给了一个值，初始化
+
+p = bucks;//赋值，编译器会自动调用函数，做赋值运算
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h1 id="c-中必须分清">C++ 中必须分清</h1>
+
+<ul>
+<li>declaration，definition</li>
+
+<li><p>initialization ， assignment （c中可以当作没有区别，c++完全不同的两件事）</p>
+
+<h1 id="拷贝构造特征">拷贝构造特征</h1></li>
+
+<li><p>Copying is implemented by the copy constructor</p></li>
+
+<li><p>Has the unique signature</p>
+
+<pre><code>T::T(const T&amp;)//传参数过程不会发生拷贝构造，没有制造新的对象出来 ，只是reference，安全的
+
+T::T (T a);//传同类型参数过程编译器自动拷贝构造参数，a是实例化对象时，用拷贝构造函数初始化时，a无法得到初始化，为了完成第一步初始化，不断往内部调用拷贝构造函数，递归，error，
+</code></pre></li>
+
+<li><p>call-by-reference is used for the explicit argument</p></li>
+
+<li><p>自动提供（编译器）</p></li>
+
+<li><p>C++ builds a copy constructor for you if you don&rsquo;t provude one!</p>
+
+<ul>
+<li>Copies each menber,object,arrays（ Good for numbers,objects,arrays）</li>
+<li>Copies each pointer( Data may become shared )</li>
+</ul></li>
+
+<li><p>假如成员有指针的话，发生指针的拷贝</p>
+
+<ul>
+<li>获得2该指针指向同一块内存（直接不写拷贝构造会多次析构，error），2高级指针,指针copy在调用析构函数（需要malloc，new一块新的空间，不让他指向同一块区域），指针bit级别</li>
+
+<li><p>推荐字符转是用c++专门的sting,string是c++中标准库的类，一定有拷贝构造函数</p>
+
+<pre><code>#include&lt;string&gt;
+class Person {
+	public:
+	Person( const string&amp; );
+	~Person();
+	void print();
+	private:
+	string name; //embedded object
+	//...other data members
+}
+</code></pre></li>
+</ul></li>
+
+<li><p>你提供了拷贝构造函数，可以控制如何进行拷贝（选择性拷贝）</p>
+
+<h1 id="c-中调用c字符处理">c++中调用c字符处理</h1>
+
+<pre><code>#include&lt;cstring&gt;
+
+
+size_t strlen( const char *s);//可移植 typedef 《int》 size_t 可修改
+
+char *strcpy( char *dest, const char *src );
+
+C++ 
+#include&lt;string&gt;
+
+</code></pre></li>
+</ul>
+
+<h1 id="拷贝构造发生过程">拷贝构造发生过程</h1>
+
+<pre><code>Person f()
+{
+	person ip;//默认构造
+	return ip;//拷贝构造
+	
+}
+
+int main()
+{
+	Person p = f();拷贝构造
+
+	return 0;
+}
+</code></pre>
+
+<ul>
+<li>Copies and overhead</li>
+
+<li><p>Compliers can &ldquo;optimize out &rdquo; copies when safe!</p>
+
+<pre><code>Person copy_func( char *who ) {
+	Person local( who );
+	local.print();
+	return local;// copy ctor called
+}
+
+Person nocopy_func( char *who ) {
+	return Person ( who );//no copy needed! 编译器自动优化，local对象没有使用，相当于只用who构造了 Person;这里不是拷贝构造，一步到位，编译器优化
+}
+</code></pre></li>
+</ul>
+
+<h1 id="construction-vs-assignment">Construction Vs. assignment</h1>
+
+<ul>
+<li>Every object is constructor once</li>
+<li>Every object should be destroy once
+
+<ul>
+<li>Failur to invoke delete()</li>
+<li>Invoke delete() more than once</li>
+</ul></li>
+<li>Once an object is constructed, it can be the target of many assignment operations</li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c&#43;&#43;/">c&#43;&#43;</a>
+
+                  </div>
+                
+              
+            
+              <span id="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/" class="leancloud_visitors" data-flag-title="拷贝构造">
+                <span class="post-meta-item-text">文章阅读量 </span>
+                <span class="leancloud-visitors-count">1000000</span>
+                <p></p>
+              </span>
+              <div id="vcomments"></div>
+              <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+              <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+              <script type="text/javascript">
+                new Valine({
+                  el: '#vcomments' ,
+                  appId: 'KgLE9jnxcE9p8kIUxdyeKXSy-gzGzoHsz',
+                  appKey: '7AEwN7e46mj0dXeX2p700XUX',
+                  notify: 'false',
+                  verify: '',
+                  avatar:'mp', 
+                  placeholder: '说点什么吧',
+                  visitor: 'true'
+                });
+              </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%8C%BA%E5%88%86/" data-tooltip="构造函数重载拷贝构造区分">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/overloadoperator/" data-tooltip="Overloadoperator">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%8C%BA%E5%88%86/" data-tooltip="构造函数重载拷贝构造区分">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/overloadoperator/" data-tooltip="Overloadoperator">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">怠惰なユニコーン🦄</h4>
+    
+      <div id="about-card-bio">Now or never! Focus，fun！</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gmtcover.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://gmtcover.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://gmtcover.github.io/js/clicklove.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/11\/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0\/';
+          
+            this.page.identifier = '\/2019\/11\/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
