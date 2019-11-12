@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Overloadoperator">
-<meta name="twitter:title" content="Overloadoperator">
-<meta property="og:url" content="https://gmtcover.github.io/2019/11/overloadoperator/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2019/11/overloadoperator/">
+<meta property="og:title" content="STL简述">
+<meta name="twitter:title" content="STL简述">
+<meta property="og:url" content="https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-11-09T23:22:37">
+    <meta property="article:published_time" content="2019-11-13T07:18:06">
   
   
-    <meta property="article:modified_time" content="2019-11-09T23:22:37">
+    <meta property="article:modified_time" content="2019-11-13T07:18:06">
   
   
   
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>Overloadoperator</title>
+    <title>STL简述</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2019/11/overloadoperator/">
+    <link rel="canonical" href="https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Overloadoperator
+      STL简述
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-11-09T23:22:37&#43;09:00">
+      <time itemprop="datePublished" datetime="2019-11-13T07:18:06&#43;09:00">
         
-  十一月 9, 2019
+  十一月 13, 2019
 
       </time>
     
@@ -245,25 +245,82 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <pre><code>#ifndef _VECTOR_H_
-#define _VECTOR_H_
+              <h1 id="standard-template-library">Standard Template library</h1>
 
-class Vector {
-	public:
-	Vector(int size):m_size(size){
-		m_array = new int[size];
+<ul>
+<li>包含数据结构和一些常用算法</li>
+<li>Reduce development time</li>
+<li>Code readability(大家都用stl有共同语言)</li>
+<li>Robustness（稳健性）</li>
+<li>Portable code</li>
 
-	}
-	virtual ~Vector(){ delete m_array; }
+<li><p>Maintainable code</p>
 
-	int&amp; operator[](int index){ return m_array[index];}//访问m_array自救就行为什么要多次一举，设计[]的运算符
-private:
-	int m_size;
-	int *m_array;
-};
-#endif
+<h1 id="standard-library">Standard Library</h1></li>
 
-</code></pre>
+<li><p>容器</p>
+
+<ul>
+<li>vector</li>
+<li>list</li>
+<li>deque</li>
+<li>sets and maps</li>
+</ul></li>
+
+<li><p>A pair class（int/int,int/char,etc）</p></li>
+
+<li><p>Basic Algorithms(基础函数模版)</p></li>
+
+<li><p>using namespace std</p></li>
+
+<li><p>iterators 枚举器，对任何容器通用</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; x;
+	for( int a = 0; a &lt; 1000; a++)
+		x.push_back(a);
+	
+
+	vector&lt;int&gt;::iterator p;//通用容器p，
+	for( p = x.begin(); p &lt; x.end(); p++ )//operator++ 也是被重载的，代表下一个，list代表next
+
+	cout &lt;&lt; *p &lt;&lt; &quot; &quot;;//operator*是被overload重载的，对应vector的int
+
+	return 0;
+}
+</code></pre></li>
+
+<li><p>基本实现思想，模版和运算符重载，让代码很想普通的语法</p>
+
+<h1 id="base-vector-operation">base Vector Operation</h1></li>
+
+<li><p>vextor基本结构</p></li>
+
+<li><p>list 基本结构</p></li>
+
+<li><p>map 基本结构</p>
+
+<pre><code>#include&lt;map&gt;
+#include&lt;string&gt;
+
+map&lt;string,float&gt; price;
+
+price[&quot;snapple&quot;] = 0.75
+price[&quot;coke&quot;] = 050
+
+string item;
+
+double total = 0;
+
+while ( cin &gt;&gt; item )
+	total += price[item]
+</code></pre></li>
+</ul>
               
             </div>
           </div>
@@ -281,7 +338,7 @@ private:
                 
               
             
-              <span id="https://gmtcover.github.io/2019/11/overloadoperator/" class="leancloud_visitors" data-flag-title="Overloadoperator">
+              <span id="https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/" class="leancloud_visitors" data-flag-title="STL简述">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -308,7 +365,7 @@ private:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/" data-tooltip="拷贝构造">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/streams/" data-tooltip="Streams">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -316,7 +373,7 @@ private:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/exception/" data-tooltip="Exception">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -376,7 +433,7 @@ private:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0/" data-tooltip="拷贝构造">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/streams/" data-tooltip="Streams">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -384,7 +441,7 @@ private:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2019/11/exception/" data-tooltip="Exception">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -516,9 +573,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/11\/overloadoperator\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2019\/11\/stl%E7%AE%80%E8%BF%B0\/';
           
-            this.page.identifier = '\/2019\/11\/overloadoperator\/'
+            this.page.identifier = '\/2019\/11\/stl%E7%AE%80%E8%BF%B0\/'
           
         };
         (function() {

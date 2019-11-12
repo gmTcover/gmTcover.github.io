@@ -6,10 +6,37 @@
     <description>Recent content in c&#43;&#43;基础 on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Nov 2019 23:22:37 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 13 Nov 2019 07:18:06 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/c++%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>STL简述</title>
+      <link>https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/</link>
+      <pubDate>Wed, 13 Nov 2019 07:18:06 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/11/stl%E7%AE%80%E8%BF%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Streams</title>
+      <link>https://gmtcover.github.io/2019/11/streams/</link>
+      <pubDate>Wed, 13 Nov 2019 07:17:45 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/11/streams/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Exception</title>
+      <link>https://gmtcover.github.io/2019/11/exception/</link>
+      <pubDate>Wed, 13 Nov 2019 07:17:14 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/11/exception/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Overloadoperator</title>
