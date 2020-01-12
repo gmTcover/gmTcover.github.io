@@ -31,9 +31,9 @@
   
   
     
-      <meta property="article:section" content="category">
+      <meta property="article:section" content="C基础">
     
-      <meta property="article:section" content="subcategory">
+      <meta property="article:section" content="struct">
     
   
   
@@ -233,9 +233,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/category">category</a>, 
+      <a class="category-link" href="https://gmtcover.github.io/categories/c%e5%9f%ba%e7%a1%80">C基础</a>, 
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/subcategory">subcategory</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/struct">struct</a>
     
   
 
@@ -245,7 +245,7 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="struct">struct</h1>
+              <h4 id="struct">struct</h4>
 
 <ul>
 <li>通常函数外部声明类型
@@ -278,7 +278,7 @@ int main(int argc, char *argv[] )
 </ul></li>
 </ul>
 
-<h1 id="结构运算">结构运算</h1>
+<h4 id="结构运算">结构运算</h4>
 
 <ul>
 <li>要访问整个结构，直接用结构变量的名字</li>
@@ -293,7 +293,7 @@ pl = pm;// pl.day = pm.day;
 <ul>
 <li><p>数组无法做运算，const</p>
 
-<h1 id="结构指针">结构指针</h1></li>
+<h4 id="结构指针">结构指针</h4></li>
 </ul></li>
 
 <li><p>和数组不同，结构变量的名字并不是结构变量的地址，必须使用&amp;运算符</p>
@@ -301,7 +301,7 @@ pl = pm;// pl.day = pm.day;
 <pre><code>struct date *pDate = &amp;today;//指向today变量的指针
 </code></pre>
 
-<h1 id="结构与函数">结构与函数</h1></li>
+<h4 id="结构与函数">结构与函数</h4></li>
 
 <li><p>结构作为函数参数，整个结构可以作为参数的值传奇函数（封装了）</p>
 
@@ -312,7 +312,7 @@ pl = pm;// pl.day = pm.day;
 
 <li><p>也可以返回一个结构</p>
 
-<h1 id="输入结构">输入结构</h1></li>
+<h4 id="输入结构">输入结构</h4></li>
 
 <li><p>没有直接的方式可以一次scanf 一个结构</p></li>
 
@@ -356,7 +356,7 @@ void output(struct point p)
 </code></pre></li>
 </ul>
 
-<h1 id="优化结构的输入输出">优化结构的输入输出</h1>
+<h4 id="优化结构的输入输出">优化结构的输入输出</h4>
 
 <ul>
 <li><p>指针方式传结构</p>
@@ -399,7 +399,7 @@ void print(const struct point *p)
 </code></pre></li>
 </ul>
 
-<h1 id="总结">总结</h1>
+<h4 id="总结">总结</h4>
 
 <ul>
 <li>c语言中结构的传递是值的传递</li>

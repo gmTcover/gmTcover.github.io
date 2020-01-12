@@ -31,9 +31,7 @@
   
   
     
-      <meta property="article:section" content="tool">
-    
-      <meta property="article:section" content="">
+      <meta property="article:section" content="Tool">
     
   
   
@@ -233,9 +231,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/tool">tool</a>, 
-    
-      <a class="category-link" href="https://gmtcover.github.io/categories/"></a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/tool">Tool</a>
     
   
 
@@ -245,9 +241,9 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="vim常用指令">vim常用指令</h1>
+              <h4 id="vim常用指令">vim常用指令</h4>
 
-<h2 id="normal-模式">normal 模式</h2>
+<h4 id="normal-模式">normal 模式</h4>
 
 <ul>
 <li>gi #快速回到最后编辑位置</li>
@@ -255,9 +251,9 @@
 
 <li><p>w/W b/B #单词间移动</p>
 
-<h3 id="行间搜索选中想要发字符">行间搜索选中想要发字符</h3>
+<h4 id="行间搜索选中想要发字符">行间搜索选中想要发字符</h4>
 
-<h3 id="水平移动">水平移动</h3></li>
+<h4 id="水平移动">水平移动</h4></li>
 
 <li><p>0/^  $/g #移动到行首/行首字母；行尾/行尾前一个单词</p></li>
 
@@ -265,7 +261,7 @@
 
 <li><p>{}  #段落间移动</p>
 
-<h3 id="vim页面移动">vim页面移动</h3></li>
+<h4 id="vim页面移动">vim页面移动</h4></li>
 
 <li><p>gg/G #移动到文件开头结尾，ctrl+o 返回初始位置</p></li>
 
@@ -275,7 +271,7 @@
 
 <li><p>ctrl+u/ctrl+f #upward/forward翻页</p>
 
-<h3 id="进入insert模式">进入insert模式</h3></li>
+<h4 id="进入insert模式">进入insert模式</h4></li>
 
 <li><p>a button #append</p></li>
 
@@ -331,11 +327,11 @@
 
 <li><p>gt #标签页切换 类似：b buffer-name</p>
 
-<h2 id="vim-的text-object-文本对象">vim 的text object（文本对象）</h2></li>
+<h4 id="vim-的text-object-文本对象">vim 的text object（文本对象）</h4></li>
 
 <li><p>[number]command[text object]    #格式command 是命令，d（delect），c（change），y（yank）number表示次数，object表示对象，比如单词w，句子s，段落p</p>
 
-<h3 id="text-object-的内容修改">[text object]的内容修改</h3></li>
+<h4 id="text-object-的内容修改">[text object]的内容修改</h4></li>
 
 <li><p>i（）；a（）；i&lt;&gt;;a&lt;&gt; ;#还是类似的[];{};&ldquo;;&rsquo; vi+加符号</p></li>
 
@@ -371,11 +367,11 @@
 
 <li><p>v命令选中所需位置</p>
 
-<h2 id="inser-模式复制粘贴">inser 模式复制粘贴</h2></li>
+<h4 id="inser-模式复制粘贴">inser 模式复制粘贴</h4></li>
 
 <li><p>ctrl+c ctrl+v</p>
 
-<h2 id="寄存器中复制粘贴">寄存器中复制粘贴</h2></li>
+<h4 id="寄存器中复制粘贴">寄存器中复制粘贴</h4></li>
 
 <li><p>复制，剪切到不同 寄存器中，可以批量选择地复制，剪切</p></li>
 
@@ -397,7 +393,7 @@
 
 <li><p>寄存字母有a-z，还有特殊的</p>
 
-<h2 id="vim宏操作-macro">vim宏操作(macro)</h2></li>
+<h4 id="vim宏操作-macro">vim宏操作(macro)</h4></li>
 
 <li><p>重复相同操作，一系列命令的操作，录制回放</p></li>
 
@@ -413,13 +409,13 @@
 
 <li><p>shift+v=V #行选配合 gg/G 文章开头结尾;h j k l移动, 批量选择然后按：进入命令模式进行操作</p>
 
-<h1 id="批量操作-类似宏">批量操作（类似宏）</h1></li>
+<h4 id="批量操作-类似宏">批量操作（类似宏）</h4></li>
 
 <li><p>v （选择范围） ：（进入命令行模式） normal（执行normal命令）I“</p></li>
 
 <li><p>v （选择范围） ：（进入命令行模式） normal（执行normal命令）A&rdquo;</p>
 
-<h2 id="插入文件名-文件路径">插入文件名，文件路径</h2></li>
+<h4 id="插入文件名-文件路径">插入文件名，文件路径</h4></li>
 
 <li><p>:r! echo %  # ctrl+xf 打开文件名</p></li>
 
@@ -427,7 +423,7 @@
 
 <li><p>未装插件都是基于文本的匹配补全</p>
 
-<h2 id="文件目录树">文件目录树</h2></li>
+<h4 id="文件目录树">文件目录树</h4></li>
 
 <li><p>插件 <a href="https://github.com/scrooloose/nerdtree">nerdtree</a></p></li>
 
@@ -435,27 +431,27 @@
 
 <li><p>ctrl+v,ctrl+wp #副窗口和目录间切换</p>
 
-<h2 id="窗口最大化与窗口等宽">窗口最大化与窗口等宽</h2></li>
+<h4 id="窗口最大化与窗口等宽">窗口最大化与窗口等宽</h4></li>
 
 <li><p>ctrl+W+| ;ctrl+w+=</p>
 
-<h2 id="快速定位插件">快速定位插件</h2></li>
+<h4 id="快速定位插件">快速定位插件</h4></li>
 
 <li><p>插件 <a href="https://github.com/ctrlpvim/ctrlp.vim">ctrlp</a></p></li>
 
 <li><p>ctrl+p</p>
 
-<h2 id="快速移动">快速移动</h2></li>
+<h4 id="快速移动">快速移动</h4></li>
 
 <li><p>插件 <a href="https://github.com/easymotion/vim-easymotion">easymotion</a></p></li>
 
 <li><p>ss 命令</p>
 
-<h2 id="替换符号">替换符号</h2></li>
+<h4 id="替换符号">替换符号</h4></li>
 
 <li><p>normal模式选中 r替换+内容</p>
 
-<h2 id="快速修改符号">快速修改符号</h2></li>
+<h4 id="快速修改符号">快速修改符号</h4></li>
 
 <li><p>插件 <a href="https://github.com/tpope/vim-surround">vim-surround</a></p></li>
 
@@ -473,11 +469,11 @@
 
 <li><p>ds +&rdquo; &lsquo; ( { [</p>
 
-<h2 id="模糊搜索批量替换">模糊搜索批量替换</h2></li>
+<h4 id="模糊搜索批量替换">模糊搜索批量替换</h4></li>
 
 <li><p>插件fzf.vim</p>
 
-<h2 id="变成语言插件">变成语言插件</h2>
+<h4 id="变成语言插件">变成语言插件</h4>
 
 <p>-vim.go插件 #基本可以满足日常开发</p></li>
 
@@ -489,31 +485,31 @@
 
 <li><p>即使是在服务器上也能愉快的调试payhon代码</p>
 
-<h2 id="tagbar">tagbar</h2></li>
+<h4 id="tagbar">tagbar</h4></li>
 
 <li><p><a href="https://github.com/majutsushi/tagbar">插件</a></p></li>
 
 <li><p>大项目浏览代码结构，并且搜索跳转到对应代码块</p>
 
-<h2 id="高亮感兴趣的单词-浏览代码">高亮感兴趣的单词，浏览代码</h2></li>
+<h4 id="高亮感兴趣的单词-浏览代码">高亮感兴趣的单词，浏览代码</h4></li>
 
 <li><p>浏览代码的时候经常需要知道一个变量的使用方式。</p></li>
 
 <li><p><a href="https://github.com/lfv89/vim-interestingwords">vim-interestingword</a></p>
 
-<h2 id="异步补全插件">异步补全插件</h2></li>
+<h4 id="异步补全插件">异步补全插件</h4></li>
 
 <li><p>支持多变丑语言，支持模糊匹配</p></li>
 
 <li><p><a href="https://github.com/Shougo/deoplete.nvim">deoplete</a></p>
 
-<h2 id="coc-vim">coc.vim</h2></li>
+<h4 id="coc-vim">coc.vim</h4></li>
 
 <li><p>支持异步补全切支持LSP</p></li>
 
 <li><p>[](<a href="https://github.com/neoclide/coc.nvim)国内大神开发">https://github.com/neoclide/coc.nvim)国内大神开发</a></p>
 
-<h2 id="代码格式话与静态检查">代码格式话与静态检查</h2></li>
+<h4 id="代码格式话与静态检查">代码格式话与静态检查</h4></li>
 
 <li><p>把精力集中代码逻辑本身，而不是整理格式这些浪费精力的事情上，静态检查时为了让编写的代码更加规范，几十发现bug，不规范</p></li>
 
@@ -523,13 +519,13 @@
 
 <li><p>需要安装对应语言的格式化库。python autopep8/js的prettier等</p>
 
-<h2 id="静态检查lint">静态检查Lint</h2></li>
+<h4 id="静态检查lint">静态检查Lint</h4></li>
 
 <li><p>neomake和ale是两种常用的lint插件</p></li>
 
 <li><p>[](<a href="https://github.com/w0rp/ale">https://github.com/w0rp/ale</a>)  #ale，是代码格式更加干净，有些团队上线前会检查</p>
 
-<h2 id="代码快速注释">代码快速注释</h2></li>
+<h4 id="代码快速注释">代码快速注释</h4></li>
 
 <li><p><a href="https://github.com/tpope/vim-commentary">vim-commentary</a></p></li>
 
@@ -537,7 +533,7 @@
 
 <li><p>gc gcc注释掉一行</p>
 
-<h2 id="git的包装器fugitive">git的包装器Fugitive</h2></li>
+<h4 id="git的包装器fugitive">git的包装器Fugitive</h4></li>
 
 <li><p>在vim的git项目 中使用git命令</p></li>
 
@@ -547,7 +543,7 @@
 
 <li><p>[gv.vim]</p>
 
-<h2 id="thanks">Thanks</h2></li>
+<h4 id="thanks">Thanks</h4></li>
 
 <li><p><a href="http://coolshell.cn/atticles/5426.html">更多</a></p></li>
 
