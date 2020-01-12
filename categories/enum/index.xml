@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>enum on 怠惰なユニコーン🦄</title>
+    <link>https://gmtcover.github.io/categories/enum/</link>
+    <description>Recent content in enum on 怠惰なユニコーン🦄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Sep 2019 02:04:53 +0900</lastBuildDate>
+    
+	<atom:link href="https://gmtcover.github.io/categories/enum/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>枚举概念</title>
+      <link>https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Wed, 25 Sep 2019 02:04:53 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/09/%E6%9E%9A%E4%B8%BE%E6%A6%82%E5%BF%B5/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -245,7 +245,7 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="异常">异常</h1>
+              <h4 id="异常">异常</h4>
 
 <ul>
 <li>Run-time Error</li>
@@ -253,7 +253,7 @@
 
 <li><p>there&rsquo;s always someting happen in run-time, it is very important to deal with all situation in the future running</p>
 
-<h1 id="open-a-file">open a file</h1>
+<h4 id="open-a-file">open a file</h4>
 
 <pre><code>errorCode Type readFile{
 	initialize errorCode = 0;
@@ -308,7 +308,7 @@
 
 <li><p>异常机制</p>
 
-<h1 id="概念">概念</h1></li>
+<h4 id="概念">概念</h4></li>
 
 <li><p>i take exception to that</p></li>
 
@@ -318,7 +318,7 @@
 
 <li><p>有清晰的业务逻辑，和错误分析处理</p>
 
-<h1 id="异常的抛出和捕捉">异常的抛出和捕捉</h1>
+<h4 id="异常的抛出和捕捉">异常的抛出和捕捉</h4>
 
 <pre><code>template&lt; class T &gt; class Vector {
 	private:
@@ -353,7 +353,7 @@ retun m_elements[indx];
 </code></pre></li>
 </ul>
 
-<h1 id="抛出一个异常">抛出一个异常</h1>
+<h4 id="抛出一个异常">抛出一个异常</h4>
 
 <ul>
 <li><p>How to raise an exception</p>
@@ -370,7 +370,7 @@ T&amp; Vector&lt;T&gt;::operator[](int indx){
 </code></pre></li>
 </ul>
 
-<h1 id="review">Review</h1>
+<h4 id="review">Review</h4>
 
 <ul>
 <li>Throw statement raises the exception
@@ -393,7 +393,7 @@ T&amp; Vector&lt;T&gt;::operator[](int indx){
 
 <li><p>valid only within a handler</p>
 
-<h1 id="try-blocks">Try blocks</h1>
+<h4 id="try-blocks">Try blocks</h4>
 
 <pre><code>try{...}
 catch (SomeType V){//handler code}
@@ -403,7 +403,7 @@ catch (...) { //...捕捉全部,但是拿不到异常对象}
 </ul></li>
 </ul>
 
-<h1 id="selecting-a-handler">Selecting a handler</h1>
+<h4 id="selecting-a-handler">Selecting a handler</h4>
 
 <ul>
 <li>Can have any number of handlers</li>
@@ -442,7 +442,7 @@ try {
 </ul></li>
 </ul>
 
-<h1 id="exception-specification-异常规范">Exception specification（异常规范）</h1>
+<h4 id="exception-specification-异常规范">Exception specification（异常规范）</h4>
 
 <ul>
 <li><p>Declare which exceptions function might raise</p>
@@ -482,7 +482,7 @@ void average(){}//no spec, no checking
 </code></pre></li>
 </ul>
 
-<h1 id="exceptions-and-new">Exceptions and new</h1>
+<h4 id="exceptions-and-new">Exceptions and new</h4>
 
 <ul>
 <li>new does NOT returned 0 on failure</li>
@@ -503,7 +503,7 @@ C 得不到内存返回0
 </code></pre></li>
 </ul>
 
-<h1 id="failure-in-constructors">Failure in constructors</h1>
+<h4 id="failure-in-constructors">Failure in constructors</h4>
 
 <ul>
 <li>No return value is possible</li>
@@ -512,7 +512,7 @@ C 得不到内存返回0
 
 <li><p>如果构造函数除了问题，没有return，如果你抛出异常，问题一：构造没有完成（先分配内存），析构不会被调用，有风险；问题二：别人拿不到对象；</p>
 
-<h1 id="更加倾向于的方式">更加倾向于的方式</h1></li>
+<h4 id="更加倾向于的方式">更加倾向于的方式</h4></li>
 
 <li><p>Catch exceotion by reference，用指针要担心何时delete</p>
 
@@ -629,7 +629,7 @@ catch( B&amp; b){
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+    &copy; 2020 怠惰なユニコーン🦄. All Rights Reserved
   </span>
 </footer>
 

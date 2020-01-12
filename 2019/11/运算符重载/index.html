@@ -245,7 +245,7 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="argument-passing">Argument Passing</h1>
+              <h4 id="argument-passing">Argument Passing</h4>
 
 <ul>
 <li>运算符重载是传入类的，对象or引用</li>
@@ -264,7 +264,7 @@
 
 <li><p>想要的返回值是左值还是右值</p>
 
-<h1 id="the-prototypes-of-operators">the prototypes of operators</h1>
+<h4 id="the-prototypes-of-operators">the prototypes of operators</h4>
 
 <pre><code>+,-,*,/,%,^,&amp;,|,~
 - const T operator X( const T&amp; i, const T&amp; r) const;//const T* this ,传入对象为const
@@ -282,7 +282,7 @@ operator new[]  operator  delete[]
 </ul></li>
 </ul>
 
-<h1 id="operators-and">operators ++ and &ndash;</h1>
+<h4 id="operators-and">operators ++ and &ndash;</h4>
 
 <pre><code>class	Integer {
 public:
@@ -315,7 +315,7 @@ Integer x(5)
 x++;//calls x.operator++(0)//
 </code></pre>
 
-<h1 id="relational-operators">Relational operators</h1>
+<h4 id="relational-operators">Relational operators</h4>
 
 <ul>
 <li><p>都是inlne</p>
@@ -352,7 +352,7 @@ bool Integer::operator&gt;=( const Integer&amp; rhs )const {
 </code></pre></li>
 </ul>
 
-<h1 id="operator">Operator[]</h1>
+<h4 id="operator">Operator[]</h4>
 
 <ul>
 <li>类表达一种容器的概念，可以index来访问</li>
@@ -387,7 +387,7 @@ private:
 </code></pre></li>
 </ul>
 
-<h1 id="member-functions">Member Functions</h1>
+<h4 id="member-functions">Member Functions</h4>
 
 <ul>
 <li>inexlicit first argument</li>
@@ -406,7 +406,7 @@ z = -x;//z.operator = ( x.operator-( ));
 </code></pre></li>
 </ul>
 
-<h1 id="operator-as-a-global-function">Operator as a global function</h1>
+<h4 id="operator-as-a-global-function">Operator as a global function</h4>
 
 <ul>
 <li><p>左右两个算子</p>
@@ -443,7 +443,7 @@ z = 3 + 7;// 10, 10在调用 Integer 构造函数
 </code></pre></li>
 </ul>
 
-<h1 id="运算符重载选择">运算符重载选择</h1>
+<h4 id="运算符重载选择">运算符重载选择</h4>
 
 <ul>
 <li><p>Unary operator should be members</p>
@@ -556,7 +556,7 @@ z = 3 + 7;// 10, 10在调用 Integer 构造函数
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+    &copy; 2020 怠惰なユニコーン🦄. All Rights Reserved
   </span>
 </footer>
 

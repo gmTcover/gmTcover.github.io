@@ -31,9 +31,9 @@
   
   
     
-      <meta property="article:section" content="category">
+      <meta property="article:section" content="C基础">
     
-      <meta property="article:section" content="subcategory">
+      <meta property="article:section" content="">
     
   
   
@@ -233,9 +233,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/category">category</a>, 
+      <a class="category-link" href="https://gmtcover.github.io/categories/c%e5%9f%ba%e7%a1%80">C基础</a>, 
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/subcategory">subcategory</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/"></a>
     
   
 
@@ -245,7 +245,7 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="头文件">头文件</h1>
+              <h4 id="头文件">头文件</h4>
 
 <ul>
 <li>把函数的原型声明放到头文件（以.h结尾文件）
@@ -268,7 +268,7 @@ gcc mian.c max.c
 
 <li><p>include作用：把“”或&lt;&gt;文件内容插入include那一行</p>
 
-<h1 id="声明">声明</h1></li>
+<h4 id="声明">声明</h4></li>
 
 <li><p>不产生代码</p>
 
@@ -316,7 +316,7 @@ typedef struct _list {
 
 <li><p>还有个方法 #pragma once 也能起到相同作用，不同编译器</p>
 
-<h1 id="编译预处理宏定义-define">编译预处理宏定义（define）</h1>
+<h4 id="编译预处理宏定义-define">编译预处理宏定义（define）</h4>
 
 <pre><code>#define PI 3.14159
 #define FORMAT &quot;%d\n&quot;
@@ -340,11 +340,11 @@ typedef struct _list {
 
 <li><p>保存临时文件（.i;.o;.s;.a.out）</p>
 
-<h1 id="没有值的宏">没有值的宏</h1></li>
+<h4 id="没有值的宏">没有值的宏</h4></li>
 
 <li><p>用于条件编译，后面有其他的编译预处理指令来检查这个宏是否已经被定义过了</p>
 
-<h1 id="预定义宏">预定义宏</h1>
+<h4 id="预定义宏">预定义宏</h4>
 
 <pre><code>__LINE__//行号
 __FILE__//源代码全路径文件名
@@ -357,7 +357,7 @@ printf(&quot;%s; %d&quot;,__FILE__,__LINE__);
 </code></pre></li>
 </ul>
 
-<h1 id="带参数的宏">带参数的宏</h1>
+<h4 id="带参数的宏">带参数的宏</h4>
 
 <pre><code>#define cube(x) ((x)*(x)*(x))
 
@@ -381,7 +381,7 @@ int main(int argc, char const *argv[])
 //宏可以带多个参数，也可以组合嵌套使用其他宏，可以代替函数功能，
 </code></pre>
 
-<h1 id="总结">总结</h1>
+<h4 id="总结">总结</h4>
 
 <ul>
 <li><p>大型程序使用普遍</p>
@@ -393,14 +393,14 @@ int main(int argc, char const *argv[])
 
 <li><p>不存在类型检查（inline机制可以取代带参数大宏，做类型检查 ）</p>
 
-<h1 id="其他很多其他编译预处理指令">其他很多其他编译预处理指令</h1></li>
+<h4 id="其他很多其他编译预处理指令">其他很多其他编译预处理指令</h4></li>
 </ul></li>
 
 <li><p>条件编译</p></li>
 
 <li><p>error</p>
 
-<h1 id="宏的一些格式">宏的一些格式</h1>
+<h4 id="宏的一些格式">宏的一些格式</h4>
 
 <pre><code>#define Conn(x,y) x##y
 #define ToChar(a) #@a
@@ -531,7 +531,7 @@ return 0;
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+    &copy; 2020 怠惰なユニコーン🦄. All Rights Reserved
   </span>
 </footer>
 

@@ -245,7 +245,7 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="why-streams">why streams</h1>
+              <h4 id="why-streams">why streams</h4>
 
 <ul>
 <li>original C i/o used printf,scanf</li>
@@ -266,7 +266,7 @@
 
 <li><p>Often slower//现在care写程序的速度快还是慢</p>
 
-<h1 id="c-vs-c">C vs. C++</h1></li>
+<h4 id="c-vs-c">C vs. C++</h4></li>
 </ul></li>
 
 <li><p>C stdio operations works</p>
@@ -290,7 +290,7 @@ Mainipulators: change the stream state
 </ul></li>
 </ul>
 
-<h1 id="what-is-a-stream">what is a stream?</h1>
+<h4 id="what-is-a-stream">what is a stream?</h4>
 
 <ul>
 <li>一维当方向</li>
@@ -298,7 +298,7 @@ Mainipulators: change the stream state
 
 <li><p>不同于C可以任意地方可以读写文件</p>
 
-<h1 id="kinds-of-streams">Kinds of streams</h1></li>
+<h4 id="kinds-of-streams">Kinds of streams</h4></li>
 
 <li><p>Text streams</p>
 
@@ -314,7 +314,7 @@ Mainipulators: change the stream state
 
 <li><p>No translations</p>
 
-<h1 id="流的运算符">流的运算符</h1></li>
+<h4 id="流的运算符">流的运算符</h4></li>
 </ul></li>
 
 <li><p>cin，cout</p></li>
@@ -324,7 +324,7 @@ Mainipulators: change the stream state
 <ul>
 <li><p>unbuffered error</p>
 
-<h1 id="define-a-stream-extractor">Define a stream extractor</h1></li>
+<h4 id="define-a-stream-extractor">Define a stream extractor</h4></li>
 </ul></li>
 
 <li><p>Has to be a 2-argument free function</p>
@@ -355,9 +355,9 @@ istream&amp; get( char&amp; ch )//串在流里面
 </ul></li>
 </ul>
 
-<h1 id="other-input-operators">other input operators</h1>
+<h4 id="other-input-operators">other input operators</h4>
 
-<h1 id="define-a-stream-inserter">Define a stream inserter</h1>
+<h4 id="define-a-stream-inserter">Define a stream inserter</h4>
 
 <ul>
 <li>First argument is an ostream&amp;</li>
@@ -370,7 +370,7 @@ istream&amp; get( char&amp; ch )//串在流里面
 }
 </code></pre>
 
-<h1 id="other-output-operators">Other output operators</h1></li>
+<h4 id="other-output-operators">Other output operators</h4></li>
 
 <li><p>格式化问题</p></li>
 
@@ -399,7 +399,7 @@ resetiosflags(long)// turn off specific flags
 </code></pre></li>
 </ul>
 
-<h1 id="creatin-manipulators">creatin manipulators</h1>
+<h4 id="create-manipulators">create manipulators</h4>
 
 <ul>
 <li><p>you can define you own manipulators</p>
@@ -419,7 +419,7 @@ cout &lt;&lt; &quot;Hello&quot; &lt;&lt; tab &lt;&lt; &quot;World!&quot; &lt;&lt
 </code></pre></li>
 </ul>
 
-<h1 id="stream-flags-control-formatting">Stream flags control formatting</h1>
+<h4 id="stream-flags-control-formatting">Stream flags control formatting</h4>
 
 <pre><code>ios::skipws //skip leading whit space
 ios::left,ios::right //justification
@@ -435,7 +435,7 @@ ios::showpoint//always show decimal point
 <ul>
 <li><p>如和使用 &amp;= 硬件相关（1/0）</p>
 
-<h1 id="setting-flags">Setting flags</h1></li>
+<h4 id="setting-flags">Setting flags</h4></li>
 </ul></li>
 
 <li><p>using manipulators</p>
@@ -551,7 +551,7 @@ ios::showpoint//always show decimal point
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 怠惰なユニコーン🦄. All Rights Reserved
+    &copy; 2020 怠惰なユニコーン🦄. All Rights Reserved
   </span>
 </footer>
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>byte manipulate on 怠惰なユニコーン🦄</title>
+    <link>https://gmtcover.github.io/categories/byte-manipulate/</link>
+    <description>Recent content in byte manipulate on 怠惰なユニコーン🦄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Oct 2019 22:39:08 +0900</lastBuildDate>
+    
+	<atom:link href="https://gmtcover.github.io/categories/byte-manipulate/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>位运算</title>
+      <link>https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Tue, 08 Oct 2019 22:39:08 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>按位运算移位运算</title>
+      <link>https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Mon, 07 Oct 2019 23:23:52 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2019/10/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
