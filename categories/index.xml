@@ -6,10 +6,28 @@
     <description>Recent content in Categories on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2020 19:41:35 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 00:05:59 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PAT</title>
+      <link>https://gmtcover.github.io/categories/pat/</link>
+      <pubDate>Sat, 28 Mar 2020 00:05:59 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/pat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell脚本</title>
+      <link>https://gmtcover.github.io/categories/shell%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Fri, 27 Mar 2020 22:42:20 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/shell%E8%84%9A%E6%9C%AC/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>动态规化</title>
@@ -26,15 +44,6 @@
       <pubDate>Thu, 26 Mar 2020 19:37:44 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT</title>
-      <link>https://gmtcover.github.io/categories/pat/</link>
-      <pubDate>Thu, 26 Mar 2020 16:13:09 +0900</pubDate>
-      
-      <guid>https://gmtcover.github.io/categories/pat/</guid>
       <description></description>
     </item>
     

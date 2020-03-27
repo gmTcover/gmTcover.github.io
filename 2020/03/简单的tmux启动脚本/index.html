@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="怠惰なユニコーン🦄">
+<meta name="keywords" content="tech, C, C&#43;&#43;, PAT">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的tmux启动脚本">
+<meta name="twitter:title" content="简单的tmux启动脚本">
+<meta property="og:url" content="https://gmtcover.github.io/2020/03/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/03/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/">
+<meta property="og:site_name" content="怠惰なユニコーン🦄">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-03-27T22:42:20">
+  
+  
+    <meta property="article:modified_time" content="2020-03-27T22:42:20">
+  
+  
+  
+    
+      <meta property="article:section" content="shell脚本">
+    
+  
+  
+    
+      <meta property="article:tag" content="Tmux">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gmtcover.github.io/images/touxiang.png">
+  <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
+
+
+    <title>简单的tmux启动脚本</title>
+
+    <link rel="icon" href="https://gmtcover.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://gmtcover.github.io/2020/03/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://gmtcover.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gmtcover.github.io/">怠惰なユニコーン🦄</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gmtcover.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gmtcover.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">怠惰なユニコーン🦄</h4>
+        
+          <h5 class="sidebar-profile-bio">Now or never! Focus，fun！</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gmTcover" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gmtcover.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      简单的tmux启动脚本
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-27T22:42:20&#43;09:00">
+        
+  三月 27, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/shell%e8%84%9a%e6%9c%ac">shell脚本</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h4 id="可用于脚本tmux命令">可用于脚本tmux命令</h4>
+
+<p>创建一个命名为 workspace 的会话，并且命名首窗口为 editor
+&gt; tmux new-session -s workspace -n editor
+关联到命名窗口
+&gt; tmux attach -t workspace
+向命名会话 workspace 中的活动窗口或窗格发送按键，C-m 相当于回车键
+&gt; tmux send-keys -t workspace ‘[keys]’ C-m
+向命名会话 workspace 中的第 1 个窗口中的第 0 个 窗格发送按键，C-m 相当于回车键
+&gt; tmux send-keys -t workspace:1.0 ‘[keys]’ C-m
+使命名会话 workspace 中的第 1 个窗口成为活动窗口
+&gt; tmux select-window -t workspace:1 使命名会话 workspace 中的第 1 个窗口成为活动窗口
+将命名会话 workspace 中的当前窗口垂直分割，其中下面的窗格高度占 10%
+&gt; tmux split-window -v -p 10 -t workspace<br />
+为命名会话 workspace 选择布局
+&gt; tmux select-layout -t workspace main-horizontal<br />
+加载 app.conf 配置文件，并关联到该配置文件生成的会话
+&gt; tmux -f app.conf attach</p>
+
+<h4 id="简单的启动">简单的启动</h4>
+
+<ul>
+<li><p>创建2个workspace，打开nvim
+```shell
+session=&ldquo;workspace&rdquo;</p>
+
+<h1 id="session">$session</h1>
+
+<p>tmux new-session -s workspace -n editor -d</p>
+
+<h1 id="tmux-send-keys-t-session-cd-users-gmtcover-learn-c-m">tmux send-keys -t $session &lsquo;cd /Users/gmtcover/Learn&rsquo; C-m</h1>
+
+<p>tmux send-keys -t workspace &lsquo;cd ~/Learn/&rsquo; C-m
+tmux send-keys -t workspace &lsquo;nvim&rsquo; C-m
+tmux split-window -v -p 30 -t workspace</p>
+
+<h1 id="tmux-send-keys-t-workspace-1-2-cd-c-m">tmux send-keys -t workspace:1.2 &lsquo;cd ~&rsquo; C-m</h1></li>
+</ul>
+
+<p>tmux send-keys -t workspace:1.2 &lsquo;date&rsquo; C-m
+tmux new-window -n console -t workspace</p>
+
+<h1 id="tmux-send-keys-t-workspace-2-cd-c-m">tmux send-keys -t workspace:2 &lsquo;cd ~&rsquo; C-m</h1>
+
+<p>tmux select-window -t workspace:1</p>
+
+<h1 id="tmux-new-window-t-session-2-n-edit-nvim">tmux new-window -t $session:2 -n edit nvim</h1>
+
+<p>tmux select-window -t workspace:1.1
+tmux attach-session -t workspace</p>
+
+<pre><code>#### tmux配置
+</code></pre>
+
+<p>set -g base-index 1
+setw -g pane-base-index 1</p>
+
+<p>bind r source-file ~/.tmux.conf \; display &ldquo;Reloaded!&rdquo;</p>
+
+<p>bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R</p>
+
+<p>bind | split-window -h
+bind - split-window -v</p>
+
+<p>bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+</p>
+
+<p>bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5</p>
+
+<p>set -g default-terminal &ldquo;screen-256color&rdquo;</p>
+
+<p>#&ndash; statusbar &ndash;#
+set -g status-bg black
+set -g status-fg yellow</p>
+
+<h1 id="general-settings">General settings &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
+
+<p>setw -g mode-keys vi
+set -g display-time 400                  # status line messages display
+set -g history-limit 100000                 # scrollback buffer n lines</p>
+
+<h1 id="toc_8">}}}</h1>
+
+<h1 id="status-bar">Status bar &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
+
+<p>set -g status-bg black
+set -g status-fg white
+set-option -g status-justify centre
+set-option -g status-left &lsquo;#[fg=cyan][#{session_name}]&rsquo;
+set-option -g status-left-length 25
+set-option -g status-right &lsquo;#[fg=white,bg=default]%H:%M #[default] #[fg=blue]%Y-%m-%d%a&rsquo;</p>
+
+<h1 id="window">window</h1>
+
+<p>setw -g automatic-rename off
+set-option -g allow-rename off
+set-window-option -g clock-mode-colour black
+set-window-option -g clock-mode-style 24</p>
+
+<p>set-window-option -g monitor-activity on
+set-window-option -g visual-bell off</p>
+
+<h1 id="toc_11">}}}</h1>
+
+<h1 id="panel">panel &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
+
+<p>set-option -g display-panes-active-colour blue
+set-option -g display-panes-colour brightred</p>
+
+<h1 id="toc_13">}}}</h1>
+
+<pre><code>#### neovim配置
+</code></pre>
+
+<p>set noautochdir
+set number
+syntax on
+set scrolloff=5
+set ignorecase</p>
+
+<p>&ldquo;代码折叠方式
+&ldquo; Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+&ldquo; quickfix window with <leader>a
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR></p>
+
+<p>&rdquo; Keep search pattern at the center of the screen.
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> g* g*zz</p>
+
+<p>&rdquo; 切换前后buffer
+nnoremap [b :bprevious<cr>
+nnoremap ]b :bnext<cr>
+&ldquo; remap U to <C-r> for easier redo
+nnoremap U <C-r>
+noremap H ^
+noremap L $
+&ldquo; 滚动Speed up scrolling of the viewport slightly
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y></p>
+
+<p>&rdquo; 关闭方向键, 强迫自己用 hjkl
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+&ldquo;Treat long lines as break lines (useful when moving around in them)
+&ldquo;se swap之后，同物理行上线直接跳
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j</p>
+
+<p>&ldquo;Maintian undo history between sessions
+&ldquo;set undofile
+&ldquo;set undodir=~/.config/nvim/undodir</p>
+
+<p>inoremap jk <Esc>`^
+inoremap ;; \n
+&ldquo; sudo to write
+cnoremap w!! w !sudo tee % &gt;/dev/null
+&ldquo; json 格式化
+com! FormatJSON %!python3 -m json.tool
+&ldquo;切换buffer
+&ldquo; 进入黏贴模式
+set pastetoggle=<F2></p>
+
+<p>let massleader=&lsquo;,&rsquo;
+let g:mapleader=&lsquo;,&rsquo;
+inoremap <leader>w <Esc>:w<cr>
+nnoremap <leader>w :w<cr>
+&ldquo;拼写检查
+map <leader>sc :set spell!<cr></p>
+
+<p>&rdquo; use ctrl+h/j/k/l switch window
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l</p>
+
+<p>&rdquo; Insert mode shortcut
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <delete></p>
+
+<p>iabbrev waht what
+iabbrev tehn then
+iabbrev @@ gmc6229@gmail.com
+iabbrev xtime <C-r>=strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;)<cr></p>
+
+<p>call plug#begin(&rsquo;~/.vim/plugged&rsquo;)
+Plug &lsquo;mhinz/vim-startify&rsquo;
+Plug &lsquo;vim-airline/vim-airline&rsquo;
+Plug &lsquo;vim-airline/vim-airline-themes&rsquo;
+Plug &lsquo;w0ng/vim-hybrid&rsquo;
+Plug &lsquo;Yggdroot/indentLine&rsquo;
+Plug &lsquo;iamcco/mathjax-support-for-mkdp&rsquo;
+Plug &lsquo;iamcco/markdown-preview.vim&rsquo;
+Plug &lsquo;scrooloose/nerdtree&rsquo;
+Plug &lsquo;yggdroot/indentLine&rsquo;
+Plug &lsquo;easymotion/vim-easymotion&rsquo;
+Plug &lsquo;tpope/vim-surround&rsquo;</p>
+
+<p>Plug &lsquo;tpope/vim-commentary&rsquo;
+Plug &lsquo;tpope/vim-fugitive&rsquo;
+Plug &lsquo;airblade/vim-gitgutter&rsquo;
+Plug &lsquo;junegunn/gv.vim&rsquo;
+Plug &lsquo;sbdchd/neoformat&rsquo;
+Plug &lsquo;w0rp/ale&rsquo;
+Plug &lsquo;farmergreg/vim-lastplace&rsquo;</p>
+
+<p>Plug &lsquo;junegunn/fzf&rsquo;, { &lsquo;do&rsquo;: &lsquo;./install &ndash;bin&rsquo; }
+Plug &lsquo;junegunn/fzf.vim&rsquo;</p>
+
+<p>Plug &lsquo;fatih/vim-go&rsquo;, { &lsquo;do&rsquo;: &lsquo;:GoUpdateBinaries&rsquo; }
+Plug &lsquo;majutsushi/tagbar&rsquo;
+Plug &lsquo;lfv89/vim-interestingwords&rsquo;
+call plug#end()
+colorscheme hybrid
+&ldquo; for normal mode
+nmap <silent> <F8> <Plug>MarkdownPreview
+&ldquo; for insert mode
+imap <silent> <F8> <Plug>MarkdownPreview
+&ldquo; for normal mode
+nmap <silent> <F9> <Plug>StopMarkdownPreview
+&ldquo; for insert mode
+imap <silent> <F9> <Plug>StopMarkdownPreview</p>
+
+<p>nnoremap <leader>g :NERDTreeToggle<cr>
+nnoremap <leader>v :NERDTreeFind<cr></p>
+
+<p>&ldquo;显示隐藏文件
+let NERDTreeShowHidden=0</p>
+
+<p>&ldquo;模糊搜索
+let g:ctrlp_map = &lsquo;<c-p>&lsquo;
+nnoremap <silent> <leader>k :call InterestingWords(&lsquo;n&rsquo;)<cr>
+nnoremap <silent> <leader>K :call UncolorAllWords()<cr></p>
+
+<p>nnoremap <silent> n :call WordNavigation(&lsquo;forward&rsquo;)<cr>
+nnoremap <silent> N :call WordNavigation(&lsquo;backward&rsquo;)<cr>
+&ldquo;快速定位
+nmap ss <Plug>(easymotion-s2)</p>
+
+<p>nnoremap <leader>t :TagbarToggle<CR>
+set updatetime=100 &ldquo;100 m gitgutter</p>
+
+<p>&ldquo;快速格式化
+noremap <leader>p :Neoformat<cr></p>
+
+<p>xnoremap sg :s//gc<Left><Left><Left></p>
+
+<p>&rdquo; Duplicate lines
+nnoremap <Leader>d m<code>YP</code>`
+vnoremap <Leader>d YPgv</p>
+
+<p>&rdquo;&ldquo;文本格式
+let $author_name = &ldquo;gmTcover&rdquo;
+let $author_email = &ldquo;gmc6229@gmail.com&rdquo;
+autocmd BufNewFile <em>.cpp,</em>.[ch],<em>.sh,</em>.java exec &ldquo;:call SetTitle()&rdquo;
+&ldquo;&ldquo;定义函数SetTitle，自动插入文件头
+func SetTitle()
+    &ldquo;如果文件类型为.sh文件
+    if &amp;filetype == &lsquo;sh&rsquo;
+        call setline(1,&rdquo;#########################################################################&ldquo;)
+        call append(line(&ldquo;.&rdquo;), &ldquo;# File Name: &ldquo;.expand(&rdquo;%&ldquo;))
+        call append(line(&ldquo;.&rdquo;)+1, &ldquo;# Author:&ldquo;.$author_name)
+        call append(line(&ldquo;.&rdquo;)+2, &ldquo;# mail: &ldquo; .$author_email)
+        call append(line(&ldquo;.&rdquo;)+3, &ldquo;# Created Time: &ldquo;.strftime(&rdquo;%c&rdquo;))
+        call append(line(&ldquo;.&rdquo;)+4, &ldquo;#########################################################################&ldquo;)
+        call append(line(&ldquo;.&rdquo;)+5, &ldquo;&rdquo;)
+        call append(line(&ldquo;.&rdquo;)+6, &ldquo;&rdquo;)
+    else
+        call setline(1, &ldquo;/*************************************************************************&ldquo;)
+        call append(line(&ldquo;.&rdquo;), &ldquo;    &gt; File Name: &ldquo;.expand(&rdquo;%&ldquo;))
+        call append(line(&ldquo;.&rdquo;)+1, &ldquo;    &gt; Author:&ldquo;.$author_name)
+        call append(line(&ldquo;.&rdquo;)+2, &ldquo;    &gt; Mail:  &ldquo;.$author_email)
+        call append(line(&ldquo;.&rdquo;)+3, &ldquo;    &gt; Created Time: &ldquo;.strftime(&rdquo;%c&rdquo;))
+        call append(line(&ldquo;.&rdquo;)+4, &ldquo; ************************************************************************/&ldquo;)
+        call append(line(&ldquo;.&rdquo;)+5, &ldquo;&rdquo;)
+    endif
+    if &amp;filetype == &lsquo;cpp&rsquo;
+        call append(line(&ldquo;.&rdquo;)+6, &ldquo;#include <iostream>&rdquo;)
+        call append(line(&ldquo;.&rdquo;)+7, &ldquo;using namespace std;&rdquo;)
+        call append(line(&ldquo;.&rdquo;)+8, &ldquo;&rdquo;)
+    endif
+    if &amp;filetype == &lsquo;c&rsquo;
+        call append(line(&ldquo;.&rdquo;)+6, &ldquo;#include <stdio.h>&rdquo;)
+        call append(line(&ldquo;.&rdquo;)+7, &ldquo;&rdquo;)
+    endif
+    &ldquo;新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
+endfunc</p>
+
+<p>autocmd BufNewFile *.md exec &ldquo;:call SetHeader()&rdquo;
+func! SetHeader()
+    if expand(&ldquo;%:e&rdquo;) == &lsquo;md&rsquo;
+        call setline(1,&ldquo;Author:&ldquo;.$author_name)
+        call setline(2,&ldquo;Mail:  &ldquo;.$author_email)
+        call setline(3,&ldquo;Created Time:&ldquo;.strftime(&rdquo;%c&rdquo;))
+    endif
+endfunc
+autocmd BufNewFile * normal G</p>
+
+<p>&rdquo; Tabs and Indents
+set textwidth=80    &ldquo; Text width maximum chars before wrapping
+set expandtab     &ldquo; Don&rsquo;t expand tabs to spaces.
+set tabstop=4       &ldquo; The number of spaces a tab is
+set softtabstop=4   &ldquo; While performing editing operations
+set shiftwidth=4   &ldquo; Number of spaces to use in auto(indent)
+set smarttab        &ldquo; Tab insert blanks according to &lsquo;shiftwidth&rsquo;
+set autoindent      &ldquo; Use same indenting on new lines
+set smartindent     &ldquo; Smart autoindenting on new lines
+set shiftround      &ldquo; Round indent to multiple of &lsquo;shiftwidth&rsquo;
+set cindent</p>
+
+<p>&rdquo; Searching
+set ignorecase      &ldquo; Search ignoring case
+set smartcase       &ldquo; Keep case when searching with *
+set infercase       &ldquo; Adjust case in insert completion mode
+set incsearch       &ldquo; Incremental search
+set wrapscan        &ldquo; Searches wrap around the end of the file
+set showmatch       &ldquo; Jump to matching bracket
+set matchpairs+=&lt;:&gt; &ldquo; Add HTML brackets to pair matching
+set matchtime=1     &ldquo; Tenths of a second to show the matching paren
+set cpoptions-=m    &ldquo; showmatch will wait 0.5s or until a char is typed
+set showfulltag     &ldquo; Show tag and tidy search in completion</p>
+
+<p>inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap } {}<ESC>i
+inoremap &lsquo; &ldquo;<ESC>i
+inoremap &ldquo; &ldquo;&rdquo;<ESC>i
+inoremap { {<CR>}<ESC>O</p>
+
+<p>&rdquo; Start new line from any cursor position in insert-mode
+inoremap <S-Return> <C-o>o
+inoremap <C-j> <C-o>o</p>
+
+<p>&ldquo;set noautochdir    &rdquo; 注意这个自动切换目录会使rope找目录不正确
+&ldquo;airline</p>
+
+<p>noremap <leader>e :q<cr>
+noremap <leader>B :bd<cr></p>
+
+<p>&ldquo;<Leader>f在当前目录搜索文件
+nnoremap <silent> <Leader>f :Files<CR>
+&ldquo;<Leader>b切换Buffer中的文件
+nnoremap <silent> <Leader>b :Buffers<CR>
+&ldquo;<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+nnoremap <silent> <Leader>p :Lines<CR>
+&ldquo;<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+nnoremap <silent> <Leader>h :History<CR>
+&ldquo;调用Rg进行搜索，包含隐藏文件
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   &lsquo;rg &ndash;column &ndash;line-number &ndash;no-heading &ndash;color=always &ndash;smart-case &ndash;hidden &lsquo;.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview(&lsquo;up:60%&lsquo;)
+  \           : fzf#vim#with_preview(&lsquo;right:50%:hidden&rsquo;, &lsquo;?&rsquo;),
+  \   <bang>0)</p>
+
+<p>&rdquo; Default fzf layout
+&ldquo; - down / up / left / right
+let g:fzf_layout = { &lsquo;down&rsquo;: &lsquo;~30%&rsquo; }</p>
+
+<p>&ldquo;let g:fzf_history_dir = &lsquo;~/.local/share/fzf-history&rsquo;
+```</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/tmux/">Tmux</a>
+
+                  </div>
+                
+              
+            
+              <span id="https://gmtcover.github.io/2020/03/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/" class="leancloud_visitors" data-flag-title="简单的tmux启动脚本">
+                <span class="post-meta-item-text">文章阅读量 </span>
+                <span class="leancloud-visitors-count">1000000</span>
+                <p></p>
+              </span>
+              <div id="vcomments"></div>
+              <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+              <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+              <script type="text/javascript">
+                new Valine({
+                  el: '#vcomments' ,
+                  appId: 'KgLE9jnxcE9p8kIUxdyeKXSy-gzGzoHsz',
+                  appKey: '7AEwN7e46mj0dXeX2p700XUX',
+                  notify: 'false',
+                  verify: '',
+                  avatar:'mp', 
+                  placeholder: '说点什么吧',
+                  visitor: 'true'
+                });
+              </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%924/" data-tooltip="动态规划4">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/1036%E8%B7%9F%E5%A5%A5%E5%B7%B4%E9%A9%AC%E4%B8%80%E8%B5%B7%E7%BC%96%E7%A8%8B/" data-tooltip="1036跟奥巴马一起编程">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 怠惰なユニコーン🦄. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%924/" data-tooltip="动态规划4">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/1036%E8%B7%9F%E5%A5%A5%E5%B7%B4%E9%A9%AC%E4%B8%80%E8%B5%B7%E7%BC%96%E7%A8%8B/" data-tooltip="1036跟奥巴马一起编程">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gmtcover.github.io/images/touxiang.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">怠惰なユニコーン🦄</h4>
+    
+      <div id="about-card-bio">Now or never! Focus，fun！</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ー。ー
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gmtcover.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://gmtcover.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://gmtcover.github.io/js/clicklove.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/03\/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC\/';
+          
+            this.page.identifier = '\/2020\/03\/%E7%AE%80%E5%8D%95%E7%9A%84tmux%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
