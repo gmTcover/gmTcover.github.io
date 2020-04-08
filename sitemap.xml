@@ -4,13 +4,54 @@
   
   <url>
     <loc>https://gmtcover.github.io/tags/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://gmtcover.github.io/categories/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/java/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/multithreading/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/2020/04/mutithread_java/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/post/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/java/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/</loc>
+    <lastmod>2020-04-08T17:46:17+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -26,31 +67,7 @@
   </url>
   
   <url>
-    <loc>https://gmtcover.github.io/categories/multithreading/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/post/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://gmtcover.github.io/tags/c/</loc>
-    <lastmod>2020-04-08T15:38:57+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/</loc>
     <lastmod>2020-04-08T15:38:57+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -71,13 +88,13 @@
   </url>
   
   <url>
-    <loc>https://gmtcover.github.io/tags/c&#43;&#43;/</loc>
+    <loc>https://gmtcover.github.io/categories/pat/</loc>
     <lastmod>2020-03-28T00:05:59+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://gmtcover.github.io/categories/pat/</loc>
+    <loc>https://gmtcover.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2020-03-28T00:05:59+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -509,18 +526,6 @@
   <url>
     <loc>https://gmtcover.github.io/2019/10/resizablearray/</loc>
     <lastmod>2019-10-17T00:59:55+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/categories/javatest/</loc>
-    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/java/</loc>
-    <lastmod>2019-10-15T17:08:24+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

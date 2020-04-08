@@ -6,10 +6,28 @@
     <description>Recent content in Categories on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Apr 2020 15:38:57 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 17:46:17 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java</title>
+      <link>https://gmtcover.github.io/categories/java/</link>
+      <pubDate>Wed, 08 Apr 2020 17:46:17 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multithreading</title>
+      <link>https://gmtcover.github.io/categories/multithreading/</link>
+      <pubDate>Wed, 08 Apr 2020 17:46:17 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/multithreading/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C程序设计</title>
@@ -17,15 +35,6 @@
       <pubDate>Wed, 08 Apr 2020 15:38:57 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Multithreading</title>
-      <link>https://gmtcover.github.io/categories/multithreading/</link>
-      <pubDate>Wed, 08 Apr 2020 15:38:57 +0900</pubDate>
-      
-      <guid>https://gmtcover.github.io/categories/multithreading/</guid>
       <description></description>
     </item>
     
@@ -107,15 +116,6 @@
       <pubDate>Thu, 17 Oct 2019 00:59:55 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/categories/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaTest</title>
-      <link>https://gmtcover.github.io/categories/javatest/</link>
-      <pubDate>Tue, 15 Oct 2019 17:08:24 +0900</pubDate>
-      
-      <guid>https://gmtcover.github.io/categories/javatest/</guid>
       <description></description>
     </item>
     

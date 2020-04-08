@@ -13,32 +13,32 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multithread_example2">
-<meta name="twitter:title" content="Multithread_example2">
-<meta property="og:url" content="https://gmtcover.github.io/2020/04/multithread_example2/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2020/04/multithread_example2/">
+<meta property="og:title" content="Mutithread_java">
+<meta name="twitter:title" content="Mutithread_java">
+<meta property="og:url" content="https://gmtcover.github.io/2020/04/mutithread_java/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/04/mutithread_java/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-04-08T15:38:57">
+    <meta property="article:published_time" content="2020-04-08T17:46:17">
   
   
-    <meta property="article:modified_time" content="2020-04-08T15:38:57">
+    <meta property="article:modified_time" content="2020-04-08T17:46:17">
   
   
   
     
-      <meta property="article:section" content="C程序设计">
+      <meta property="article:section" content="Java">
     
       <meta property="article:section" content="Multithreading">
     
   
   
     
-      <meta property="article:tag" content="c">
+      <meta property="article:tag" content="java">
     
   
 
@@ -59,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>Multithread_example2</title>
+    <title>Mutithread_java</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2020/04/multithread_example2/">
+    <link rel="canonical" href="https://gmtcover.github.io/2020/04/mutithread_java/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,13 +216,13 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Multithread_example2
+      Mutithread_java
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-04-08T15:38:57&#43;09:00">
+      <time itemprop="datePublished" datetime="2020-04-08T17:46:17&#43;09:00">
         
   四月 8, 2020
 
@@ -233,7 +233,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/c%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">C程序设计</a>, 
+      <a class="category-link" href="https://gmtcover.github.io/categories/java">Java</a>, 
     
       <a class="category-link" href="https://gmtcover.github.io/categories/multithreading">Multithreading</a>
     
@@ -245,139 +245,251 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h4 id="optimize-code">Optimize code</h4>
+              <h4 id="多进程只能串行执行-宏观上看">多进程只能串行执行（宏观上看）</h4>
 
 <ul>
-<li><p>false sharing: In computer science, false sharing is a performance-degrading usage pattern that can arise in systems with distributed, coherent caches at the size of the smallest resource block managed by the caching mechanism</p>
+<li>每个时间片内将cpu分配给某一个任务，时间片结束，cpu将自动回收，在分配给另外任务，从外部看，所有任务都是同时执行，但是在cpu上，任务是按照串行依次运行（单核cpu）。如果是多核，多个任务可以并行，但是单个核上，多进程只能串行执行。</li>
+<li>优点：可以同时运行多个任务，程序因IO堵塞时，可以释放cpu，让cpu执行其他服务，当系统有多个cpu时，可以为多个程序同时服务</li>
+<li>缺点：太笨重，不好管理，不好切换</li>
 
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;pthread.h&gt;
+<li><p>多线程（并行程序）</p>
 
-#define MAX_SIZE 50000000
+<ul>
+<li>一个程序可以包括多个子任务，可串/并行</li>
 
-typedef struct {
-int first;
-int last;
-int id;
-} MY_ARGS;
+<li><p>每个只任务可以成为一个线程
+-如果一个子任务阻塞，程序可以将cpu调度另外一个子任务进行工作。这样cpu还是保留在本程序中，而不是被调度到别的程序去，这样提到本程序所获得cpu时间和利用率</p>
 
-int* arr;
-//optimize false sharing change the size of array
-//int results[101];
+<h4 id="多进程和多线程的区别">多进程和多线程的区别</h4></li>
+</ul></li>
 
-int results[2];
-void* myfunc(void* args) {
-// large scale array we use pointer
+<li><p>线程共享数据</p></li>
 
-MY_ARGS* my_args = (MY_ARGS*) args;
-int first = my_args-&gt;first;
-int last  = my_args -&gt; last;
+<li><p>线程通讯更高效</p></li>
 
-//int id = my_args -&gt; id * 100;
+<li><p>线程更轻量级，更容易切换</p></li>
 
-int id = my_args -&gt; id;
-int i;
-for (i=first; i&lt;last; i++) {
-    results[id] = results[id] + arr[i];
-}
-return NULL;
-}
-int main() {
-int i;
-arr = malloc(sizeof(int) * MAX_SIZE);
-for (i=0; i&lt;MAX_SIZE; i++) {
-    arr[i] = rand()%5;
-}
-results[0] = 0;
-//results[100] = 0;
-results[1] = 0;
+<li><p>多个线程更容易管理</p>
 
-int mid = MAX_SIZE / 2;
-// initilize my_args
-MY_ARGS args1 = {0, mid, 0};
-MY_ARGS args2 = {mid, MAX_SIZE, 1};
+<h4 id="多线程的创建">多线程的创建</h4>
 
-pthread_t th1, th2;
-pthread_create(&amp;th1, NULL, myfunc, &amp;args1);
-pthread_create(&amp;th2, NULL, myfunc, &amp;args2);
+<pre><code>java.lang.Threadl类
 
-pthread_join(th1, NULL);
-pthread_join(th2, NULL);
-
-printf(&quot;s1 = %d\n&quot;, results[0]);
-printf(&quot;s2 = %d\n&quot;, results[1]);
-printf(&quot;s1 + s2 = %d\n&quot;, results[0] + results[1]);
-
-//printf(&quot;s2 = %d\n&quot;, results[100]);
-//printf(&quot;s1 + s2 = %d\n&quot;, results[0] + results[100]);
-return 0;
-}
-time ./example1
-
+java.lang.Runnable接口
 </code></pre></li>
+
+<li><p>多线程的启动</p></li>
+
+<li><p>stat方法，会自动以新进程调用run方法</p></li>
+
+<li><p>直接调用run方法，将变成串行执行</p></li>
+
+<li><p>同一个线程，多处stat会报错，只执行第一次stat方法</p></li>
+
+<li><p>多个线程启动，其启动的先后顺序是随机的</p></li>
+
+<li><p>线程无需关闭，只要其run方法执行结束后，自动关闭</p></li>
+
+<li><p>main函数（线程）可能早于新线程结束，整个程序并不终止</p></li>
+
+<li><p>整个程序终止是所有的线程都终止（包活main函数线程）</p></li>
+
+<li><p>Thread vs Runnable</p>
+
+<ul>
+<li>Thread
+占据类父类的名额，不如Runnable方便,Java是单根继承，一旦继承了一个类，无法继承及其类</li>
+<li>Thread 类实现了Runnable</li>
+<li>Runnable启动时需要Thread类的支持</li>
+
+<li><p>Runnable更容易实现多线程中的资源共享</p>
+
+<h4 id="多线程信息共享">多线程信息共享</h4></li>
+</ul></li>
+
+<li><p>粗粒度：子线程与子线程之间，和mmain之间缺乏交流</p></li>
+
+<li><p>细粒度：线程之间有信息交流通讯</p></li>
+
+<li><p>多线程信息共享问题</p>
+
+<ul>
+<li>工作缓存副本（锁，同时读写一个数据）：采用volatile关键字修饰变量，保证不同线程对共享变量操作时的可见性</li>
+<li>关键步骤缺乏枷锁限制</li>
+</ul></li>
+
+<li><p>互斥：某一个线程运行一个代码段（关键去）， 其他线程不能同时运行这个代码段
+2.
+同步：多个线程的运行，必须按照某一种规定的先后顺序来运行，互斥是同步的一种特例</p></li>
+
+<li><p>关键字：synchronized，加大性能负担，但是使用便捷</p>
+
+<h4 id="java线程的生命周期管理">Java线程的生命周期管理</h4></li>
+
+<li><p>细粒度</p>
+
+<ul>
+<li>等待</li>
+<li>通知/唤醒</li>
+
+<li><p>终止</p>
+
+<pre><code>线程状态
+1. new 刚创建（new）
+2. RUNNABLE 就绪状态（star）
+3. RUNNING 运行中(run)
+4. BLOCK 阻塞（sleep）// Thread.sleep(1000);
+5. TERMINATED 结束
+
+Thread 的部分API已经废弃，线程不安全
+例：暂停和恢复 suspend/resume
+消亡 stop/destory
+线程阻塞/和唤醒
+sleep 时间一到，自己唤醒
+wait/notify/notifyAll 等待，需要别人来唤醒
+join 等待另外一个线程结束
+interrupt
+向另外一个线程发送中断信号，该线程收到信号，会触发InterruptedExcaption（可接触阻塞）并进行下一步处理
+</code></pre></li>
+</ul></li>
 </ul>
 
-<h4 id="optimize">optimize</h4>
+<h4 id="锁">锁</h4>
 
 <ul>
-<li>Multi-threaded code, multi-core CPU, in order to make full use of the CPU, each cup copies the array to itself cache , when writeing results to RAM , differences from the data in each core cache, there will be a synchronization process, time delay, resulting in false sharing</li>
-
-<li><p>sulutions:</p>
+<li>多线程死锁
 
 <ul>
-<li>example1 has two results, RAM has results[2], change result result[101], Cache can&rsquo;t read all size of array</li>
+<li>每一个线程互相持有别人需要的锁，预防死锁，对资源进行等级排序(统一顺序锁获得r1,r2 )</li>
+</ul></li>
 
-<li><p>example2，因为指针都是在缓存中运算，</p>
+<li><p>守护（后台）线程</p>
 
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;pthread.h&gt;
-#define MAX_SIZE 50000000
+<ul>
+<li>守护线程永远不要访问资源，如文件或数据库等</li>
+<li>普通线程的结束，是run方法运行结束</li>
 
-typedef struct {
-int first;
-int last;
-int result;
-} MY_ARGS;
+<li><p>守护线程的结束，是run方法运行结束，或main函数</p>
 
-int* arr;
+<pre><code>Thread1 t = new Thread1();
+t.setDaemon(true);// 设置守护线程
 
-void* myfunc(void* args) {
-int i;
-MY_ARGS* my_args = (MY_ARGS*) args;
-int first = my_args-&gt;first;
-int last  = my_args -&gt; last;
-int s = 0;
-for (i=first; i&lt;last; i++) {
-s += arr[i];
+main程序终止，线程结束，不会等待线程运行结束
+</code></pre></li>
+</ul></li>
+</ul>
+
+<p>线程查看工具jvusualvm</p>
+
+<pre><code>public TestThread implements Runnable() {
+    // Thread类继承 数据共享 static
+    Private volatile int tickes = 100;//共享变量
+    String str = new String(&quot;&quot;);
+    @override
+    public void run() {
+        while (true) {
+            synchronized(str) {
+                sale();
+            }
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            if (tickets &lt;= 10) {
+                break;
+            }
+        }
+    }
+    //public void sale()
+    public synchronized void sale() {
+        if (tickes &gt; 0) {
+            System.out.println(Thread.currentThread().getName() + &quot;is saling
+                    tickes &quot; + this.tickes--);
+        }
+    }
 }
-my_args -&gt; result = s;
-return NULL;
-}
-int main() {
-int i;
-arr = malloc(sizeof(int) * MAX_SIZE);
-for (i=0; i&lt;MAX_SIZE; i++) {
-arr[i] = rand()%5;
-}
-int mid = MAX_SIZE / 2;
-MY_ARGS args1 = {0, mid, 0};
-MY_ARGS args2 = {mid, MAX_SIZE, 0};
 
-pthread_t th1, th2;
-pthread_create(&amp;th1, NULL, myfunc, &amp;args1);
-pthread_create(&amp;th2, NULL, myfunc, &amp;args2);
+</code></pre>
 
-pthread_join(th1, NULL);
-pthread_join(th2, NULL);
+<h4 id="多线程管理">多线程管理</h4>
 
-printf(&quot;s1 = %d\n&quot;, args1.result);
-printf(&quot;s2 = %d\n&quot;, args2.result);
-printf(&quot;s1 + s2 = %d\n&quot;, args1.result + args2.result);
-return 0;
+<ul>
+<li><p>线程被动多暂停和终止</p>
+
+<ul>
+<li><p>没有及时释放资源，依靠别的线程来处理</p>
+
+<pre><code>class TestThread1 extends Thread {
+TestThread1() {
 }
-time example2
+
+public void run() {
+while(true) {
+    if (!interrupted()) {
+        System.out.println(&quot;test thread1 is running&quot;);
+        try {
+            Thread.sleep(1000);//需自己处理异常，还可能资源无法释放
+            continue;
+        } catch (InterruptedException var2) {
+            var2.printStackTrace();
+        }
+    }
+
+    System.out.println(&quot;test thread1 is exiting&quot;);
+    return;
+}
+}
+}
+
+</code></pre></li>
+</ul></li>
+
+<li><p>线程主动暂停和终止</p>
+
+<ul>
+<li>定期检测共享变量</li>
+<li>如果需要暂停或终止，先释放资源，在主动动作</li>
+<li>暂停：Thread.sleep() 休眠</li>
+
+<li><p>终止：run方法结束，线程终止</p>
+
+<pre><code>class TestThread2 extends Thread {
+public volatile boolean flag = true;
+
+TestThread2() {
+}
+
+public void run() {
+while(this.flag) {
+    System.out.println(&quot;test thread2 is running&quot;);
+
+    try {
+        Thread.sleep(1000L);
+    } catch (InterruptedException var2) {
+        var2.printStackTrace();
+    }
+}
+
+System.out.println(&quot;test thread2 is exiting&quot;);
+}
+}
+public class InterruptTest {
+public InterruptTest() {
+}
+
+public static void main(String[] args) throws InterruptedException {
+TestThread1 t1 = new TestThread1();
+TestThread2 t2 = new TestThread2();
+t1.start();
+t2.start();
+Thread.sleep(2000L);
+t1.interrupt();
+t2.flag = false;
+System.out.println(&quot;main thread is exiting&quot;);
+}
+}
+
 </code></pre></li>
 </ul></li>
 </ul>
@@ -392,13 +504,13 @@ time example2
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c/">c</a>
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/java/">java</a>
 
                   </div>
                 
               
             
-              <span id="https://gmtcover.github.io/2020/04/multithread_example2/" class="leancloud_visitors" data-flag-title="Multithread_example2">
+              <span id="https://gmtcover.github.io/2020/04/mutithread_java/" class="leancloud_visitors" data-flag-title="Mutithread_java">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -425,7 +537,7 @@ time example2
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example1/" data-tooltip="Multithread_example1">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example2/" data-tooltip="Multithread_example2">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -433,7 +545,7 @@ time example2
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/mutithread_java/" data-tooltip="Mutithread_java">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -493,7 +605,7 @@ time example2
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example1/" data-tooltip="Multithread_example1">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example2/" data-tooltip="Multithread_example2">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -501,7 +613,7 @@ time example2
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/mutithread_java/" data-tooltip="Mutithread_java">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -633,9 +745,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/04\/multithread_example2\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/04\/mutithread_java\/';
           
-            this.page.identifier = '\/2020\/04\/multithread_example2\/'
+            this.page.identifier = '\/2020\/04\/mutithread_java\/'
           
         };
         (function() {
