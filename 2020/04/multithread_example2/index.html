@@ -13,30 +13,32 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1040有几个PAT">
-<meta name="twitter:title" content="1040有几个PAT">
-<meta property="og:url" content="https://gmtcover.github.io/2020/03/1040%E6%9C%89%E5%87%A0%E4%B8%AApat/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2020/03/1040%E6%9C%89%E5%87%A0%E4%B8%AApat/">
+<meta property="og:title" content="Multithread_example2">
+<meta name="twitter:title" content="Multithread_example2">
+<meta property="og:url" content="https://gmtcover.github.io/2020/04/multithread_example2/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/04/multithread_example2/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-03-28T00:05:59">
+    <meta property="article:published_time" content="2020-04-08T15:38:57">
   
   
-    <meta property="article:modified_time" content="2020-03-28T00:05:59">
+    <meta property="article:modified_time" content="2020-04-08T15:38:57">
   
-  
-  
-    
-      <meta property="article:section" content="PAT">
-    
   
   
     
-      <meta property="article:tag" content="C&#43;&#43;">
+      <meta property="article:section" content="C程序设计">
+    
+      <meta property="article:section" content="Multithreading">
+    
+  
+  
+    
+      <meta property="article:tag" content="c">
     
   
 
@@ -57,14 +59,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>1040有几个PAT</title>
+    <title>Multithread_example2</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2020/03/1040%E6%9C%89%E5%87%A0%E4%B8%AApat/">
+    <link rel="canonical" href="https://gmtcover.github.io/2020/04/multithread_example2/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -214,15 +216,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      1040有几个PAT
+      Multithread_example2
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-03-28T00:05:59&#43;09:00">
+      <time itemprop="datePublished" datetime="2020-04-08T15:38:57&#43;09:00">
         
-  三月 28, 2020
+  四月 8, 2020
 
       </time>
     
@@ -231,7 +233,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/pat">PAT</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/c%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">C程序设计</a>, 
+    
+      <a class="category-link" href="https://gmtcover.github.io/categories/multithreading">Multithreading</a>
     
   
 
@@ -241,33 +245,142 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <pre><code class="language-c++">//大数相乘公式，防止溢出
-//（a*b）%c = ((a%c)*(b%c))%c
-#include &lt;iostream&gt;
-using namespace std;
-int constant = 1000000007;
-int main() {
-	string s;
-	cin &gt;&gt; s;
-	int cntT = 0, cntP = 0;
-	long long result = 0, len = s.length();
-	for(long long i = 0; i &lt; len; i++) {
-		if(s[i] == 'T') {
-			cntT++;
-		}
-	}
-	for (long long i = 0; i &lt; len; i++){
-		if (s[i] == 'P') cntP++;
-		if (s[i] == 'T') cntT--;
-		if (s[i] == 'A') {
-			result += (cntP*cntT)%constant;
-		}
-	}
-	cout &lt;&lt; result%constant;
+              <h4 id="optimize-code">Optimize code</h4>
 
-	return 0;
+<ul>
+<li><p>false sharing: In computer science, false sharing is a performance-degrading usage pattern that can arise in systems with distributed, coherent caches at the size of the smallest resource block managed by the caching mechanism</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+
+#define MAX_SIZE 50000000
+
+typedef struct {
+int first;
+int last;
+int id;
+} MY_ARGS;
+
+int* arr;
+//optimize false sharing change the size of array
+//int results[101];
+
+int results[2];
+void* myfunc(void* args) {
+// large scale array we use pointer
+
+MY_ARGS* my_args = (MY_ARGS*) args;
+int first = my_args-&gt;first;
+int last  = my_args -&gt; last;
+
+//int id = my_args -&gt; id * 100;
+
+int id = my_args -&gt; id;
+int i;
+for (i=first; i&lt;last; i++) {
+    results[id] = results[id] + arr[i];
 }
-</code></pre>
+return NULL;
+}
+int main() {
+int i;
+arr = malloc(sizeof(int) * MAX_SIZE);
+for (i=0; i&lt;MAX_SIZE; i++) {
+    arr[i] = rand()%5;
+}
+results[0] = 0;
+//results[100] = 0;
+results[1] = 0;
+
+int mid = MAX_SIZE / 2;
+// initilize my_args
+MY_ARGS args1 = {0, mid, 0};
+MY_ARGS args2 = {mid, MAX_SIZE, 1};
+
+pthread_t th1, th2;
+pthread_create(&amp;th1, NULL, myfunc, &amp;args1);
+pthread_create(&amp;th2, NULL, myfunc, &amp;args2);
+
+pthread_join(th1, NULL);
+pthread_join(th2, NULL);
+
+printf(&quot;s1 = %d\n&quot;, results[0]);
+printf(&quot;s2 = %d\n&quot;, results[1]);
+printf(&quot;s1 + s2 = %d\n&quot;, results[0] + results[1]);
+
+//printf(&quot;s2 = %d\n&quot;, results[100]);
+//printf(&quot;s1 + s2 = %d\n&quot;, results[0] + results[100]);
+return 0;
+}
+time ./example1
+
+</code></pre></li>
+</ul>
+
+<h4 id="optimize">optimize</h4>
+
+<ul>
+<li>Multi-threaded code, multi-core CPU, in order to make full use of the CPU, each cup copies the array to itself cache , when writeing results to RAM , differences from the data in each core cache, there will be a synchronization process, time delay, resulting in false sharing</li>
+
+<li><p>sulutions:</p>
+
+<ul>
+<li>example1 has two results, RAM has results[2], change result result[101], Cache can&rsquo;t read all size of array</li>
+
+<li><p>example2，因为指针都是在缓存中运算，</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+#define MAX_SIZE 50000000
+
+typedef struct {
+int first;
+int last;
+int result;
+} MY_ARGS;
+
+int* arr;
+
+void* myfunc(void* args) {
+int i;
+MY_ARGS* my_args = (MY_ARGS*) args;
+int first = my_args-&gt;first;
+int last  = my_args -&gt; last;
+int s = 0;
+for (i=first; i&lt;last; i++) {
+s += arr[i];
+}
+my_args -&gt; result = s;
+return NULL;
+}
+int main() {
+int i;
+arr = malloc(sizeof(int) * MAX_SIZE);
+for (i=0; i&lt;MAX_SIZE; i++) {
+arr[i] = rand()%5;
+}
+int mid = MAX_SIZE / 2;
+MY_ARGS args1 = {0, mid, 0};
+MY_ARGS args2 = {mid, MAX_SIZE, 0};
+
+pthread_t th1, th2;
+pthread_create(&amp;th1, NULL, myfunc, &amp;args1);
+pthread_create(&amp;th2, NULL, myfunc, &amp;args2);
+
+pthread_join(th1, NULL);
+pthread_join(th2, NULL);
+
+printf(&quot;s1 = %d\n&quot;, args1.result);
+printf(&quot;s2 = %d\n&quot;, args2.result);
+printf(&quot;s1 + s2 = %d\n&quot;, args1.result + args2.result);
+return 0;
+}
+time example2
+</code></pre></li>
+</ul></li>
+</ul>
               
             </div>
           </div>
@@ -279,13 +392,13 @@ int main() {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a>
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c/">c</a>
 
                   </div>
                 
               
             
-              <span id="https://gmtcover.github.io/2020/03/1040%E6%9C%89%E5%87%A0%E4%B8%AApat/" class="leancloud_visitors" data-flag-title="1040有几个PAT">
+              <span id="https://gmtcover.github.io/2020/04/multithread_example2/" class="leancloud_visitors" data-flag-title="Multithread_example2">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -312,7 +425,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/1039%E5%88%B0%E5%BA%95%E4%B9%B0%E4%B8%8D%E4%B9%B0/" data-tooltip="1039到底买不买">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example1/" data-tooltip="Multithread_example1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -320,7 +433,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithreading/" data-tooltip="Multithreading">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -380,7 +493,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/03/1039%E5%88%B0%E5%BA%95%E4%B9%B0%E4%B8%8D%E4%B9%B0/" data-tooltip="1039到底买不买">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithread_example1/" data-tooltip="Multithread_example1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -388,7 +501,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/04/multithreading/" data-tooltip="Multithreading">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -520,9 +633,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/03\/1040%E6%9C%89%E5%87%A0%E4%B8%AApat\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/04\/multithread_example2\/';
           
-            this.page.identifier = '\/2020\/03\/1040%E6%9C%89%E5%87%A0%E4%B8%AApat\/'
+            this.page.identifier = '\/2020\/04\/multithread_example2\/'
           
         };
         (function() {

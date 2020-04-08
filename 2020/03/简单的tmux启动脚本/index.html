@@ -243,383 +243,373 @@
             <div class="main-content-wrap">
               <h4 id="可用于脚本tmux命令">可用于脚本tmux命令</h4>
 
-<p>创建一个命名为 workspace 的会话，并且命名首窗口为 editor
-&gt; tmux new-session -s workspace -n editor
-关联到命名窗口
-&gt; tmux attach -t workspace
-向命名会话 workspace 中的活动窗口或窗格发送按键，C-m 相当于回车键
-&gt; tmux send-keys -t workspace ‘[keys]’ C-m
-向命名会话 workspace 中的第 1 个窗口中的第 0 个 窗格发送按键，C-m 相当于回车键
-&gt; tmux send-keys -t workspace:1.0 ‘[keys]’ C-m
-使命名会话 workspace 中的第 1 个窗口成为活动窗口
-&gt; tmux select-window -t workspace:1 使命名会话 workspace 中的第 1 个窗口成为活动窗口
-将命名会话 workspace 中的当前窗口垂直分割，其中下面的窗格高度占 10%
-&gt; tmux split-window -v -p 10 -t workspace<br />
-为命名会话 workspace 选择布局
-&gt; tmux select-layout -t workspace main-horizontal<br />
-加载 app.conf 配置文件，并关联到该配置文件生成的会话
+<ul>
+<li>创建一个命名为 workspace 的会话，并且命名首窗口为 editor
+&gt;&gt; tmux new-session -s workspace -n editor</li>
+<li>关联到命名窗口
+&gt;&gt; tmux attach -t workspace</li>
+<li>向命名会话 workspace 中的活动窗口或窗格发送按键，C-m 相当于回车键
+&gt;&gt; tmux send-keys -t workspace ‘[keys]’ C-m</li>
+<li>向命名会话 workspace 中的第 1 个窗口中的第 0 个 窗格发送按键，C-m 相当于回车键
+&gt;&gt; tmux send-keys -t workspace:1.0 ‘[keys]’ C-m</li>
+<li>使命名会话 workspace 中的第 1 个窗口成为活动窗口
+&gt; tmux select-window -t workspace:1 使命名会话 workspace 中的第 1 个窗口成为活动窗口</li>
+<li>将命名会话 workspace 中的当前窗口垂直分割，其中下面的窗格高度占 10%
+&gt; tmux split-window -v -p 10 -t workspace<br /></li>
+<li>为命名会话 workspace 选择布局
+&gt; tmux select-layout -t workspace main-horizontal<br /></li>
+
+<li><p>加载 app.conf 配置文件，并关联到该配置文件生成的会话
 &gt; tmux -f app.conf attach</p>
 
-<h4 id="简单的启动">简单的启动</h4>
+<h4 id="简单的启动">简单的启动</h4></li>
 
-<ul>
-<li><p>创建2个workspace，打开nvim
-```shell
-session=&ldquo;workspace&rdquo;</p>
+<li><p>创建2个workspace，打开nvim</p>
 
-<h1 id="session">$session</h1>
+<pre><code>session=&quot;workspace&quot;
+# $session
+tmux new-session -s workspace -n editor -d
+# tmux send-keys -t $session 'cd /Users/gmtcover/Learn' C-m
+tmux send-keys -t workspace 'cd ~/Learn/' C-m
+tmux send-keys -t workspace 'nvim' C-m
+tmux split-window -v -p 30 -t workspace
+# tmux send-keys -t workspace:1.2 'cd ~' C-m
 
-<p>tmux new-session -s workspace -n editor -d</p>
-
-<h1 id="tmux-send-keys-t-session-cd-users-gmtcover-learn-c-m">tmux send-keys -t $session &lsquo;cd /Users/gmtcover/Learn&rsquo; C-m</h1>
-
-<p>tmux send-keys -t workspace &lsquo;cd ~/Learn/&rsquo; C-m
-tmux send-keys -t workspace &lsquo;nvim&rsquo; C-m
-tmux split-window -v -p 30 -t workspace</p>
-
-<h1 id="tmux-send-keys-t-workspace-1-2-cd-c-m">tmux send-keys -t workspace:1.2 &lsquo;cd ~&rsquo; C-m</h1></li>
+tmux send-keys -t workspace:1.2 'date' C-m
+tmux new-window -n console -t workspace
+# tmux send-keys -t workspace:2 'cd ~' C-m
+tmux select-window -t workspace:1
+# tmux new-window -t $session:2 -n edit nvim 
+tmux select-window -t workspace:1.1
+tmux attach-session -t workspace
+</code></pre></li>
 </ul>
 
-<p>tmux send-keys -t workspace:1.2 &lsquo;date&rsquo; C-m
-tmux new-window -n console -t workspace</p>
+<h4 id="tmux配置">tmux配置</h4>
 
-<h1 id="tmux-send-keys-t-workspace-2-cd-c-m">tmux send-keys -t workspace:2 &lsquo;cd ~&rsquo; C-m</h1>
-
-<p>tmux select-window -t workspace:1</p>
-
-<h1 id="tmux-new-window-t-session-2-n-edit-nvim">tmux new-window -t $session:2 -n edit nvim</h1>
-
-<p>tmux select-window -t workspace:1.1
-tmux attach-session -t workspace</p>
-
-<pre><code>#### tmux配置
-</code></pre>
-
-<p>set -g base-index 1
-setw -g pane-base-index 1</p>
-
-<p>bind r source-file ~/.tmux.conf \; display &ldquo;Reloaded!&rdquo;</p>
-
-<p>bind h select-pane -L
+<pre><code>set -g base-index 1
+setw -g pane-base-index 1
+bind r source-file ~/.tmux.conf \; display &quot;Reloaded!&quot;
+bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
-bind l select-pane -R</p>
+bind l select-pane -R
 
-<p>bind | split-window -h
-bind - split-window -v</p>
+bind | split-window -h
+bind - split-window -v
 
-<p>bind -r C-h select-window -t :-
-bind -r C-l select-window -t :+</p>
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
 
-<p>bind -r H resize-pane -L 5
+bind -r H resize-pane -L 5
 bind -r J resize-pane -D 5
 bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5</p>
+bind -r L resize-pane -R 5
 
-<p>set -g default-terminal &ldquo;screen-256color&rdquo;</p>
+set -g default-terminal &quot;screen-256color&quot;
 
-<p>#&ndash; statusbar &ndash;#
+
+#-- statusbar --#
 set -g status-bg black
-set -g status-fg yellow</p>
+set -g status-fg yellow
 
-<h1 id="general-settings">General settings &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
-
-<p>setw -g mode-keys vi
+# General settings --------------------{{{ 
+setw -g mode-keys vi
 set -g display-time 400                  # status line messages display
-set -g history-limit 100000                 # scrollback buffer n lines</p>
+set -g history-limit 100000                 # scrollback buffer n lines
+# }}}
 
-<h1 id="toc_8">}}}</h1>
-
-<h1 id="status-bar">Status bar &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
-
-<p>set -g status-bg black
+# Status bar --------------------{{{ 
+set -g status-bg black
 set -g status-fg white
 set-option -g status-justify centre
-set-option -g status-left &lsquo;#[fg=cyan][#{session_name}]&rsquo;
+set-option -g status-left '#[fg=cyan][#{session_name}]'
 set-option -g status-left-length 25
-set-option -g status-right &lsquo;#[fg=white,bg=default]%H:%M #[default] #[fg=blue]%Y-%m-%d%a&rsquo;</p>
+set-option -g status-right '#[fg=white,bg=default]%H:%M #[default] #[fg=blue]%Y-%m-%d%a'
 
-<h1 id="window">window</h1>
-
-<p>setw -g automatic-rename off
+# window
+setw -g automatic-rename off
 set-option -g allow-rename off
 set-window-option -g clock-mode-colour black
-set-window-option -g clock-mode-style 24</p>
+set-window-option -g clock-mode-style 24
 
-<p>set-window-option -g monitor-activity on
-set-window-option -g visual-bell off</p>
+set-window-option -g monitor-activity on
+set-window-option -g visual-bell off
 
-<h1 id="toc_11">}}}</h1>
+# }}}
 
-<h1 id="panel">panel &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;{{{</h1>
-
-<p>set-option -g display-panes-active-colour blue
-set-option -g display-panes-colour brightred</p>
-
-<h1 id="toc_13">}}}</h1>
-
-<pre><code>#### neovim配置
+# panel --------------------{{{ 
+set-option -g display-panes-active-colour blue
+set-option -g display-panes-colour brightred
+# }}}
 </code></pre>
 
-<p>set noautochdir
+<h4 id="neovim配置">neovim配置</h4>
+
+<pre><code>set noautochdir
 set number
 syntax on
 set scrolloff=5
-set ignorecase</p>
+set ignorecase
 
-<p>&ldquo;代码折叠方式
-&ldquo; Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
-&ldquo; quickfix window with <leader>a
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR></p>
+&quot;代码折叠方式
+&quot; Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+&quot; quickfix window with &lt;leader&gt;a
+map &lt;C-n&gt; :cnext&lt;CR&gt;
+map &lt;C-m&gt; :cprevious&lt;CR&gt;
+nnoremap &lt;leader&gt;a :cclose&lt;CR&gt;
 
-<p>&rdquo; Keep search pattern at the center of the screen.
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> g* g*zz</p>
+&quot; Keep search pattern at the center of the screen.
+nnoremap &lt;silent&gt; n nzz
+nnoremap &lt;silent&gt; N Nzz
+nnoremap &lt;silent&gt; g* g*zz
 
-<p>&rdquo; 切换前后buffer
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
-&ldquo; remap U to <C-r> for easier redo
-nnoremap U <C-r>
+&quot; 切换前后buffer
+nnoremap [b :bprevious&lt;cr&gt;
+nnoremap ]b :bnext&lt;cr&gt;
+&quot; remap U to &lt;C-r&gt; for easier redo
+nnoremap U &lt;C-r&gt;
 noremap H ^
 noremap L $
-&ldquo; 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y></p>
+&quot; 滚动Speed up scrolling of the viewport slightly
+nnoremap &lt;C-e&gt; 2&lt;C-e&gt;
+nnoremap &lt;C-y&gt; 2&lt;C-y&gt;
 
-<p>&rdquo; 关闭方向键, 强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-&ldquo;Treat long lines as break lines (useful when moving around in them)
-&ldquo;se swap之后，同物理行上线直接跳
+&quot; 关闭方向键, 强迫自己用 hjkl
+map &lt;Left&gt; &lt;Nop&gt;
+map &lt;Right&gt; &lt;Nop&gt;
+map &lt;Up&gt; &lt;Nop&gt;
+map &lt;Down&gt; &lt;Nop&gt;
+&quot;Treat long lines as break lines (useful when moving around in them)
+&quot;se swap之后，同物理行上线直接跳
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
-nnoremap gj j</p>
+nnoremap gj j
 
-<p>&ldquo;Maintian undo history between sessions
-&ldquo;set undofile
-&ldquo;set undodir=~/.config/nvim/undodir</p>
+&quot;Maintian undo history between sessions
+&quot;set undofile
+&quot;set undodir=~/.config/nvim/undodir
 
-<p>inoremap jk <Esc>`^
+inoremap jk &lt;Esc&gt;`^
 inoremap ;; \n
-&ldquo; sudo to write
+&quot; sudo to write
 cnoremap w!! w !sudo tee % &gt;/dev/null
-&ldquo; json 格式化
+&quot; json 格式化
 com! FormatJSON %!python3 -m json.tool
-&ldquo;切换buffer
-&ldquo; 进入黏贴模式
-set pastetoggle=<F2></p>
+&quot;切换buffer
+&quot; 进入黏贴模式
+set pastetoggle=&lt;F2&gt;
 
-<p>let massleader=&lsquo;,&rsquo;
-let g:mapleader=&lsquo;,&rsquo;
-inoremap <leader>w <Esc>:w<cr>
-nnoremap <leader>w :w<cr>
-&ldquo;拼写检查
-map <leader>sc :set spell!<cr></p>
+let massleader=','
+let g:mapleader=','
+inoremap &lt;leader&gt;w &lt;Esc&gt;:w&lt;cr&gt;
+nnoremap &lt;leader&gt;w :w&lt;cr&gt;
+&quot;拼写检查
+map &lt;leader&gt;sc :set spell!&lt;cr&gt;
 
-<p>&rdquo; use ctrl+h/j/k/l switch window
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l</p>
+&quot; use ctrl+h/j/k/l switch window
+noremap &lt;C-h&gt; &lt;C-w&gt;h
+noremap &lt;C-j&gt; &lt;C-w&gt;j
+noremap &lt;C-k&gt; &lt;C-w&gt;k
+noremap &lt;C-l&gt; &lt;C-w&gt;l
 
-<p>&rdquo; Insert mode shortcut
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-d> <delete></p>
+&quot; Insert mode shortcut
+inoremap &lt;C-h&gt; &lt;Left&gt;
+inoremap &lt;C-j&gt; &lt;Down&gt;
+inoremap &lt;C-k&gt; &lt;Up&gt;
+inoremap &lt;C-l&gt; &lt;Right&gt;
+inoremap &lt;C-a&gt; &lt;Home&gt;
+inoremap &lt;C-e&gt; &lt;End&gt;
+inoremap &lt;C-d&gt; &lt;delete&gt;
 
-<p>iabbrev waht what
+
+iabbrev waht what
 iabbrev tehn then
 iabbrev @@ gmc6229@gmail.com
-iabbrev xtime <C-r>=strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;)<cr></p>
+iabbrev xtime &lt;C-r&gt;=strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)&lt;cr&gt;
 
-<p>call plug#begin(&rsquo;~/.vim/plugged&rsquo;)
-Plug &lsquo;mhinz/vim-startify&rsquo;
-Plug &lsquo;vim-airline/vim-airline&rsquo;
-Plug &lsquo;vim-airline/vim-airline-themes&rsquo;
-Plug &lsquo;w0ng/vim-hybrid&rsquo;
-Plug &lsquo;Yggdroot/indentLine&rsquo;
-Plug &lsquo;iamcco/mathjax-support-for-mkdp&rsquo;
-Plug &lsquo;iamcco/markdown-preview.vim&rsquo;
-Plug &lsquo;scrooloose/nerdtree&rsquo;
-Plug &lsquo;yggdroot/indentLine&rsquo;
-Plug &lsquo;easymotion/vim-easymotion&rsquo;
-Plug &lsquo;tpope/vim-surround&rsquo;</p>
+call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
+Plug 'Yggdroot/indentLine'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'yggdroot/indentLine'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
 
-<p>Plug &lsquo;tpope/vim-commentary&rsquo;
-Plug &lsquo;tpope/vim-fugitive&rsquo;
-Plug &lsquo;airblade/vim-gitgutter&rsquo;
-Plug &lsquo;junegunn/gv.vim&rsquo;
-Plug &lsquo;sbdchd/neoformat&rsquo;
-Plug &lsquo;w0rp/ale&rsquo;
-Plug &lsquo;farmergreg/vim-lastplace&rsquo;</p>
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
+Plug 'sbdchd/neoformat'
+Plug 'w0rp/ale'
+Plug 'farmergreg/vim-lastplace'
 
-<p>Plug &lsquo;junegunn/fzf&rsquo;, { &lsquo;do&rsquo;: &lsquo;./install &ndash;bin&rsquo; }
-Plug &lsquo;junegunn/fzf.vim&rsquo;</p>
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
-<p>Plug &lsquo;fatih/vim-go&rsquo;, { &lsquo;do&rsquo;: &lsquo;:GoUpdateBinaries&rsquo; }
-Plug &lsquo;majutsushi/tagbar&rsquo;
-Plug &lsquo;lfv89/vim-interestingwords&rsquo;
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'majutsushi/tagbar'
+Plug 'lfv89/vim-interestingwords'
 call plug#end()
 colorscheme hybrid
-&ldquo; for normal mode
-nmap <silent> <F8> <Plug>MarkdownPreview
-&ldquo; for insert mode
-imap <silent> <F8> <Plug>MarkdownPreview
-&ldquo; for normal mode
-nmap <silent> <F9> <Plug>StopMarkdownPreview
-&ldquo; for insert mode
-imap <silent> <F9> <Plug>StopMarkdownPreview</p>
+&quot; for normal mode
+nmap &lt;silent&gt; &lt;F8&gt; &lt;Plug&gt;MarkdownPreview
+&quot; for insert mode
+imap &lt;silent&gt; &lt;F8&gt; &lt;Plug&gt;MarkdownPreview
+&quot; for normal mode
+nmap &lt;silent&gt; &lt;F9&gt; &lt;Plug&gt;StopMarkdownPreview
+&quot; for insert mode
+imap &lt;silent&gt; &lt;F9&gt; &lt;Plug&gt;StopMarkdownPreview
 
-<p>nnoremap <leader>g :NERDTreeToggle<cr>
-nnoremap <leader>v :NERDTreeFind<cr></p>
+nnoremap &lt;leader&gt;g :NERDTreeToggle&lt;cr&gt;
+nnoremap &lt;leader&gt;v :NERDTreeFind&lt;cr&gt;
 
-<p>&ldquo;显示隐藏文件
-let NERDTreeShowHidden=0</p>
+&quot;显示隐藏文件
+let NERDTreeShowHidden=0
 
-<p>&ldquo;模糊搜索
-let g:ctrlp_map = &lsquo;<c-p>&lsquo;
-nnoremap <silent> <leader>k :call InterestingWords(&lsquo;n&rsquo;)<cr>
-nnoremap <silent> <leader>K :call UncolorAllWords()<cr></p>
+&quot;模糊搜索
+let g:ctrlp_map = '&lt;c-p&gt;'
+nnoremap &lt;silent&gt; &lt;leader&gt;k :call InterestingWords('n')&lt;cr&gt;
+nnoremap &lt;silent&gt; &lt;leader&gt;K :call UncolorAllWords()&lt;cr&gt;
 
-<p>nnoremap <silent> n :call WordNavigation(&lsquo;forward&rsquo;)<cr>
-nnoremap <silent> N :call WordNavigation(&lsquo;backward&rsquo;)<cr>
-&ldquo;快速定位
-nmap ss <Plug>(easymotion-s2)</p>
+nnoremap &lt;silent&gt; n :call WordNavigation('forward')&lt;cr&gt;
+nnoremap &lt;silent&gt; N :call WordNavigation('backward')&lt;cr&gt;
+&quot;快速定位
+nmap ss &lt;Plug&gt;(easymotion-s2)
 
-<p>nnoremap <leader>t :TagbarToggle<CR>
-set updatetime=100 &ldquo;100 m gitgutter</p>
+nnoremap &lt;leader&gt;t :TagbarToggle&lt;CR&gt;
+set updatetime=100 &quot;100 m gitgutter
 
-<p>&ldquo;快速格式化
-noremap <leader>p :Neoformat<cr></p>
+&quot;快速格式化
+noremap &lt;leader&gt;p :Neoformat&lt;cr&gt;
 
-<p>xnoremap sg :s//gc<Left><Left><Left></p>
+xnoremap sg :s//gc&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;
 
-<p>&rdquo; Duplicate lines
-nnoremap <Leader>d m<code>YP</code>`
-vnoremap <Leader>d YPgv</p>
+&quot; Duplicate lines
+nnoremap &lt;Leader&gt;d m`YP``
+vnoremap &lt;Leader&gt;d YPgv
 
-<p>&rdquo;&ldquo;文本格式
-let $author_name = &ldquo;gmTcover&rdquo;
-let $author_email = &ldquo;gmc6229@gmail.com&rdquo;
-autocmd BufNewFile <em>.cpp,</em>.[ch],<em>.sh,</em>.java exec &ldquo;:call SetTitle()&rdquo;
-&ldquo;&ldquo;定义函数SetTitle，自动插入文件头
+&quot;&quot;文本格式
+let $author_name = &quot;gmTcover&quot;
+let $author_email = &quot;gmc6229@gmail.com&quot;
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec &quot;:call SetTitle()&quot;
+&quot;&quot;定义函数SetTitle，自动插入文件头
 func SetTitle()
-    &ldquo;如果文件类型为.sh文件
-    if &amp;filetype == &lsquo;sh&rsquo;
-        call setline(1,&rdquo;#########################################################################&ldquo;)
-        call append(line(&ldquo;.&rdquo;), &ldquo;# File Name: &ldquo;.expand(&rdquo;%&ldquo;))
-        call append(line(&ldquo;.&rdquo;)+1, &ldquo;# Author:&ldquo;.$author_name)
-        call append(line(&ldquo;.&rdquo;)+2, &ldquo;# mail: &ldquo; .$author_email)
-        call append(line(&ldquo;.&rdquo;)+3, &ldquo;# Created Time: &ldquo;.strftime(&rdquo;%c&rdquo;))
-        call append(line(&ldquo;.&rdquo;)+4, &ldquo;#########################################################################&ldquo;)
-        call append(line(&ldquo;.&rdquo;)+5, &ldquo;&rdquo;)
-        call append(line(&ldquo;.&rdquo;)+6, &ldquo;&rdquo;)
+    &quot;如果文件类型为.sh文件
+    if &amp;filetype == 'sh'
+        call setline(1,&quot;\#########################################################################&quot;)
+        call append(line(&quot;.&quot;), &quot;\# File Name: &quot;.expand(&quot;%&quot;))
+        call append(line(&quot;.&quot;)+1, &quot;\# Author:&quot;.$author_name)
+        call append(line(&quot;.&quot;)+2, &quot;\# mail: &quot; .$author_email)
+        call append(line(&quot;.&quot;)+3, &quot;\# Created Time: &quot;.strftime(&quot;%c&quot;))
+        call append(line(&quot;.&quot;)+4, &quot;\#########################################################################&quot;)
+        call append(line(&quot;.&quot;)+5, &quot;&quot;)
+        call append(line(&quot;.&quot;)+6, &quot;&quot;)
     else
-        call setline(1, &ldquo;/*************************************************************************&ldquo;)
-        call append(line(&ldquo;.&rdquo;), &ldquo;    &gt; File Name: &ldquo;.expand(&rdquo;%&ldquo;))
-        call append(line(&ldquo;.&rdquo;)+1, &ldquo;    &gt; Author:&ldquo;.$author_name)
-        call append(line(&ldquo;.&rdquo;)+2, &ldquo;    &gt; Mail:  &ldquo;.$author_email)
-        call append(line(&ldquo;.&rdquo;)+3, &ldquo;    &gt; Created Time: &ldquo;.strftime(&rdquo;%c&rdquo;))
-        call append(line(&ldquo;.&rdquo;)+4, &ldquo; ************************************************************************/&ldquo;)
-        call append(line(&ldquo;.&rdquo;)+5, &ldquo;&rdquo;)
+        call setline(1, &quot;/*************************************************************************&quot;)
+        call append(line(&quot;.&quot;), &quot;    &gt; File Name: &quot;.expand(&quot;%&quot;))
+        call append(line(&quot;.&quot;)+1, &quot;    &gt; Author:&quot;.$author_name)
+        call append(line(&quot;.&quot;)+2, &quot;    &gt; Mail:  &quot;.$author_email)
+        call append(line(&quot;.&quot;)+3, &quot;    &gt; Created Time: &quot;.strftime(&quot;%c&quot;))
+        call append(line(&quot;.&quot;)+4, &quot; ************************************************************************/&quot;)
+        call append(line(&quot;.&quot;)+5, &quot;&quot;)
     endif
-    if &amp;filetype == &lsquo;cpp&rsquo;
-        call append(line(&ldquo;.&rdquo;)+6, &ldquo;#include <iostream>&rdquo;)
-        call append(line(&ldquo;.&rdquo;)+7, &ldquo;using namespace std;&rdquo;)
-        call append(line(&ldquo;.&rdquo;)+8, &ldquo;&rdquo;)
+    if &amp;filetype == 'cpp'
+        call append(line(&quot;.&quot;)+6, &quot;#include &lt;iostream&gt;&quot;)
+        call append(line(&quot;.&quot;)+7, &quot;using namespace std;&quot;)
+        call append(line(&quot;.&quot;)+8, &quot;&quot;)
     endif
-    if &amp;filetype == &lsquo;c&rsquo;
-        call append(line(&ldquo;.&rdquo;)+6, &ldquo;#include <stdio.h>&rdquo;)
-        call append(line(&ldquo;.&rdquo;)+7, &ldquo;&rdquo;)
+    if &amp;filetype == 'c'
+        call append(line(&quot;.&quot;)+6, &quot;#include &lt;stdio.h&gt;&quot;)
+        call append(line(&quot;.&quot;)+7, &quot;&quot;)
     endif
-    &ldquo;新建文件后，自动定位到文件末尾
+    &quot;新建文件后，自动定位到文件末尾
     autocmd BufNewFile * normal G
-endfunc</p>
+endfunc
 
-<p>autocmd BufNewFile *.md exec &ldquo;:call SetHeader()&rdquo;
+
+
+autocmd BufNewFile *.md exec &quot;:call SetHeader()&quot;
 func! SetHeader()
-    if expand(&ldquo;%:e&rdquo;) == &lsquo;md&rsquo;
-        call setline(1,&ldquo;Author:&ldquo;.$author_name)
-        call setline(2,&ldquo;Mail:  &ldquo;.$author_email)
-        call setline(3,&ldquo;Created Time:&ldquo;.strftime(&rdquo;%c&rdquo;))
+    if expand(&quot;%:e&quot;) == 'md'
+        call setline(1,&quot;Author:&quot;.$author_name)
+        call setline(2,&quot;Mail:  &quot;.$author_email)
+        call setline(3,&quot;Created Time:&quot;.strftime(&quot;%c&quot;))
     endif
 endfunc
-autocmd BufNewFile * normal G</p>
+autocmd BufNewFile * normal G
 
-<p>&rdquo; Tabs and Indents
-set textwidth=80    &ldquo; Text width maximum chars before wrapping
-set expandtab     &ldquo; Don&rsquo;t expand tabs to spaces.
-set tabstop=4       &ldquo; The number of spaces a tab is
-set softtabstop=4   &ldquo; While performing editing operations
-set shiftwidth=4   &ldquo; Number of spaces to use in auto(indent)
-set smarttab        &ldquo; Tab insert blanks according to &lsquo;shiftwidth&rsquo;
-set autoindent      &ldquo; Use same indenting on new lines
-set smartindent     &ldquo; Smart autoindenting on new lines
-set shiftround      &ldquo; Round indent to multiple of &lsquo;shiftwidth&rsquo;
-set cindent</p>
 
-<p>&rdquo; Searching
-set ignorecase      &ldquo; Search ignoring case
-set smartcase       &ldquo; Keep case when searching with *
-set infercase       &ldquo; Adjust case in insert completion mode
-set incsearch       &ldquo; Incremental search
-set wrapscan        &ldquo; Searches wrap around the end of the file
-set showmatch       &ldquo; Jump to matching bracket
-set matchpairs+=&lt;:&gt; &ldquo; Add HTML brackets to pair matching
-set matchtime=1     &ldquo; Tenths of a second to show the matching paren
-set cpoptions-=m    &ldquo; showmatch will wait 0.5s or until a char is typed
-set showfulltag     &ldquo; Show tag and tidy search in completion</p>
+&quot; Tabs and Indents
+set textwidth=80    &quot; Text width maximum chars before wrapping
+set expandtab     &quot; Don't expand tabs to spaces.
+set tabstop=4       &quot; The number of spaces a tab is
+set softtabstop=4   &quot; While performing editing operations
+set shiftwidth=4   &quot; Number of spaces to use in auto(indent)
+set smarttab        &quot; Tab insert blanks according to 'shiftwidth'
+set autoindent      &quot; Use same indenting on new lines
+set smartindent     &quot; Smart autoindenting on new lines
+set shiftround      &quot; Round indent to multiple of 'shiftwidth'
+set cindent
 
-<p>inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap } {}<ESC>i
-inoremap &lsquo; &ldquo;<ESC>i
-inoremap &ldquo; &ldquo;&rdquo;<ESC>i
-inoremap { {<CR>}<ESC>O</p>
 
-<p>&rdquo; Start new line from any cursor position in insert-mode
-inoremap <S-Return> <C-o>o
-inoremap <C-j> <C-o>o</p>
+&quot; Searching
+set ignorecase      &quot; Search ignoring case
+set smartcase       &quot; Keep case when searching with *
+set infercase       &quot; Adjust case in insert completion mode
+set incsearch       &quot; Incremental search
+set wrapscan        &quot; Searches wrap around the end of the file
+set showmatch       &quot; Jump to matching bracket
+set matchpairs+=&lt;:&gt; &quot; Add HTML brackets to pair matching
+set matchtime=1     &quot; Tenths of a second to show the matching paren
+set cpoptions-=m    &quot; showmatch will wait 0.5s or until a char is typed
+set showfulltag     &quot; Show tag and tidy search in completion
 
-<p>&ldquo;set noautochdir    &rdquo; 注意这个自动切换目录会使rope找目录不正确
-&ldquo;airline</p>
+inoremap ( ()&lt;ESC&gt;i
+inoremap [ []&lt;ESC&gt;i
+inoremap } {}&lt;ESC&gt;i
+inoremap ' ''&lt;ESC&gt;i
+inoremap &quot; &quot;&quot;&lt;ESC&gt;i
+inoremap { {&lt;CR&gt;}&lt;ESC&gt;O
 
-<p>noremap <leader>e :q<cr>
-noremap <leader>B :bd<cr></p>
+&quot; Start new line from any cursor position in insert-mode
+inoremap &lt;S-Return&gt; &lt;C-o&gt;o
+inoremap &lt;C-j&gt; &lt;C-o&gt;o
 
-<p>&ldquo;<Leader>f在当前目录搜索文件
-nnoremap <silent> <Leader>f :Files<CR>
-&ldquo;<Leader>b切换Buffer中的文件
-nnoremap <silent> <Leader>b :Buffers<CR>
-&ldquo;<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
-nnoremap <silent> <Leader>p :Lines<CR>
-&ldquo;<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
-nnoremap <silent> <Leader>h :History<CR>
-&ldquo;调用Rg进行搜索，包含隐藏文件
+&quot;set noautochdir    &quot; 注意这个自动切换目录会使rope找目录不正确
+&quot;airline
+
+noremap &lt;leader&gt;e :q&lt;cr&gt;
+noremap &lt;leader&gt;B :bd&lt;cr&gt;
+
+&quot;&lt;Leader&gt;f在当前目录搜索文件
+nnoremap &lt;silent&gt; &lt;Leader&gt;f :Files&lt;CR&gt;
+&quot;&lt;Leader&gt;b切换Buffer中的文件
+nnoremap &lt;silent&gt; &lt;Leader&gt;b :Buffers&lt;CR&gt;
+&quot;&lt;Leader&gt;p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+nnoremap &lt;silent&gt; &lt;Leader&gt;p :Lines&lt;CR&gt;
+&quot;&lt;Leader&gt;h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+nnoremap &lt;silent&gt; &lt;Leader&gt;h :History&lt;CR&gt;
+&quot;调用Rg进行搜索，包含隐藏文件
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   &lsquo;rg &ndash;column &ndash;line-number &ndash;no-heading &ndash;color=always &ndash;smart-case &ndash;hidden &lsquo;.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview(&lsquo;up:60%&lsquo;)
-  \           : fzf#vim#with_preview(&lsquo;right:50%:hidden&rsquo;, &lsquo;?&rsquo;),
-  \   <bang>0)</p>
+  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '.shellescape(&lt;q-args&gt;), 1,
+  \   &lt;bang&gt;0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   &lt;bang&gt;0)
 
-<p>&rdquo; Default fzf layout
-&ldquo; - down / up / left / right
-let g:fzf_layout = { &lsquo;down&rsquo;: &lsquo;~30%&rsquo; }</p>
+&quot; Default fzf layout
+&quot; - down / up / left / right
+let g:fzf_layout = { 'down': '~30%' }
 
-<p>&ldquo;let g:fzf_history_dir = &lsquo;~/.local/share/fzf-history&rsquo;
-```</p>
+&quot;let g:fzf_history_dir = '~/.local/share/fzf-history'
+</code></pre>
               
             </div>
           </div>

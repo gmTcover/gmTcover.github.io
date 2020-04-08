@@ -6,10 +6,28 @@
     <description>Recent content in Categories on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Mar 2020 00:05:59 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 15:38:57 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C程序设计</title>
+      <link>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Wed, 08 Apr 2020 15:38:57 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multithreading</title>
+      <link>https://gmtcover.github.io/categories/multithreading/</link>
+      <pubDate>Wed, 08 Apr 2020 15:38:57 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/multithreading/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>PAT</title>
@@ -71,15 +89,6 @@
       <pubDate>Sat, 09 Nov 2019 23:01:47 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/categories/test/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C程序设计</title>
-      <link>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
-      <pubDate>Fri, 18 Oct 2019 20:58:52 +0900</pubDate>
-      
-      <guid>https://gmtcover.github.io/categories/c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</guid>
       <description></description>
     </item>
     
