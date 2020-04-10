@@ -6,10 +6,64 @@
     <description>Recent content in c on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Apr 2020 15:38:57 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 18:26:15 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SegmentTree</title>
+      <link>https://gmtcover.github.io/2020/04/segmenttree/</link>
+      <pubDate>Fri, 10 Apr 2020 18:26:15 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/segmenttree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recursion</title>
+      <link>https://gmtcover.github.io/2020/04/recursion/</link>
+      <pubDate>Fri, 10 Apr 2020 18:24:55 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/recursion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MergeSort</title>
+      <link>https://gmtcover.github.io/2020/04/mergesort/</link>
+      <pubDate>Fri, 10 Apr 2020 18:15:19 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/mergesort/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HeapSort</title>
+      <link>https://gmtcover.github.io/2020/04/heapsort/</link>
+      <pubDate>Fri, 10 Apr 2020 18:14:35 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/heapsort/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>经典排序</title>
+      <link>https://gmtcover.github.io/2020/04/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Fri, 10 Apr 2020 18:14:23 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>QuickSort</title>
+      <link>https://gmtcover.github.io/2020/04/quicksort/</link>
+      <pubDate>Fri, 10 Apr 2020 18:12:56 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2020/04/quicksort/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Multithread_example2</title>
