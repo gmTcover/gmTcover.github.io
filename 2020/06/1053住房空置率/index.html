@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1050旋转矩阵">
-<meta name="twitter:title" content="1050旋转矩阵">
-<meta property="og:url" content="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
+<meta property="og:title" content="1053住房空置率">
+<meta name="twitter:title" content="1053住房空置率">
+<meta property="og:url" content="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-06-17T23:18:47">
+    <meta property="article:published_time" content="2020-06-21T13:49:22">
   
   
-    <meta property="article:modified_time" content="2020-06-17T23:18:47">
+    <meta property="article:modified_time" content="2020-06-21T13:49:22">
   
   
   
@@ -57,14 +57,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>1050旋转矩阵</title>
+    <title>1053住房空置率</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
+    <link rel="canonical" href="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -214,15 +214,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      1050旋转矩阵
+      1053住房空置率
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-06-17T23:18:47&#43;09:00">
+      <time itemprop="datePublished" datetime="2020-06-21T13:49:22&#43;09:00">
         
-  六月 17, 2020
+  六月 21, 2020
 
       </time>
     
@@ -241,53 +241,29 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cmath&gt;
-#include &lt;algorithm&gt;
+              <pre><code class="language-c">#include &lt;iostream&gt;
 using namespace std;
 int main() {
-    int N; cin &gt;&gt; N;
-    int arr[10000] = {0};
-    for (int i = 0; i &lt; N; i++) {
-        cin &gt;&gt; arr[i];
-    }
-    sort(arr,arr+N,greater&lt;int&gt;());
-    // find m*n
-    int m = 0;
-    int n = sqrt(N);
-    while (N % n) {
-        n--;
-    }
-    m = N / n;
-    int matrix[10000] = {0};
-    int x = -1, y = 0, idx = 0;
-    int row = n, column = m;
-    while (row &gt; 0 &amp;&amp; column &gt; 0) {
-        // toward right
-        for (int i = 0; i &lt; row &amp;&amp; column &gt; 0; i++) 
-            matrix[y * n + ++x] = arr[idx++];
-        column--;
-        // toward bottom
-        for (int i = 0; i &lt; column &amp;&amp; row &gt; 0; i++) 
-            matrix[++y *n + x] = arr[idx++];
-        row--;
-        //toward left
-        for (int i = 0; i &lt; row &amp;&amp; column &gt; 0; i++) 
-            matrix[y * n + --x] = arr[idx++];
-        column--;
-        //toward up
-        for (int i = 0; i &lt; column &amp;&amp; row &gt; 0; i++ )
-            matrix[--y * n + x] = arr[idx++];
-        row--;
+    int N, D,k, kongzhi = 0, kongzhi_able = 0;
+    double e, tmp;
+    cin &gt;&gt; N &gt;&gt; e &gt;&gt; D;
+    for (int j = 0; j &lt; N; j++) {
+        cin &gt;&gt; k;
+        int sum = 0;
+        for (int i = 0; i &lt; k; i++) {
+            cin &gt;&gt; tmp;
+            if (tmp &lt; e) sum++;
         }
-
-    for (int i = 0; i &lt; m; i++) {
-        for (int j = 0; j &lt; n; j++) {
-            printf(&quot;%d%c&quot;, matrix[i*n + j], j == n -1 ? '\n' : ' ');
+        if ( sum &gt; (k / 2)) {
+            k &gt; D ? kongzhi++ : kongzhi_able++;
         }
     }
+    double a = (double)kongzhi_able* 100 / N;
+    double b = (double)kongzhi* 100 / N;
+    printf(&quot;%.1f%% %.1f%%&quot;, a, b); 
     return 0;
 }
+
 </code></pre>
               
             </div>
@@ -306,7 +282,7 @@ int main() {
                 
               
             
-              <span id="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="1050旋转矩阵">
+              <span id="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/" class="leancloud_visitors" data-flag-title="1053住房空置率">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -333,7 +309,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1049%E6%95%B0%E5%AD%97%E7%89%87%E6%AE%B5%E5%92%8C/" data-tooltip="1049数字片段和">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/" data-tooltip="1052卖个萌">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -341,7 +317,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1054%E6%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC/" data-tooltip="1054求平均值">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -401,7 +377,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1049%E6%95%B0%E5%AD%97%E7%89%87%E6%AE%B5%E5%92%8C/" data-tooltip="1049数字片段和">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/" data-tooltip="1052卖个萌">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -409,7 +385,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1054%E6%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC/" data-tooltip="1054求平均值">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -541,9 +517,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/06\/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/06\/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87\/';
           
-            this.page.identifier = '\/2020\/06\/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5\/'
+            this.page.identifier = '\/2020\/06\/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87\/'
           
         };
         (function() {

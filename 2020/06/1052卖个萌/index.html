@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1050旋转矩阵">
-<meta name="twitter:title" content="1050旋转矩阵">
-<meta property="og:url" content="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
+<meta property="og:title" content="1052卖个萌">
+<meta name="twitter:title" content="1052卖个萌">
+<meta property="og:url" content="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-06-17T23:18:47">
+    <meta property="article:published_time" content="2020-06-19T22:57:37">
   
   
-    <meta property="article:modified_time" content="2020-06-17T23:18:47">
+    <meta property="article:modified_time" content="2020-06-19T22:57:37">
   
   
   
@@ -57,14 +57,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>1050旋转矩阵</title>
+    <title>1052卖个萌</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
+    <link rel="canonical" href="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -214,15 +214,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      1050旋转矩阵
+      1052卖个萌
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-06-17T23:18:47&#43;09:00">
+      <time itemprop="datePublished" datetime="2020-06-19T22:57:37&#43;09:00">
         
-  六月 17, 2020
+  六月 19, 2020
 
       </time>
     
@@ -241,53 +241,76 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cmath&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int main() {
-    int N; cin &gt;&gt; N;
-    int arr[10000] = {0};
-    for (int i = 0; i &lt; N; i++) {
-        cin &gt;&gt; arr[i];
-    }
-    sort(arr,arr+N,greater&lt;int&gt;());
-    // find m*n
-    int m = 0;
-    int n = sqrt(N);
-    while (N % n) {
-        n--;
-    }
-    m = N / n;
-    int matrix[10000] = {0};
-    int x = -1, y = 0, idx = 0;
-    int row = n, column = m;
-    while (row &gt; 0 &amp;&amp; column &gt; 0) {
-        // toward right
-        for (int i = 0; i &lt; row &amp;&amp; column &gt; 0; i++) 
-            matrix[y * n + ++x] = arr[idx++];
-        column--;
-        // toward bottom
-        for (int i = 0; i &lt; column &amp;&amp; row &gt; 0; i++) 
-            matrix[++y *n + x] = arr[idx++];
-        row--;
-        //toward left
-        for (int i = 0; i &lt; row &amp;&amp; column &gt; 0; i++) 
-            matrix[y * n + --x] = arr[idx++];
-        column--;
-        //toward up
-        for (int i = 0; i &lt; column &amp;&amp; row &gt; 0; i++ )
-            matrix[--y * n + x] = arr[idx++];
-        row--;
-        }
+              <p>思路
+- 字符串格式处理</p>
 
-    for (int i = 0; i &lt; m; i++) {
-        for (int j = 0; j &lt; n; j++) {
-            printf(&quot;%d%c&quot;, matrix[i*n + j], j == n -1 ? '\n' : ' ');
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+void read(vector&lt;string&gt;&amp; v) {
+    string str;
+    getline(cin, str);
+    for (int i = 0; i &lt; str.length(); i++) {
+        if (str[i] == '[') {
+            string tmp = &quot;&quot;;
+            while (str[++i] != ']') {
+                tmp +=str[i];
+            }
+            v.push_back(tmp);
         }
+    }
+}
+string read(){
+    string str, tmp;
+    geitline(cin, str);
+    int str_len = str.length();
+    int j = 0, k = 0;
+    while (j &lt; str_len) {
+        if (str[j] == '[') {
+        while (k++ &lt; stt_len) {
+            if (str[k] == ']'){
+                tmp = str.substr(j+1, k - j - 1);
+            }
+        }
+        }
+        j++;
+    }
+    return tmp;
+}
+int main() {
+    vector&lt; vector&lt;string&gt; &gt; v;
+    for (int i = 0; i &lt; 3; i++) {
+        string str;
+        getline(cin, str);
+        vector&lt;string&gt; tmp;
+        int j = 0, k = 0;
+        while (j &lt; str.length()) {
+            if (str[j] == '[') {
+                while (k++ &lt; str.length()) {
+                    if ( str[k] == ']') {
+                        tmp.push_back(str.substr(j+1, k - j - 1 ));
+                        break;
+                    }
+                }
+            }
+            j++;
+        }
+        v.push_back(tmp);
+    }
+
+    int N; cin &gt;&gt; N;
+    int a, b, c, d, e;
+    for (int i = 0; i &lt; N; i++) {
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; e;
+        if (a &gt; v[0].size() || b &gt; v[1].size() || c &gt; v[2].size() || d &gt; v[1].size() || e &gt; v[0].size() || a &lt; 1 || b &lt; 1 || c &lt; 1 || d &lt; 1 || e &lt; 1) {
+            cout &lt;&lt; &quot;Are you kidding me? @\\/@&quot; &lt;&lt; endl;
+            continue;
+        } 
+    cout &lt;&lt; v[0][a - 1] &lt;&lt; &quot;(&quot; &lt;&lt; v[1][b - 1] &lt;&lt;  v[2][c - 1 ] &lt;&lt; v[1][d - 1] &lt;&lt; &quot;)&quot; &lt;&lt; v[0][e - 1] &lt;&lt; endl;
     }
     return 0;
 }
+
 </code></pre>
               
             </div>
@@ -306,7 +329,7 @@ int main() {
                 
               
             
-              <span id="https://gmtcover.github.io/2020/06/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/" class="leancloud_visitors" data-flag-title="1050旋转矩阵">
+              <span id="https://gmtcover.github.io/2020/06/1052%E5%8D%96%E4%B8%AA%E8%90%8C/" class="leancloud_visitors" data-flag-title="1052卖个萌">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -333,7 +356,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1049%E6%95%B0%E5%AD%97%E7%89%87%E6%AE%B5%E5%92%8C/" data-tooltip="1049数字片段和">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -341,7 +364,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/" data-tooltip="1053住房空置率">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -401,7 +424,7 @@ int main() {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1049%E6%95%B0%E5%AD%97%E7%89%87%E6%AE%B5%E5%92%8C/" data-tooltip="1049数字片段和">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -409,7 +432,7 @@ int main() {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1051%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" data-tooltip="1051复数乘法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/06/1053%E4%BD%8F%E6%88%BF%E7%A9%BA%E7%BD%AE%E7%8E%87/" data-tooltip="1053住房空置率">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -541,9 +564,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/06\/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/06\/1052%E5%8D%96%E4%B8%AA%E8%90%8C\/';
           
-            this.page.identifier = '\/2020\/06\/1050%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5\/'
+            this.page.identifier = '\/2020\/06\/1052%E5%8D%96%E4%B8%AA%E8%90%8C\/'
           
         };
         (function() {
