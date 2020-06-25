@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Jun 2020 19:56:01 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jun 2020 17:06:48 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title></title>
       <link>https://gmtcover.github.io/tags/</link>
-      <pubDate>Tue, 23 Jun 2020 19:56:01 +0900</pubDate>
+      <pubDate>Wed, 24 Jun 2020 17:06:48 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag1</title>
+      <link>https://gmtcover.github.io/tags/tag1/</link>
+      <pubDate>Wed, 24 Jun 2020 17:06:48 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag2</title>
+      <link>https://gmtcover.github.io/tags/tag2/</link>
+      <pubDate>Wed, 24 Jun 2020 17:06:48 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/tags/tag2/</guid>
       <description></description>
     </item>
     
