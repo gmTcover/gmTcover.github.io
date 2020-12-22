@@ -4,7 +4,48 @@
   
   <url>
     <loc>https://gmtcover.github.io/tags/</loc>
-    <lastmod>2020-08-12T02:49:37+09:00</lastmod>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/post/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/2020/12/vscode/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/categories/vim/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/tags/vim/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmtcover.github.io/</loc>
+    <lastmod>2020-12-22T11:36:35+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -20,31 +61,7 @@
   </url>
   
   <url>
-    <loc>https://gmtcover.github.io/categories/</loc>
-    <lastmod>2020-08-12T02:49:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://gmtcover.github.io/categories/pat/</loc>
-    <lastmod>2020-08-12T02:49:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/post/</loc>
-    <lastmod>2020-08-12T02:49:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/tags/</loc>
-    <lastmod>2020-08-12T02:49:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gmtcover.github.io/</loc>
     <lastmod>2020-08-12T02:49:37+09:00</lastmod>
     <priority>0</priority>
   </url>

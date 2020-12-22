@@ -7,36 +7,36 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="怠惰なユニコーン🦄">
-<meta name="keywords" content="tech, C, C&#43;&#43;, PAT">
+<meta name="keywords" content="vim, C, C&#43;&#43;, PAT">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1001害死人不偿命的3n&#43;1猜想">
-<meta name="twitter:title" content="1001害死人不偿命的3n&#43;1猜想">
-<meta property="og:url" content="https://gmtcover.github.io/2020/01/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3/">
-<meta property="twitter:url" content="https://gmtcover.github.io/2020/01/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3/">
+<meta property="og:title" content="Vscode">
+<meta name="twitter:title" content="Vscode">
+<meta property="og:url" content="https://gmtcover.github.io/2020/12/vscode/">
+<meta property="twitter:url" content="https://gmtcover.github.io/2020/12/vscode/">
 <meta property="og:site_name" content="怠惰なユニコーン🦄">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-01-12T18:03:17">
+    <meta property="article:published_time" content="2020-12-22T11:36:35">
   
   
-    <meta property="article:modified_time" content="2020-01-12T18:03:17">
+    <meta property="article:modified_time" content="2020-12-22T11:36:35">
   
-  
-  
-    
-      <meta property="article:section" content="PAT">
-    
   
   
     
-      <meta property="article:tag" content="C&#43;&#43;">
+      <meta property="article:section" content="vim">
+    
+  
+  
+    
+      <meta property="article:tag" content="vim">
     
   
 
@@ -57,14 +57,14 @@
   <meta property="twitter:image" content="https://gmtcover.github.io/images/touxiang.png">
 
 
-    <title>1001害死人不偿命的3n&#43;1猜想</title>
+    <title>Vscode</title>
 
     <link rel="icon" href="https://gmtcover.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://gmtcover.github.io/2020/01/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3/">
+    <link rel="canonical" href="https://gmtcover.github.io/2020/12/vscode/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -214,15 +214,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      1001害死人不偿命的3n&#43;1猜想
+      Vscode
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-01-12T18:03:17&#43;09:00">
+      <time itemprop="datePublished" datetime="2020-12-22T11:36:35&#43;09:00">
         
-  一月 12, 2020
+  十二月 22, 2020
 
       </time>
     
@@ -231,7 +231,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://gmtcover.github.io/categories/pat">PAT</a>
+      <a class="category-link" href="https://gmtcover.github.io/categories/vim">vim</a>
     
   
 
@@ -241,20 +241,105 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <pre><code class="language-c++">#include &lt;iostream&gt;
-using namespace std;
-int main()
-{
-	 int num;int cnt = 0;
-	 cin &gt;&gt; num;
-	 while( num != 1 ){
-		  if( num % 2 == 0 ) num /= 2;
-		  else num = (3*num +1) / 2;
-	 cnt++;
-	 }
-	 printf(&quot;%d\n&quot;, cnt);
-	 //system(&quot;pause&quot;) 退;
-	 return 0;
+              <h4 id="vscode-vim-setting">Vscode vim setting</h4>
+
+<pre><code>{
+    &quot;C_Cpp.updateChannel&quot;: &quot;Insiders&quot;,
+    &quot;C_Cpp.default.cppStandard&quot;: &quot;c++20&quot;,
+    &quot;C_Cpp.default.cStandard&quot;: &quot;c11&quot;,
+    &quot;vim.incsearch&quot;: true,
+    &quot;vim.easymotion&quot;: true,
+    &quot;vim.useSystemClipboard&quot;: true,
+    &quot;vim.useCtrlKeys&quot;: true,
+    &quot;vim.hlsearch&quot;: true,
+    &quot;vim.insertModeKeyBindings&quot;: [
+      {
+        &quot;before&quot;: [&quot;j&quot;, &quot;k&quot;],
+        &quot;after&quot;: [&quot;&lt;Esc&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-h&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;Left&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-j&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;Down&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-h&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;Left&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-k&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;Up&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-l&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;Right&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-d&gt;&quot;],
+        &quot;after&quot;: [&quot;&lt;delete&gt;&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;leader&quot;, &quot;w&quot;],
+        &quot;commands&quot;: [
+            &quot;workbench.action.files.save&quot;,
+        ]
+    }
+    ],
+    &quot;vim.normalModeKeyBindingsNonRecursive&quot;: [
+      {
+        &quot;before&quot;: [&quot;&lt;leader&gt;&quot;, &quot;d&quot;],
+        &quot;after&quot;: [&quot;d&quot;, &quot;d&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;&lt;C-n&gt;&quot;],
+        &quot;commands&quot;: [&quot;:nohl&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;E&quot;],
+        &quot;after&quot;: [&quot;g&quot;, &quot;T&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;R&quot;],
+        &quot;after&quot;: [&quot;g&quot;, &quot;t&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;H&quot;],
+        &quot;after&quot;: [&quot;^&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;L&quot;],
+        &quot;after&quot;: [&quot;$&quot;]
+      },
+      {
+        &quot;before&quot;: [&quot;leader&quot;, &quot;w&quot;],
+        &quot;commands&quot;: [
+            &quot;workbench.action.files.save&quot;,
+        ]
+    }
+    ],
+    &quot;vim.leader&quot;: &quot;,&quot;,
+    &quot;vim.handleKeys&quot;: {
+      &quot;&lt;C-a&gt;&quot;: false,
+      &quot;&lt;C-f&gt;&quot;: false
+    },
+    &quot;files.autoSave&quot;: &quot;off&quot;,
+    &quot;workbench.iconTheme&quot;: &quot;material-icon-theme&quot;,
+    &quot;window.zoomLevel&quot;: 0,
+    &quot;editor.fontFamily&quot;: &quot;Menlo, Monaco, 'Courier New', monospace,MesloLGS NF&quot;,
+    &quot;liveServer.settings.donotShowInfoMsg&quot;: true,
+    &quot;vim.digraphs&quot;: {
+    
+    },
+    &quot;vim.insertModeKeyBindingsNonRecursive&quot;: [
+    
+    ],
+    &quot;[json]&quot;: {
+      &quot;editor.defaultFormatter&quot;: &quot;vscode.json-language-features&quot;
+    },
+    &quot;workbench.colorTheme&quot;: &quot;Default Dark+&quot;,
 }
 </code></pre>
               
@@ -268,13 +353,13 @@ int main()
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a>
+  <a class="tag tag--primary tag--small" href="https://gmtcover.github.io/tags/vim/">vim</a>
 
                   </div>
                 
               
             
-              <span id="https://gmtcover.github.io/2020/01/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3/" class="leancloud_visitors" data-flag-title="1001害死人不偿命的3n&#43;1猜想">
+              <span id="https://gmtcover.github.io/2020/12/vscode/" class="leancloud_visitors" data-flag-title="Vscode">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -301,7 +386,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/01/1002%E5%86%99%E5%87%BA%E8%BF%99%E4%B8%AA%E6%95%B0/" data-tooltip="1002写出这个数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/08/1065%E5%8D%95%E8%BA%AB%E7%8B%97/" data-tooltip="1065单身狗">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -309,7 +394,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/02/1017a%E9%99%A4%E4%BB%A5b/" data-tooltip="1017A除以B">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -369,7 +454,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/01/1002%E5%86%99%E5%87%BA%E8%BF%99%E4%B8%AA%E6%95%B0/" data-tooltip="1002写出这个数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/08/1065%E5%8D%95%E8%BA%AB%E7%8B%97/" data-tooltip="1065单身狗">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -377,7 +462,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://gmtcover.github.io/2020/02/1017a%E9%99%A4%E4%BB%A5b/" data-tooltip="1017A除以B">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -509,9 +594,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/01\/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3\/';
+          this.page.url = 'https:\/\/gmtcover.github.io\/2020\/12\/vscode\/';
           
-            this.page.identifier = '\/2020\/01\/1001%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n-1%E7%8C%9C%E6%83%B3\/'
+            this.page.identifier = '\/2020\/12\/vscode\/'
           
         };
         (function() {
