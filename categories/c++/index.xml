@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on 怠惰なユニコーン🦄</title>
+    <link>https://gmtcover.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on 怠惰なユニコーン🦄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Mar 2021 13:23:23 +0900</lastBuildDate>
+    
+	<atom:link href="https://gmtcover.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1066图像过滤</title>
+      <link>https://gmtcover.github.io/2021/03/1066%E5%9B%BE%E5%83%8F%E8%BF%87%E6%BB%A4/</link>
+      <pubDate>Tue, 02 Mar 2021 13:23:23 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/2021/03/1066%E5%9B%BE%E5%83%8F%E8%BF%87%E6%BB%A4/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

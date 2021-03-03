@@ -6,10 +6,28 @@
     <description>Recent content in Categories on 怠惰なユニコーン🦄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Dec 2020 11:36:35 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 02 Mar 2021 13:23:23 +0900</lastBuildDate>
     
 	<atom:link href="https://gmtcover.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://gmtcover.github.io/categories/c&#43;&#43;/</link>
+      <pubDate>Tue, 02 Mar 2021 13:23:23 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT</title>
+      <link>https://gmtcover.github.io/categories/pat/</link>
+      <pubDate>Tue, 02 Mar 2021 13:23:23 +0900</pubDate>
+      
+      <guid>https://gmtcover.github.io/categories/pat/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>vim</title>
@@ -17,15 +35,6 @@
       <pubDate>Tue, 22 Dec 2020 11:36:35 +0900</pubDate>
       
       <guid>https://gmtcover.github.io/categories/vim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT</title>
-      <link>https://gmtcover.github.io/categories/pat/</link>
-      <pubDate>Wed, 12 Aug 2020 02:49:37 +0900</pubDate>
-      
-      <guid>https://gmtcover.github.io/categories/pat/</guid>
       <description></description>
     </item>
     
